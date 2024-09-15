@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+}
+
+.hello-title, .greeting, .i-am, .name, .page-title {
+  font-family: "Playwrite CU", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 4vh;
+}
+
+.greeting, .i-am {
+    font-size: 3vh;
+}
+
+.name, .page-title {
+    font-size: 6vh;
+    /* background-color: #8ed7ff; */
+    /* color: #fff; */
+    /* font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 10vh; */
+}
+
+.span-underline {
+    text-decoration: underline;
+    /* white-space: nowrap; */
+}
+
+/* section {
+    transform: translateY(-1000);
+} */
+
+.intro {
+    /* padding-top: 16vh; */
+    background-color: #f8fdff;
+    color: #0070ac;
+    height: 100vh;
+    font-size: 1.6vh;
+    font-style: italic;
+}
+
+.education {
+    background-color: #fffbee;
+    color: #aa8500;
+    height: 100vh;
+    font-size: 1.6vh;
+    font-style: italic;
+}
+
+.work {
+    background-color: #fff7f4;
+    color: #c8634c;
+    height: 100vh;
+    font-size: 1.6vh;
+    font-style: italic;
+}
+
+.hobbies {
+    background-color: #fff8fe;
+    color: #51324f;
+    height: 100vh;
+    font-size: 1.6vh;
+    font-style: italic;
+}
+
+.contact {
+    background-color: #f6fffa;
+    color: #519872;
+    height: 100vh;
+    font-size: 1.6vh;
+    font-style: italic;
+}
+
+.sections-container {
+    display: flex;
+    width: 500%; /* Width based on the number of sections */
+    height: 100vh;
+    transition: transform 0.8s ease;
+}
+
+
+.section {
+    width: 100vw; /* Full width of viewport */
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-icon {
+    cursor: pointer;
+    font-size: 2vh;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 200ms;
+    transform-origin: center;
+    border-radius: 50%;
+    padding: 4px 6px;
+}
+
+.nav-icon:hover {
+    font-size: 2.2vh;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 200ms;
+    transform-origin: center;
+}
+
+.nav-icon.selected {
+    font-size: 2.2vh;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.nav-icon.selected:hover {
+    background-color: #fff;
+}
+
+.intro .nav-icon.selected {
+    border: 2px solid #0070ac;
+}
+
+.intro .nav-icon:hover {
+    background-color: #0070ac54;
+}
+
+.education .nav-icon.selected {
+    border: 2px solid #aa8500;
+}
+
+.education .nav-icon:hover {
+    background-color: #aa850071;
+}
+
+.work .nav-icon.selected {
+    border: 2px solid #c8634c;
+}
+
+.work .nav-icon:hover {
+    background-color: #c8634c6a;
+}
+
+.hobbies .nav-icon.selected {
+    border: 2px solid #51324f;
+}
+
+.hobbies .nav-icon:hover {
+    background-color: #51324f5e;
+}
+
+.contact .nav-icon.selected {
+    border: 2px solid #519872;
+}
+
+.contact .nav-icon:hover {
+    background-color: #5198725d;
+}
+
