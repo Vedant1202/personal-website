@@ -19,7 +19,7 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        background-image: url("./Resources/Images/Personal/personal-landscape.png");
+        background-image: url("./Resources/Images/Backgrounds/education.png");
         background-size: cover;
         background-repeat: no-repeat;
       }
@@ -39,7 +39,7 @@
         position: absolute;
         width: 40px;
         height: 40px;
-        background-image: url("./Resources/Icons/leaf.png");
+        background-image: url("./Resources/Icons/leaf-fall.png");
         background-size: contain;
         background-repeat: no-repeat;
         animation: floatDown 15s linear infinite;
@@ -69,8 +69,8 @@
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         position: relative;
         z-index: 1;
-        background-color: rgba(255, 246, 204, 0.85); /* pastel yellow */
-        border: 3px solid #b9a45a;
+        background-color: rgba(235, 244, 215, 0.905); /* pastel green */
+        border: 3px solid #a1b27f;
       }
 
       .text-area {
@@ -89,6 +89,14 @@
         font-size: 2.2rem;
         color: #588157;
         margin-top: 0;
+      }
+
+      h1 {
+        color: #2e4d35;
+      }
+
+      h2 {
+        color: #4e835d;
       }
 
       p.intro {
@@ -130,7 +138,7 @@
         /* background-color: rgba(240, 224, 129, 0.6); */
         border: 2px solid;
         background-color: rgba(255, 246, 204, 0.3);
-        border-color: #cba847;
+        border-color: #a1b27f;
       }
 
       .nav-icons a i {
@@ -275,6 +283,67 @@
       }
     </style>
 
+    <style>
+      .edu-title {
+        font-family: "Dancing Script", cursive;
+        font-size: 2.5rem;
+        color: #2e4d35;
+        margin-bottom: 2rem;
+      }
+
+      .edu-entry {
+        margin-bottom: 2.5rem;
+      }
+
+      .edu-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+      }
+
+      .edu-row h3 {
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin: 0;
+        color: #213b2d;
+      }
+
+      .degree {
+        font-size: 1rem;
+        color: #444;
+        margin: 0.3rem 0;
+      }
+
+      .expected {
+        font-style: italic;
+        font-size: 0.95rem;
+        color: #777;
+        margin-left: 0.3rem;
+      }
+
+      .edu-meta {
+        text-align: right;
+        font-size: 0.95rem;
+        color: #444;
+        font-style: italic;
+        min-width: 120px;
+      }
+
+      .thesis {
+        margin-top: 0.6rem;
+        font-size: 0.95rem;
+        color: #333;
+        line-height: 1.5;
+      }
+
+      .edu-divider {
+        border: none;
+        border-top: 1px dashed #a2b29f;
+        margin: 2rem 0;
+      }
+    </style>
+
     <script
       src="https://kit.fontawesome.com/84d3cf58f7.js"
       crossorigin="anonymous"
@@ -314,36 +383,54 @@
 
     <div class="container">
       <div class="text-area">
-        <h1>Hello,</h1>
-        <h2>I'm Vedant</h2>
-        <p class="intro">..and it's lovely to see you here!</p>
-        <p>
-          I am an Indian studying in the United States. I bring with me a rich
-          cultural background, a zest to learn, an attitude to grow, and
-          eagerness to meet new people and experiences.
-        </p>
-        <div class="contact-info">
-          <p>
-            <i class="fas fa-envelope"></i>
-            <a href="mailto:vedant.nandoskar@gmail.com"
-              >vedant.nandoskar@gmail.com</a
-            ><br />
-            <i class="fas fa-file"></i> <a href="#">Resume</a><br />
-            <i class="fas fa-map-marker-alt"></i> Chicago, Illinois, USA
+        <h1 class="edu-title">Education</h1>
+
+        <div class="edu-entry">
+          <div class="edu-row">
+            <div>
+              <h3>University of Illinois, Chicago (UIC)</h3>
+              <p class="degree">
+                <em>Master of Science in Computer Science</em>
+                <span class="expected">(Expected: May 2025)</span>
+              </p>
+            </div>
+            <div class="edu-meta">
+              <span>Chicago, IL</span><br />
+              <em>Aug. 2023 – Present</em>
+            </div>
+          </div>
+          <p class="thesis">
+            Thesis on <strong>GestureTips</strong> — an innovative, LLM-based VR
+            technology that enhances gesture discoverability.
           </p>
         </div>
-        <p style="margin-top: 1rem; font-style: italic">
-          ..or use the navigation buttons below to know more about me!
-        </p>
+
+        <hr class="edu-divider" />
+
+        <div class="edu-entry">
+          <div class="edu-row">
+            <div>
+              <h3>Vidyalankar Institute of Technology</h3>
+              <p class="degree">
+                <em>Bachelor of Engineering in Information Technology</em>
+              </p>
+            </div>
+            <div class="edu-meta">
+              <span>Mumbai, India</span><br />
+              <em>Aug. 2017 – Jul. 2021</em>
+            </div>
+          </div>
+        </div>
+
         <div class="nav-icons">
-          <a href="#home" class="active">
+          <a href="./index.html">
             <img
               src="./Resources/Icons/home.png"
               alt="Home Icon"
               class="nav-icon-img"
             />
           </a>
-          <a href="./education.html">
+          <a href="#education" class="active">
             <img
               src="./Resources/Icons/education.png"
               alt="Education Icon"
