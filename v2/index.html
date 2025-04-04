@@ -15,11 +15,13 @@
         font-family: "EB Garamond", serif;
         background-color: #f9f5e3;
         color: #333;
-        overflow: hidden;
-        background-image: url("./Resources/Images/Backgrounds/paper-fibers.png");
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        background-image: url("./Resources/Images/Personal/personal-landscape.png");
         background-size: cover;
         background-repeat: no-repeat;
-
       }
 
       .background-animation {
@@ -37,9 +39,9 @@
         position: absolute;
         width: 40px;
         height: 40px;
-      background-image: url('./Resources/Icons/leaf.png');
-      background-size: contain;
-      background-repeat: no-repeat;
+        background-image: url("./Resources/Icons/leaf.png");
+        background-size: contain;
+        background-repeat: no-repeat;
         animation: floatDown 15s linear infinite;
       }
 
@@ -55,20 +57,20 @@
       }
 
       .container {
-        width: 85vw;
-        height: 85vh;
-        margin: auto;
+        width: 40vw;
+        height: 40vh;
+        margin-left: 4vw;
         display: flex;
-        margin-top: 4vh;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: 2rem;
-        background-color: rgba(255, 255, 255, 0.9);
+        padding: 4rem;
         border-radius: 20px;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         position: relative;
         z-index: 1;
+        background-color: rgba(255, 246, 204, 0.85); /* pastel yellow */
+        border: 3px solid #b9a45a;
       }
 
       .text-area {
@@ -104,43 +106,81 @@
         margin-top: 1rem;
       }
 
-      .image-area {
-        position: relative;
-      }
-
-      .image-area img.person {
-        width: 300px;
-        border-radius: 15px;
-        z-index: 2;
-        position: relative;
-      }
-
-      .image-area::before {
-        content: "";
-        position: absolute;
-        background: #a2d2ff;
-        width: 320px;
-        height: 320px;
-        border-radius: 50% 50% 0 0;
-        top: -20px;
-        left: -10px;
-        z-index: 1;
-        opacity: 0.3;
-      }
-
       .nav-icons {
         margin-top: 2rem;
-        font-size: 1.5rem;
+        display: flex;
+        gap: 2rem;
       }
 
-      .nav-icons i {
-        margin-right: 1rem;
-        cursor: pointer;
+      .nav-icons a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        /* background-color: #fff6cc; */
+        /* background-color: rgba(255, 246, 204, 0.3); */
+        /* border: 2px solid #d9b76e; */
+        /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); */
+      }
+
+      .nav-icons a.active {
+        /* background-color: rgba(240, 224, 129, 0.6); */
+        border: 2px solid;
+        background-color: rgba(255, 246, 204, 0.3);
+        border-color: #cba847;
+      }
+
+      .nav-icons a i {
+        color: #715c30;
+      }
+
+      .nav-icons a:hover {
+        transform: scale(1.1);
+        /* box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); */
+      }
+
+      .nav-icons a i {
+        color: #4682b4;
+        font-size: 1.4rem;
+      }
+
+      .nav-icon-img {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+        filter: drop-shadow(1px 1px 1px rgba(80, 60, 30, 0.2));
         transition: transform 0.3s ease;
       }
 
-      .nav-icons i:hover {
-        transform: scale(1.2);
+      .music-toggle {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background-color: #fff8dc;
+        padding: 0.5rem 1rem;
+				padding-right: 1.5rem !important;
+        border-radius: 30px;
+        font-family: "Dancing Script", cursive;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem; /* spacing between icon and text */
+      }
+
+      .nav-icon-img-music {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+      }
+
+      a:hover .nav-icon-img {
+        transform: scale(1.2) rotate(-2deg);
+        /* box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); */
       }
 
       .music-toggle {
@@ -163,7 +203,6 @@
   </head>
   <body>
     <div class="background-animation">
-      <!-- Animated leaves -->
       <div class="leaf" style="left: 10%; animation-delay: 0s"></div>
       <div class="leaf" style="left: 30%; animation-delay: 5s"></div>
       <div class="leaf" style="left: 50%; animation-delay: 3s"></div>
@@ -171,13 +210,17 @@
       <div class="leaf" style="left: 90%; animation-delay: 7s"></div>
     </div>
 
-    <div class="music-toggle" onclick="toggleMusic()">🎵 Toggle Music</div>
+    <div class="music-toggle" onclick="toggleMusic()">
+      <img
+        src="./Resources/Icons/music.png"
+        alt="Music Icon"
+        class="nav-icon-img-music"
+      />
+      Toggle Music
+    </div>
 
     <audio id="bg-music" loop>
-      <source
-        src="https://cdn.pixabay.com/audio/2022/03/16/audio_6041be9828.mp3"
-        type="audio/mp3"
-      />
+      <source src="./Resources/Music/ghibli-music.mp3" type="audio/mp3" />
       Your browser does not support the audio element.
     </audio>
 
@@ -205,14 +248,42 @@
           ..or use the navigation buttons below to know more about me!
         </p>
         <div class="nav-icons">
-          <a href="#home"><i class="fas fa-home"></i></a>
-          <a href="#about"><i class="fas fa-user"></i></a>
-          <a href="#projects"><i class="fas fa-project-diagram"></i></a>
-          <a href="#contact"><i class="fas fa-envelope-open"></i></a>
+          <a href="#home" class="active">
+            <img
+              src="./Resources/Icons/home.png"
+              alt="Home Icon"
+              class="nav-icon-img"
+            />
+          </a>
+          <a href="#education">
+            <img
+              src="./Resources/Icons/education.png"
+              alt="Education Icon"
+              class="nav-icon-img"
+            />
+          </a>
+          <a href="#work">
+            <img
+              src="./Resources/Icons/work.png"
+              alt="Work Icon"
+              class="nav-icon-img"
+            />
+          </a>
+          <a href="#hobbies">
+            <img
+              src="./Resources/Icons/hobbies.png"
+              alt="Hobbies Icon"
+              class="nav-icon-img"
+            />
+          </a>
+          <a href="#contact">
+            <img
+              src="./Resources/Icons/contact.png"
+              alt="Contact Icon"
+              class="nav-icon-img"
+            />
+          </a>
         </div>
-      </div>
-      <div class="image-area">
-        <img src="your-image.png" alt="Vedant" class="person" />
       </div>
     </div>
 
