@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+/* Reset the Vite template defaults */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

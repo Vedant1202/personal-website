@@ -1,0 +1,61 @@
+
+@import "tailwindcss";
+
+/* baseline */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #050816;
+  color: #fff;
+}
+
+/* HERO BACKGROUND: subtle animated grid */
+.hero-bg {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(1200px 800px at 20% 15%, rgba(59, 130, 246, 0.12), transparent 55%),
+    radial-gradient(900px 700px at 85% 30%, rgba(37, 99, 235, 0.08), transparent 60%),
+    linear-gradient(135deg, #050816 0%, #0a0f2c 100%);
+}
+
+/* two layered grids (gives depth) */
+.hero-bg::before,
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background-size: 64px 64px;
+  opacity: 0.18;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transform: translate3d(0, 0, 0);
+}
+
+.hero-bg::before {
+  background-image: linear-gradient(rgba(59, 130, 246, 0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.10) 1px, transparent 1px);
+  animation: grid-drift 22s linear infinite;
+}
+
+.hero-bg::after {
+  background-image: linear-gradient(rgba(96, 165, 250, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96, 165, 250, 0.07) 1px, transparent 1px);
+  background-size: 92px 92px;
+  opacity: 0.10;
+  animation: grid-drift 34s linear infinite reverse;
+}
+
+/* slow drift, very subtle */
+@keyframes grid-drift {
+  from {
+    transform: translate3d(-6%, -2%, 0);
+  }
+  to {
+    transform: translate3d(6%, 2%, 0);
+  }
+}
