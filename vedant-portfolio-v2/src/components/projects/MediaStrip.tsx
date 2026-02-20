@@ -1,4 +1,3 @@
-import React from "react";
 import type { Media } from "../../data/projects";
 
 export function MediaStrip({ media }: { media?: Media[] }) {

@@ -1,5 +1,4 @@
 // src/sections/Projects.tsx
-import React from "react";
 import { Section } from "../components/Section";
 import { SkillTiles } from "../components/skills/SkillTiles";
 import { PROJECTS } from "../data/projects";

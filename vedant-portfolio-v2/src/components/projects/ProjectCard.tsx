@@ -1,5 +1,4 @@
 // src/components/projects/ProjectCard.tsx
-import React from "react";
 import { motion } from "framer-motion";
 import type { Project } from "../../data/projects";
 import { TechIcon } from "./TechIcon";

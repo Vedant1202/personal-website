@@ -1,5 +1,5 @@
 // src/components/projects/ProjectGrid.tsx
-import React, { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Project } from "../../data/projects";
 import { ProjectCard } from "./ProjectCard";

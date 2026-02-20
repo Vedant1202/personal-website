@@ -1,5 +1,5 @@
 // src/sections/Home.tsx
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import vedantImg from "../assets/vedant.jpeg";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";

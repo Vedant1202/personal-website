@@ -1,4 +1,3 @@
-import React from "react";
 import type { Project } from "../../data/projects";
 import { MediaStrip } from "./MediaStrip";
 import { LinkPill } from "./LinkPill";
