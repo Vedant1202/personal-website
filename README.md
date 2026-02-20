@@ -167,9 +167,9 @@ GitHub: [https://github.com/Vedant1202](https://github.com/Vedant1202)
 
 ---
 
-## Future Improvements
+<!-- ## Future Improvements
 
 - Blog section (engineering deep dives)
 - Dark/light theme toggle
 - Performance audits & Lighthouse optimization
-- Case-study mode for detailed project breakdowns
+- Case-study mode for detailed project breakdowns -->
