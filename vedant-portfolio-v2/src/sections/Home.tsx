@@ -96,7 +96,15 @@ export function Home({
             {/* offset border behind image (down + left) */}
             <div
               aria-hidden
-              className="absolute top-3 -left-3 h-full w-full rounded-2xl border-2 border-blue-500/70 shadow-[0_0_30px_rgba(59,130,246,0.18)] sm:top-5 sm:-left-5 sm:border-[3px]"
+              className="absolute top-3 -left-3 h-full w-full rounded-2xl border-2 border-blue-500/10 shadow-[0_0_30px_rgba(59,130,246,0.18)] sm:top-5 sm:-left-5 sm:border-[3px]"
+            />
+            <div
+              aria-hidden
+              className="absolute top-2 -left-2 h-full w-full rounded-2xl border-2 border-blue-500/40 shadow-[0_0_30px_rgba(59,130,246,0.18)] sm:top-3 sm:-left-3 sm:border-[3px]"
+            />
+            <div
+              aria-hidden
+              className="absolute top-1 -left-1 h-full w-full rounded-2xl border-2 border-blue-500/70 shadow-[0_0_30px_rgba(59,130,246,0.18)] sm:top-1 sm:-left-1 sm:border-[3px]"
             />
 
             {/* image */}
