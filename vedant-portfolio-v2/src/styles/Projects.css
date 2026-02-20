@@ -1,0 +1,17 @@
+/* muted by default */
+.proj-tech-icon {
+  display: inline-flex;
+  filter: grayscale(1) saturate(0.6) brightness(0.9);
+  opacity: 0.8;
+  transition:
+    filter 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+/* your tech pill already has `group` class, so this works */
+.group:hover .proj-tech-icon {
+  filter: none;
+  opacity: 1;
+  transform: translateY(-1px);
+}

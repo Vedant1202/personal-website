@@ -1,0 +1,88 @@
+import React from "react";
+import type { Project } from "../../data/projects";
+import { MediaStrip } from "./MediaStrip";
+import { LinkPill } from "./LinkPill";
+import { TinyIcon } from "./TinyIcon";
+
+export function ProjectExpanded({
+  project,
+  onClose,
+}: {
+  project: Project;
+  onClose: () => void;
+}) {
+  return (
+    <div className="p-1">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div className="min-w-0">
+          {/* <p className="text-[11px] font-semibold tracking-[0.28em] text-white/50 uppercase">
+            Expanded
+          </p> */}
+
+          <h4 className="mt-3 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+            {project.title}
+          </h4>
+
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/70 sm:text-[15px]">
+            {project.longer}
+          </p>
+        </div>
+
+        <button
+          className={[
+            "shrink-0 rounded-xl border border-white/12 bg-white/[0.03]",
+            "px-3 py-2 text-xs font-semibold text-white/80",
+            "transition hover:bg-white/[0.06] hover:text-white",
+            "hover:shadow-[0_0_18px_rgba(59,130,246,0.16)]",
+          ].join(" ")}
+          onClick={onClose}
+          type="button"
+        >
+          Close
+        </button>
+      </div>
+
+      <div className="mt-5 h-px w-full bg-white/10" />
+
+      {!!project.bullets?.length && (
+        <ul className="mt-5 space-y-2 text-sm text-white/75">
+          {project.bullets.map((b, i) => (
+            <li key={`${project.id}-b-${i}`} className="flex gap-3">
+              <span className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400/35 shadow-[0_0_10px_rgba(59,130,246,0.18)]" />
+              <span className="leading-relaxed">{b}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {(project.links?.github || project.links?.live) && (
+        <div className="mt-6 flex flex-wrap gap-2">
+          {project.links?.github && (
+            <LinkPill
+              href={project.links.github}
+              label="GitHub"
+              variant="light"
+              icon={
+                <TinyIcon d="M9 19c-4 1.5-4-2.5-6-3m12 6v-3.5c0-1 .1-2.2-.5-3 2-.2 4-1 4-4.5 0-1-.4-2-1.2-2.8.1-.3.5-1.5-.1-2.8 0 0-1-.3-3 .9-.9-.3-1.8-.4-2.7-.4-.9 0-1.8.1-2.7.4-2-1.2-3-.9-3-.9-.6 1.3-.2 2.5-.1 2.8C5.4 9 5 10 5 11c0 3.5 2 4.3 4 4.5-.4.4-.6 1-.6 2v3.5" />
+              }
+            />
+          )}
+          {project.links?.live && (
+            <LinkPill
+              href={project.links.live}
+              label="Live"
+              variant="light"
+              icon={<TinyIcon d="M10 14L21 3m0 0h-6m6 0v6M21 14v6H3V3h6" />}
+            />
+          )}
+        </div>
+      )}
+
+      {!!project.media?.length && (
+        <div className="mt-6">
+          <MediaStrip media={project.media} />
+        </div>
+      )}
+    </div>
+  );
+}
