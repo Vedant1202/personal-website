@@ -1,44 +1,118 @@
 // src/sections/Home.tsx
-import { Section } from "../components/Section";
+import { motion, useInView } from "framer-motion";
+import vedantImg from "../assets/vedant.jpeg";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
+import { useEffect, useRef } from "react";
+import { HeroIntro } from "../components/hero/HeroIntro";
 
-export function Home() {
+export function Home({
+  onLinksInViewChange,
+}: {
+  onLinksInViewChange: (inView: boolean) => void;
+}) {
+  const linksRef = useRef<HTMLDivElement | null>(null);
+  const linksInView = useInView(linksRef, { amount: 0.35 });
+
+  useEffect(() => {
+    onLinksInViewChange(linksInView);
+  }, [linksInView, onLinksInViewChange]);
+
   return (
-    <Section id="home">
-      <div className="space-y-6">
-        <p className="text-sm text-white/60">Chicago, IL</p>
+    <section id="home" className="hero-bg relative w-full">
+      {/* subtle vignette */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/25" />
 
-        <h1 className="text-4xl leading-tight font-semibold tracking-tight sm:text-5xl">
-          Building scalable systems for research, healthcare, and enterprise products.
-        </h1>
+      {/* content */}
+      <div className="relative mx-auto grid min-h-[calc(100svh-84px)] w-full max-w-6xl grid-cols-12 items-start gap-y-10 px-5 pt-10 pb-2 sm:px-6 sm:pb-4 md:gap-x-10 md:pr-20">
+        {/* RIGHT TEXT ZONE (mobile first) */}
+        <div className="col-span-12 flex items-start md:order-2 md:col-span-7 md:mt-0">
+          <div className="w-full md:pl-6">
+            <HeroIntro
+              firstName="Vedant"
+              lastName="Nandoskar"
+              roleLines={["Software Engineer", "UI/UX Design", "Virtual Reality"]}
+            />
 
-        <p className="max-w-2xl text-base text-white/70">
-          Software engineer focused on data-intensive dashboards, secure backend systems,
-          and performance-driven frontend architecture.
-        </p>
+            <div className="mt-8 flex items-center gap-3">
+              {/* <div className="h-px w-10 bg-white/20" /> */}
+              <span className="text-[11px] tracking-[0.22em] text-white/55 uppercase italic">
+                Open to software engineering roles, let’s talk!
+              </span>
+              <span
+                aria-hidden
+                className="h-px flex-1 bg-gradient-to-r from-blue-500/60 to-transparent"
+              />
+            </div>
 
-        <div className="flex gap-6 text-sm text-white/70">
-          <a
-            href="https://github.com/Vedant1202"
-            target="_blank"
-            className="transition hover:text-white"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://linkedin.com/in/vedant-nandoskar-692824169/"
-            target="_blank"
-            className="transition hover:text-white"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="mailto:vedant.nandoskar@gmail.com"
-            className="transition hover:text-white"
-          >
-            Email
-          </a>
+            {/* links */}
+            <div
+              ref={linksRef}
+              className="mt-7 flex flex-wrap gap-x-12 gap-y-3 text-white/65 sm:mt-10"
+            >
+              {/* GitHub */}
+              <a
+                className="accent-hover accent-horizontal group flex items-center gap-2 whitespace-nowrap transition-all duration-200"
+                href="https://github.com/Vedant1202"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaGithub className="text-[1.05rem] text-white/65 transition-all duration-200 group-hover:scale-110 group-hover:text-[#ffffff]" />
+                <span className="text-xs tracking-[0.18em] uppercase transition-colors duration-200 group-hover:text-white">
+                  GitHub
+                </span>
+              </a>
+
+              {/* LinkedIn */}
+              <a
+                className="accent-hover accent-horizontal group flex items-center gap-2 whitespace-nowrap transition-all duration-200"
+                href="https://linkedin.com/in/vedant-nandoskar-692824169/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaLinkedin className="text-[1.05rem] text-white/65 transition-all duration-200 group-hover:scale-110 group-hover:text-[#0A66C2]" />
+                <span className="text-xs tracking-[0.18em] uppercase transition-colors duration-200 group-hover:text-white">
+                  LinkedIn
+                </span>
+              </a>
+
+              {/* Email */}
+              <a
+                className="accent-hover accent-horizontal group flex items-center gap-2 whitespace-nowrap transition-all duration-200"
+                href="mailto:vedant.nandoskar@gmail.com"
+              >
+                <HiOutlineMail className="text-[1.1rem] text-white/65 transition-all duration-200 group-hover:scale-110 group-hover:text-[#3B82F6]" />
+                <span className="text-xs tracking-[0.18em] uppercase transition-colors duration-200 group-hover:text-white">
+                  Email
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* LEFT VISUAL ZONE (image + offset border) */}
+        <div className="col-span-12 flex md:order-1 md:col-span-5 md:items-start">
+          <div className="relative w-full max-w-[520px] md:mt-0">
+            {/* offset border behind image (down + left) */}
+            <div
+              aria-hidden
+              className="absolute top-3 -left-3 h-full w-full rounded-2xl border-2 border-blue-500/70 shadow-[0_0_30px_rgba(59,130,246,0.18)] sm:top-5 sm:-left-5 sm:border-[3px]"
+            />
+
+            {/* image */}
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+              <img
+                src={vedantImg}
+                alt="Vedant Nandoskar"
+                draggable={false}
+                className="aspect-[4/5] max-h-[58svh] w-full object-cover sm:max-h-[62svh] md:max-h-[72svh]"
+              />
+              <div aria-hidden className="absolute inset-0 bg-black/20" />
+            </div>
+          </div>
         </div>
       </div>
-    </Section>
+      <div className="mb-2 h-px w-full bg-white/10" />
+    </section>
   );
 }

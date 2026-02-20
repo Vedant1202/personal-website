@@ -1,0 +1,208 @@
+/* --- Skill tile hover tint (subtle, doesn’t interfere with logos) --- */
+.skill-tile {
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 220ms ease;
+  background:
+    radial-gradient(600px 240px at 30% 15%, rgba(255, 255, 255, 0.06), transparent 55%),
+    radial-gradient(600px 240px at 80% 70%, rgba(59, 130, 246, 0.1), transparent 60%);
+  pointer-events: none;
+}
+
+.skill-tile:hover::before {
+  opacity: 1;
+}
+
+/* --- Tagline space: keeps tiles aligned even when not hovered --- */
+.tagline-slot {
+  min-height: 2.2rem; /* ~2 lines at text-xs + leading-snug */
+}
+
+/* clamp to 2 lines */
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/* typed-style reveal that still allows wrapping */
+.typewriter-wrap {
+  display: block;
+  clip-path: inset(0 100% 0 0);
+  animation: revealClip 380ms steps(18, end) forwards;
+}
+
+/* optional: subtle caret (doesn't break wrapping) */
+.typewriter-wrap::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  margin-left: 0.35em;
+  background: rgba(59, 130, 246, 0.65);
+  transform: translateY(2px);
+  animation: caretBlink 700ms step-end infinite;
+}
+
+@keyframes revealClip {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes caretBlink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-wrap {
+    animation: none;
+    clip-path: inset(0 0 0 0);
+  }
+  .typewriter-wrap::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--tw-width, 22ch);
+  }
+}
+
+@keyframes caret {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/* ====== MARQUEE (3 rows) — CLEAN SINGLE VERSION ====== */
+
+/* edge fade */
+.skills-marquee {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 7%,
+    black 93%,
+    transparent
+  );
+  mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+}
+
+.skills-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skills-row {
+  /* do NOT clip hover scale */
+  overflow: visible;
+}
+
+/* NEW: row viewport that clips only the horizontal overflow */
+.skills-row-clip {
+  overflow-x: hidden;
+  overflow-y: visible; /* allow scale to breathe */
+  padding: 0.6rem 0; /* gives space for scale + glow */
+}
+
+/* each row animates independently */
+.skills-track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  will-change: transform;
+  animation: skillsMarquee var(--dur, 28s) linear infinite;
+}
+
+.skills-group {
+  display: flex;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+/* brand icons: muted by default, real colors on hover */
+.skill-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  filter: grayscale(1) saturate(0) brightness(1.05);
+  opacity: 0.7;
+  transition:
+    filter 220ms ease,
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.skill-tile:hover .skill-icon {
+  filter: none;
+  opacity: 1;
+}
+
+.skill-tile:hover {
+  box-shadow: 0 0 24px rgba(59, 130, 246, 0.18);
+}
+
+/* tile width so offsets are consistent */
+:root {
+  --tileW: 10rem;
+}
+@media (min-width: 640px) {
+  :root {
+    --tileW: 11rem;
+  }
+}
+@media (min-width: 768px) {
+  :root {
+    --tileW: 12rem;
+  }
+}
+.skill-tile {
+  width: var(--tileW);
+}
+
+/* pause ONLY the hovered row (Safari fallback uses data-paused from your JS) */
+.skills-row[data-paused="true"] .skills-track {
+  animation-play-state: paused;
+}
+
+/* optional: modern browsers can pause without JS too */
+@supports selector(.skills-row:has(.skill-tile:hover)) {
+  .skills-row:has(.skill-tile:hover) .skills-track {
+    animation-play-state: paused;
+  }
+}
+
+/* smooth infinite: move left by EXACT width of one group */
+@keyframes skillsMarquee {
+  from {
+    transform: translateX(var(--rowOffset, 0px));
+  }
+  to {
+    transform: translateX(calc(var(--rowOffset, 0px) - var(--groupW, 0px)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-track {
+    animation: none;
+    transform: none;
+  }
+}

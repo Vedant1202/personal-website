@@ -1,51 +1,84 @@
 // src/sections/Projects.tsx
+import React from "react";
 import { Section } from "../components/Section";
+import { SkillTiles } from "../components/skills/SkillTiles";
+import { PROJECTS } from "../data/projects";
+import { ProjectGrid } from "../components/projects/ProjectGrid";
+import "../styles/Projects.css";
 
 export function Projects() {
   return (
-    <Section id="projects" title="Selected Work">
-      <div className="space-y-8">
-        {/* GestureTips */}
-        <div className="rounded-2xl border border-white/10 p-6">
-          <h3 className="text-base font-semibold">
-            GestureTips — Context-Aware VR Help System
-          </h3>
-          <p className="mt-2 text-sm text-white/60">Master’s Thesis · Unity · HoloLens</p>
+    <Section id="projects">
+      <div className="relative mx-auto max-w-6xl">
+        {/* Header */}
 
-          <ul className="mt-4 space-y-3 text-sm text-white/70">
-            <li>
-              Designed and built a context-aware gesture assistance system for immersive
-              computing.
-            </li>
-            <li>
-              Reduced gesture learning effort by 30% in a 24-participant user study.
-            </li>
-            <li>Published UX design guidelines for gesture-based interaction systems.</li>
-          </ul>
+        {/* Skills header */}
+        <div className="max-w-3xl">
+          <p className="text-xs tracking-[0.35em] text-white/50 uppercase">Skills</p>
+          <h3 className="mt-6 text-[2.1rem] leading-[1.05] font-semibold tracking-tight text-white sm:text-[2.7rem]">
+            Tools and Technologies I work with<span className="accent-punct">.</span>{" "}
+          </h3>
+          <div className="mt-8 h-px w-16 bg-blue-500/70 shadow-[0_0_16px_rgba(59,130,246,0.4)]" />
         </div>
 
-        {/* Grant Management */}
-        <div className="rounded-2xl border border-white/10 p-6">
-          <h3 className="text-base font-semibold">Grant Management System</h3>
-          <p className="mt-2 text-sm text-white/60">
-            Node.js · MongoDB · Workflow Automation
+        {/* Full-bleed marquee */}
+        <div className="relative right-1/2 left-1/2 -mx-[50vw] mt-10 w-screen">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-10">
+            <SkillTiles />
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="my-16 h-px w-full bg-white/10" />
+        <div className="mb-14 max-w-3xl">
+          <p className="text-xs tracking-[0.35em] text-white/50 uppercase">
+            Projects & Work
           </p>
 
-          <ul className="mt-4 space-y-3 text-sm text-white/70">
-            <li>
-              Architected modular backend supporting 9 research divisions with role-based
-              access.
-            </li>
-            <li>
-              Automated forms, reminders, and reporting dashboards across 100+ grant
-              submissions.
-            </li>
-            <li>
-              Designed API-driven integrations for administrative transparency and
-              tracking.
-            </li>
-          </ul>
+          <h2 className="mt-6 text-[2.1rem] leading-[1.05] font-semibold tracking-tight text-white sm:text-[2.7rem] md:text-[3.1rem]">
+            Ideas turned into working software<span className="accent-punct">.</span>
+          </h2>
+
+          <p className="mt-6 text-base leading-relaxed text-white/65 sm:text-lg">
+            <span className="relative inline-block">
+              <span className="relative z-10">Interfaces</span>
+              <span
+                aria-hidden
+                className="absolute bottom-[0.08em] left-0 z-0 h-[40%] w-full rounded-[0.25em] bg-blue-500/28 shadow-[0_0_16px_rgba(59,130,246,0.22)]"
+              />
+            </span>{" "}
+            that feel simple. <br />
+            <span className="relative inline-block">
+              <span className="relative z-10">Systems</span>
+              <span
+                aria-hidden
+                className="absolute bottom-[0.08em] left-0 z-0 h-[20%] w-full rounded-[0.25em] bg-blue-500/28 shadow-[0_0_16px_rgba(59,130,246,0.22)]"
+              />
+            </span>{" "}
+            that aren’t. <br />I care about{" "}
+            <span className="relative inline-block">
+              <span className="relative z-10">performance</span>
+              <span
+                aria-hidden
+                className="absolute bottom-[0.08em] left-0 z-0 h-[20%] w-full rounded-[0.25em] bg-blue-500/28 shadow-[0_0_16px_rgba(59,130,246,0.22)]"
+              />
+            </span>
+            , clarity, and making software that{" "}
+            <span className="relative inline-block">
+              <span className="relative z-10">actually holds up</span>
+              <span
+                aria-hidden
+                className="absolute bottom-[0.08em] left-0 z-0 h-[20%] w-full rounded-[0.25em] bg-blue-500/28 shadow-[0_0_16px_rgba(59,130,246,0.22)]"
+              />
+            </span>
+            .
+          </p>
+
+          <div className="mt-8 h-px w-16 bg-blue-500/70 shadow-[0_0_16px_rgba(59,130,246,0.4)]" />
         </div>
+
+        {/* Pinterest-ish projects grid */}
+        <ProjectGrid projects={PROJECTS} />
       </div>
     </Section>
   );
