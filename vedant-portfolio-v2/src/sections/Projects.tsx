@@ -7,7 +7,7 @@ import "../styles/Projects.css";
 
 export function Projects() {
   return (
-    <Section>
+    <Section id="projects-and-skills">
       <div className="relative mx-auto max-w-6xl">
         {/* Header */}
         <Section id="skills">
