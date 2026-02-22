@@ -40,7 +40,7 @@ export const PROJECTS: Project[] = [
     title: "GestureTips",
     tagline: "Context-aware VR help, not static tutorials.",
     tech: ["unity", "hololens", "ts"],
-    size: "lg",
+    size: "sm",
     // links: { demo: "#", github: "#" },
     longer:
       "Built a context-aware help system for gesture-driven VR that adapts to what the user is trying to do, instead of dumping a tutorial upfront. The goal was faster onboarding without breaking flow, and it held up in a 24-participant study with clear learning curves for guided conditions.",
