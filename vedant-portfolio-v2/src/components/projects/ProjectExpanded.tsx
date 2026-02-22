@@ -54,7 +54,10 @@ export function ProjectExpanded({
         </ul>
       )}
 
-      {(project.links?.github || project.links?.live) && (
+      {(project.links?.github ||
+        project.links?.live ||
+        project.links?.report ||
+        project.links?.demo) && (
         <div className="mt-6 flex flex-wrap gap-2">
           {project.links?.github && (
             <LinkPill
@@ -70,6 +73,22 @@ export function ProjectExpanded({
             <LinkPill
               href={project.links.live}
               label="Live"
+              variant="light"
+              icon={<TinyIcon d="M10 14L21 3m0 0h-6m6 0v6M21 14v6H3V3h6" />}
+            />
+          )}
+          {project.links?.report && (
+            <LinkPill
+              href={project.links.report}
+              label="Report"
+              variant="light"
+              icon={<TinyIcon d="M10 14L21 3m0 0h-6m6 0v6M21 14v6H3V3h6" />}
+            />
+          )}
+          {project.links?.demo && (
+            <LinkPill
+              href={project.links.demo}
+              label="Demo"
               variant="light"
               icon={<TinyIcon d="M10 14L21 3m0 0h-6m6 0v6M21 14v6H3V3h6" />}
             />
