@@ -12,6 +12,7 @@ import { HiOutlineMail } from "react-icons/hi";
 
 const navItems = [
   { label: "Home", id: "home" },
+  { label: "Skills", id: "skills" },
   { label: "Projects", id: "projects" },
   { label: "Journey", id: "journey" },
   { label: "Contact", id: "contact" },
