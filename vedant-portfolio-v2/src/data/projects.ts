@@ -176,13 +176,13 @@ export const PROJECTS: Project[] = [
       {
         type: "embed",
         src: "https://www.youtube.com/embed/Ae9sb6g64eQ",
-        title: "TreeMap — Demo",
+        title: "CaMicroscope - Real-time Collaboration Demo",
       },
     ],
   },
   {
     id: "garuda-clickjacking",
-    title: "Garuda – AI Clickjacking Threat Blocker",
+    title: "Garuda - AI Clickjacking Threat Blocker",
     tagline: "LLM-driven detection of visual deception on the web.",
     tech: ["js", "node", "docker"],
     size: "md",

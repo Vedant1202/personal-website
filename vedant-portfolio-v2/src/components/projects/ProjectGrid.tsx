@@ -37,7 +37,7 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
           // keep your current pinterest-ish setup
           "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
           // only keep this if you're using row-span sizing
-          "auto-rows-[12px]",
+          "auto-rows-auto",
         ].join(" ")}
       >
         {projects.map((p) => (
