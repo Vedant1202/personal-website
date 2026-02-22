@@ -125,21 +125,7 @@ export const PROJECTS: Project[] = [
       },
     ],
   },
-  {
-    id: "ignite-reporting",
-    title: "IGNITE Reporting Dashboards",
-    tagline: "Data-heavy clinical dashboards that stay fast.",
-    tech: ["python", "django", "postgres", "redis", "docker"],
-    size: "lg",
-    links: { demo: "#", github: "#" },
-    longer:
-      "Built and maintained HIPAA-aware reporting dashboards over large clinical research datasets. Focus was reliability and speed: ingestion, validation checks, and UX that makes messy data feel navigable. The work covered both the backend pipeline and the front-end delivery.",
-    bullets: [
-      "Validated daily reporting to reduce silent data drift.",
-      "Performance-focused UI for dense tables and filters.",
-      "Cross-institution workflows that don’t break under scale.",
-    ],
-  },
+
   {
     id: "camicroscope",
     title: "CaMicroscope (GSoC)",
@@ -151,13 +137,32 @@ export const PROJECTS: Project[] = [
       "Worked on real-time collaboration features for digital pathology workflows. The core challenge was keeping collaboration responsive at scale, using caching and concurrency tuning to reduce latency while maintaining correctness.",
   },
   {
-    id: "cave2-language",
-    title: "CAVE2 Language Barrier Experience",
-    tagline: "Immersive environment that turns confusion into clarity.",
-    tech: ["unity", "js"],
-    size: "sm",
-    links: { demo: "#" },
+    id: "garuda-clickjacking",
+    title: "Garuda – AI Clickjacking Threat Blocker",
+    tagline: "LLM-driven detection of visual deception on the web.",
+    tech: ["js", "node", "docker"],
+    size: "md",
+    links: { github: "https://github.com/Vedant1202/Garuda" },
     longer:
-      "Designed an immersive experience representing language barriers faced by immigrants. The space starts noisy and unreadable, then gradually resolves as the user progresses, to convey the moment when a place finally starts making sense.",
+      "Garuda is an AI-assisted Chrome extension that detects and mitigates clickjacking attacks by combining DOM-level heuristics with probabilistic reasoning from a large language model. Instead of relying purely on static filter lists, Garuda analyzes overlays, embedded third-party content, deceptive UI structures, and contextual signals in real time. Suspicious elements are scored for malicious intent using a structured prompt pipeline, and elements exceeding a defined probability threshold are dynamically suppressed to protect users.",
+    bullets: [
+      "MutationObserver-based detector identifies high z-index overlays, full-viewport elements, suspicious iframes, autoplay muted media, and deceptive navigation patterns.",
+      "Structured feature extraction layer captures origin, CSS properties, redirection chains, CSP data, script associations, and contextual signals.",
+      "Custom LLM prompt maps extracted DOM features to clickjacking principles and returns a probability score with concise reasoning.",
+      "Policy engine suppresses elements when malicious probability ≥ 0.75 and logs explainable security reports.",
+      "Evaluated across ~50 real-world websites to measure detection coverage, false positives, and site breakage behavior.",
+    ],
+    media: [
+      {
+        type: "image",
+        src: "./project-images/garuda/sys-diag.png",
+        alt: "Garuda system diagram showing the flow from DOM observation to LLM analysis and mitigation actions",
+      },
+      {
+        type: "image",
+        src: "./project-images/garuda/results.png",
+        alt: "Garuda in action - removing malicious overlay elements from a phishing test site",
+      },
+    ],
   },
 ];
