@@ -82,6 +82,7 @@ export function Projects() {
           {/* Pinterest-ish projects grid */}
           <ProjectGrid projects={PROJECTS} />
         </Section>
+        <div className="mt-16 mb-0 h-px w-full bg-white/10" />
       </div>
     </Section>
   );
