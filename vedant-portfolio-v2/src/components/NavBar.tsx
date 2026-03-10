@@ -8,7 +8,7 @@ import {
 } from "framer-motion";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { HiOutlineMail } from "react-icons/hi";
+import { HiOutlineMail, HiMenu, HiX } from "react-icons/hi";
 
 const navItems = [
   { label: "Home", id: "home" },
@@ -28,6 +28,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
   const [activeId, setActiveId] = useState("home");
   const [indicator, setIndicator] = useState<IndicatorPos | null>(null);
   const [brandInteractive, setBrandInteractive] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navRef = useRef<HTMLElement | null>(null);
   const itemRefs = useRef<Record<string, HTMLButtonElement | null>>({});
@@ -37,30 +38,41 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
   // ---- Brand: invisible on hero, appears after you scroll down a bit ----
   const { scrollY } = useScroll();
 
-  // Opinion: start showing once you're clearly leaving the hero
-  // (this feels intentional, not twitchy)
   const t = useTransform(scrollY, [120, 320], [0, 1]);
 
-  // Fade + slight slide + deblur
   const brandOpacity = useTransform(t, [0, 0.15, 1], [0, 0, 1]);
   const brandY = useTransform(t, [0, 1], [-8, 0]);
   const brandBlur = useTransform(t, [0, 1], ["blur(8px)", "blur(0px)"]);
   const brandScale = useTransform(t, [0, 1], [0.985, 1]);
 
-  // Subtle diagonal wipe overlay (slash vibe, but not loud)
   const wipeScaleX = useTransform(t, [0, 0.7, 1], [0, 1, 1]);
   const wipeOpacity = useTransform(t, [0, 0.35, 1], [0, 1, 0.75]);
 
-  // Slight padding tighten so it feels "snapped into place"
   const padX = useTransform(t, [0, 1], [14, 12]);
   const padY = useTransform(t, [0, 1], [9, 8]);
 
-  // Make it non-clickable when hidden (avoid invisible click target)
   useMotionValueEvent(t, "change", (v) => {
     setBrandInteractive(v > 0.2);
   });
 
-  // ---- 1) Active section = the one occupying most vertical space in viewport ----
+  // Close mobile menu on resize to desktop
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) setMobileMenuOpen(false);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
+  // ---- Active section tracking ----
   useEffect(() => {
     const sections = ids
       .map((id) => document.getElementById(id))
@@ -112,7 +124,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ids]);
 
-  // ---- 2) Move the single accent line to the active nav item ----
+  // ---- Desktop nav indicator ----
   useLayoutEffect(() => {
     const navEl = navRef.current;
     const btn = itemRefs.current[activeId];
@@ -136,14 +148,24 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
 
   return (
     <>
-      {/* Top-left brand */}
+      {/* ─── Top bar ─────────────────────────────────────────────────── */}
       <header className="fixed top-0 left-0 z-50 w-full">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6 sm:py-6">
+          {/* Mobile-only: always-visible brand text */}
+          <button
+            onClick={() => scrollTo("home")}
+            aria-label="Scroll to top"
+            className="text-sm font-semibold tracking-tight text-white/90 md:hidden"
+          >
+            Vedant Nandoskar
+          </button>
+
+          {/* Desktop: scroll-animated brand pill */}
           <motion.button
             onClick={() => scrollTo("home")}
             aria-label="Scroll to top"
             className={[
-              "relative",
+              "relative hidden md:inline-flex",
               "rounded-full",
               "text-sm font-semibold tracking-tight",
               "text-white/90 hover:text-white",
@@ -166,7 +188,6 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
               pointerEvents: brandInteractive ? "auto" : "none",
             }}
           >
-            {/* Vignette/glass layer so it never blends into content */}
             <span
               aria-hidden
               className="pointer-events-none absolute inset-0"
@@ -175,8 +196,6 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
                   "radial-gradient(120% 140% at 30% 20%, rgba(59,130,246,0.18), transparent 55%), radial-gradient(120% 140% at 80% 70%, rgba(0,0,0,0.55), transparent 60%), linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0))",
               }}
             />
-
-            {/* Diagonal wipe (slash vibe) */}
             <motion.span
               aria-hidden
               className="pointer-events-none absolute inset-0"
@@ -188,29 +207,33 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
                   "linear-gradient(135deg, transparent 0%, rgba(59,130,246,0.14) 35%, rgba(59,130,246,0.06) 55%, transparent 72%)",
               }}
             />
-
-            {/* Content */}
             <span className="relative flex items-center whitespace-nowrap">
               Vedant Nandoskar
             </span>
           </motion.button>
 
-          <div className="hidden md:block" />
+          {/* Mobile hamburger */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open menu"
+            className="inline-flex items-center justify-center rounded-full border border-white/10 bg-black/40 p-2 text-white/80 backdrop-blur transition hover:text-white md:hidden"
+          >
+            <HiMenu className="h-5 w-5" />
+          </button>
         </div>
       </header>
 
-      {/* Right-side vertical nav rail */}
+      {/* ─── Desktop vertical nav rail ───────────────────────────────── */}
       <nav
         ref={navRef}
         className="fixed top-1/2 right-6 z-50 hidden -translate-y-1/2 flex-col items-center gap-10 md:flex"
       >
-        {/* Faint rail line behind */}
         <div
           aria-hidden
           className="absolute top-0 right-[-12px] h-full w-px bg-white/10"
         />
 
-        {/* Single moving accent line */}
         {indicator ? (
           <motion.div
             aria-hidden
@@ -250,7 +273,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
         })}
       </nav>
 
-      {/* Bottom-right social dock */}
+      {/* ─── Desktop social dock ─────────────────────────────────────── */}
       <AnimatePresence>
         {showSocialDock ? (
           <motion.div
@@ -260,7 +283,6 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="fixed right-6 bottom-8 z-50 hidden flex-col items-end gap-4 md:flex"
           >
-            {/* Opinion: no underline on icons, only scale + brand color */}
             <motion.a
               layoutId="social-github"
               href="https://github.com/Vedant1202"
@@ -293,6 +315,106 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
             </motion.a>
           </motion.div>
         ) : null}
+      </AnimatePresence>
+
+      {/* ─── Mobile slide-in menu ────────────────────────────────────── */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            className="fixed inset-0 z-[60] md:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" />
+
+            {/* Drawer panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 340, damping: 36 }}
+              onClick={(e) => e.stopPropagation()}
+              className="absolute top-0 right-0 flex h-full w-72 max-w-[80vw] flex-col border-l border-white/10 bg-[#050816] px-8 pt-6 pb-10"
+            >
+              {/* Close button */}
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-semibold tracking-tight text-white/70">
+                  Menu
+                </span>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-label="Close menu"
+                  className="rounded-full border border-white/10 bg-white/5 p-2 text-white/60 transition-colors hover:text-white"
+                >
+                  <HiX className="h-4 w-4" />
+                </button>
+              </div>
+
+              {/* Divider */}
+              <div className="mt-5 h-px w-full bg-white/8" />
+
+              {/* Nav links */}
+              <nav className="mt-8 flex flex-col gap-1">
+                {navItems.map((item) => {
+                  const isActive = item.id === activeId;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => {
+                        scrollTo(item.id);
+                        setMobileMenuOpen(false);
+                      }}
+                      className={[
+                        "w-full rounded-xl px-4 py-3 text-left text-base font-medium transition-colors",
+                        isActive
+                          ? "bg-blue-500/10 text-white"
+                          : "text-white/60 hover:bg-white/5 hover:text-white",
+                      ].join(" ")}
+                    >
+                      {item.label}
+                    </button>
+                  );
+                })}
+              </nav>
+
+              {/* Social links at bottom */}
+              <div className="mt-auto">
+                <div className="mb-5 h-px w-full bg-white/8" />
+                <div className="flex items-center gap-5">
+                  <a
+                    href="https://github.com/Vedant1202"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="GitHub"
+                    className="text-white/50 transition-colors hover:text-white"
+                  >
+                    <FaGithub className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/vedant-nandoskar-692824169/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="LinkedIn"
+                    className="text-white/50 transition-colors hover:text-[#0A66C2]"
+                  >
+                    <FaLinkedin className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="mailto:vedant.nandoskar@gmail.com"
+                    aria-label="Email"
+                    className="text-white/50 transition-colors hover:text-blue-400"
+                  >
+                    <HiOutlineMail className="h-5 w-5" />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
       </AnimatePresence>
     </>
   );

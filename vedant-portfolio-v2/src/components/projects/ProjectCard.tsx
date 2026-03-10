@@ -4,7 +4,12 @@ import type { Project } from "../../data/projects";
 import { TechIcon } from "./TechIcon";
 
 function baseSpan(size?: Project["size"]) {
-  return size === "lg" ? "row-span-18" : size === "md" ? "row-span-15" : "row-span-13";
+  // row-span only kicks in at sm+ where the masonry grid is active
+  return size === "lg"
+    ? "sm:row-span-18"
+    : size === "md"
+      ? "sm:row-span-15"
+      : "sm:row-span-13";
 }
 
 export function ProjectCard({
@@ -42,7 +47,7 @@ export function ProjectCard({
       }}
       aria-expanded={isActive}
     >
-      <div className="h-full p-5">
+      <div className="h-full min-h-[9rem] p-5">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <h3 className="truncate text-sm font-semibold text-white">{project.title}</h3>
