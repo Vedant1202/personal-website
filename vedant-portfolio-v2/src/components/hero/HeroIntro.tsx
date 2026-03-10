@@ -18,8 +18,8 @@ export function HeroIntro({
 }: HeroIntroProps) {
   return (
     <>
-      <div className="flex w-full flex-col items-end text-right md:pl-6">
-        <p className="text-right text-sm text-white/55">{location}</p>
+      <div className="flex w-full flex-col items-start text-left sm:items-end sm:text-right md:pl-6">
+        <p className="text-sm text-white/55">{location}</p>
         <div className="mt-2 mb-3 h-px w-8 bg-blue-500/70 shadow-[0_0_16px_rgba(59,130,246,0.4)]" />
 
         {/* Role stack */}
@@ -27,7 +27,7 @@ export function HeroIntro({
           variants={roleV}
           initial="hidden"
           animate="show"
-          className="text-md text-right tracking-[0.35em] text-white/70 uppercase"
+          className="text-md text-left tracking-[0.35em] text-white/70 uppercase sm:text-right"
         >
           {roleLines.map((line, idx) => (
             <span key={line}>
