@@ -1,12 +1,15 @@
 // src/sections/Home.tsx
 import { useInView } from "framer-motion";
 import vedantImg from "../assets/vedant.png";
-import resumePdf from "../assets/Resume Vedant Nandoskar.pdf";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { FiFileText } from "react-icons/fi";
 import { useEffect, useRef } from "react";
 import { HeroIntro } from "../components/hero/HeroIntro";
+
+/** Opens in a new tab — Google Drive shared resume. */
+const RESUME_URL =
+  "https://drive.google.com/file/d/1ZWBoNok94OATX1Q8G2FMaiCwaET1PJf7/view?usp=sharing";
 
 export function Home({
   onLinksInViewChange,
@@ -92,10 +95,9 @@ export function Home({
               {/* Resume */}
               <a
                 className="accent-hover accent-horizontal group flex items-center gap-2 rounded-md bg-blue-500/5 px-2 py-0.5 whitespace-nowrap ring-1 ring-blue-500/30 transition-all duration-200"
-                href={resumePdf}
+                href={RESUME_URL}
                 target="_blank"
-                rel="noreferrer"
-                download
+                rel="noopener noreferrer"
               >
                 <FiFileText className="text-[1.05rem] text-blue-300/85 transition-all duration-200 group-hover:scale-110 group-hover:text-blue-200" />
                 <span className="text-xs tracking-[0.18em] text-blue-200/90 uppercase transition-colors duration-200 group-hover:text-white">
