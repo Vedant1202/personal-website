@@ -1,8 +1,10 @@
 // src/sections/Home.tsx
 import { useInView } from "framer-motion";
 import vedantImg from "../assets/vedant.png";
+import resumePdf from "../assets/Resume Vedant Nandoskar.pdf";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
+import { FiFileText } from "react-icons/fi";
 import { useEffect, useRef } from "react";
 import { HeroIntro } from "../components/hero/HeroIntro";
 
@@ -34,21 +36,21 @@ export function Home({
               roleLines={["Software Engineer", "UI/UX Design", "Virtual Reality"]}
             />
 
-            <div className="mt-8 flex items-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-2 sm:gap-3">
               {/* <div className="h-px w-10 bg-white/20" /> */}
               <span className="text-[11px] tracking-[0.22em] text-white/55 uppercase italic">
                 Open to software engineering roles, let’s talk!
               </span>
               <span
                 aria-hidden
-                className="h-px flex-1 bg-gradient-to-r from-blue-500/60 to-transparent"
+                className="h-px basis-full bg-gradient-to-r from-blue-500/60 to-transparent sm:flex-1 sm:basis-auto"
               />
             </div>
 
             {/* links */}
             <div
               ref={linksRef}
-              className="mt-7 flex flex-wrap gap-x-12 gap-y-3 text-white/65 sm:mt-10"
+              className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-white/65 sm:mt-10 sm:gap-x-12"
             >
               {/* GitHub */}
               <a
@@ -84,6 +86,20 @@ export function Home({
                 <HiOutlineMail className="text-[1.1rem] text-white/65 transition-all duration-200 group-hover:scale-110 group-hover:text-[#3B82F6]" />
                 <span className="text-xs tracking-[0.18em] uppercase transition-colors duration-200 group-hover:text-white">
                   Email
+                </span>
+              </a>
+
+              {/* Resume */}
+              <a
+                className="accent-hover accent-horizontal group flex items-center gap-2 rounded-md bg-blue-500/5 px-2 py-0.5 whitespace-nowrap ring-1 ring-blue-500/30 transition-all duration-200"
+                href={resumePdf}
+                target="_blank"
+                rel="noreferrer"
+                download
+              >
+                <FiFileText className="text-[1.05rem] text-blue-300/85 transition-all duration-200 group-hover:scale-110 group-hover:text-blue-200" />
+                <span className="text-xs tracking-[0.18em] text-blue-200/90 uppercase transition-colors duration-200 group-hover:text-white">
+                  Resume
                 </span>
               </a>
             </div>
