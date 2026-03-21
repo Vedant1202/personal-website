@@ -9,7 +9,7 @@ import { HeroIntro } from "../components/hero/HeroIntro";
 
 /** Opens in a new tab — Google Drive shared resume. */
 const RESUME_URL =
-  "https://drive.google.com/file/d/1ZWBoNok94OATX1Q8G2FMaiCwaET1PJf7/view?usp=sharing";
+  "https://drive.google.com/file/d/1az4R8kYCsFiQftbPrs_BaVOSUVIlHiRO/view?usp=drivesdk";
 
 export function Home({
   onLinksInViewChange,
