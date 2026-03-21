@@ -2,7 +2,7 @@
 
 A sleek, performance-focused portfolio built with **React + TypeScript**, showcasing my work in scalable frontend systems, data-intensive research platforms, and production-grade engineering.
 
-Live site: _[Add GitHub Pages / domain link here]_
+Live site: [https://vedant1202.github.io/personal-website/](https://vedant1202.github.io/personal-website/)
 GitHub Repo: [https://github.com/Vedant1202/personal-website](https://github.com/Vedant1202/personal-website)
 
 ---
