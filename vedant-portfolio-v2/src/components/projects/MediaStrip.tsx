@@ -1,70 +1,112 @@
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import type { Media } from "../../data/projects";
+import { Lightbox } from "./Lightbox";
+import type { LightboxImage } from "./Lightbox";
 
 export function MediaStrip({ media }: { media?: Media[] }) {
   if (!media?.length) return null;
 
+  // Collect only image-type items (with their original index) for the lightbox
+  const imageItems: { item: Extract<Media, { type: "image" }>; stripIndex: number }[] =
+    [];
+  media.forEach((m, i) => {
+    if (m.type === "image") imageItems.push({ item: m, stripIndex: i });
+  });
+
+  const lightboxImages: LightboxImage[] = imageItems.map(({ item }) => ({
+    src: item.src,
+    alt: item.alt,
+  }));
+
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxStartIndex, setLightboxStartIndex] = useState(0);
+
+  const openLightbox = (lightboxIdx: number) => {
+    setLightboxStartIndex(lightboxIdx);
+    setLightboxOpen(true);
+  };
+
   return (
-    <div className="mt-4">
-      <p className="text-xs font-semibold tracking-wide text-slate-500 uppercase">
-        Media
-      </p>
+    <>
+      <div className="mt-4">
+        <p className="text-xs font-semibold tracking-wide text-slate-500 uppercase">
+          Media
+        </p>
 
-      <div className="mt-3 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1">
-        {media.map((m, idx) => {
-          const key = `${m.type}-${m.src}-${idx}`;
+        <div className="mt-3 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1">
+          {media.map((m, idx) => {
+            const key = `${m.type}-${m.src}-${idx}`;
 
-          if (m.type === "image") {
+            if (m.type === "image") {
+              // Find this image's position in the lightbox images array
+              const lbIdx = imageItems.findIndex((x) => x.stripIndex === idx);
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  aria-label={`View full screen: ${m.alt ?? "image"}`}
+                  onClick={() => openLightbox(lbIdx)}
+                  className="snap-start overflow-hidden rounded-xl border border-white/10 bg-white/5 transition hover:border-blue-500/40 hover:ring-1 hover:ring-blue-500/30 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none"
+                >
+                  <img
+                    src={m.src}
+                    alt={m.alt ?? ""}
+                    className="h-40 w-64 object-cover"
+                    loading="lazy"
+                    draggable={false}
+                  />
+                </button>
+              );
+            }
+
+            if (m.type === "video") {
+              return (
+                <div
+                  key={key}
+                  className="snap-start overflow-hidden rounded-xl border border-white/10 bg-white/5"
+                >
+                  <video
+                    className="h-40 w-64 object-cover"
+                    controls
+                    preload="metadata"
+                    poster={m.poster}
+                  >
+                    <source src={m.src} />
+                  </video>
+                </div>
+              );
+            }
+
+            // embed (YouTube / Drive preview)
             return (
               <div
                 key={key}
-                className="snap-start overflow-hidden rounded-xl border border-slate-200 bg-white"
+                className="snap-start overflow-hidden rounded-xl border border-white/10 bg-white/5"
               >
-                <img
+                <iframe
+                  className="h-40 w-64"
                   src={m.src}
-                  alt={m.alt ?? ""}
-                  className="h-40 w-64 object-cover"
+                  title={m.title ?? "Embedded video"}
                   loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
                 />
               </div>
             );
-          }
-
-          if (m.type === "video") {
-            return (
-              <div
-                key={key}
-                className="snap-start overflow-hidden rounded-xl border border-slate-200 bg-white"
-              >
-                <video
-                  className="h-40 w-64 object-cover"
-                  controls
-                  preload="metadata"
-                  poster={m.poster}
-                >
-                  <source src={m.src} />
-                </video>
-              </div>
-            );
-          }
-
-          // embed (YouTube / Drive preview)
-          return (
-            <div
-              key={key}
-              className="snap-start overflow-hidden rounded-xl border border-slate-200 bg-white"
-            >
-              <iframe
-                className="h-40 w-64"
-                src={m.src}
-                title={m.title ?? "Embedded video"}
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-          );
-        })}
+          })}
+        </div>
       </div>
-    </div>
+
+      <AnimatePresence>
+        {lightboxOpen && (
+          <Lightbox
+            images={lightboxImages}
+            initialIndex={lightboxStartIndex}
+            onClose={() => setLightboxOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+    </>
   );
 }
