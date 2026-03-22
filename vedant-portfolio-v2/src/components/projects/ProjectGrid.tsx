@@ -1,5 +1,5 @@
 // src/components/projects/ProjectGrid.tsx
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Project } from "../../data/projects";
 import { ProjectCard } from "./ProjectCard";
@@ -9,23 +9,46 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const panelRef = useRef<HTMLDivElement | null>(null);
 
+  // Open the correct project if the URL hash is #project-{id} on first render
+  useEffect(() => {
+    const hash = window.location.hash.slice(1); // strip '#'
+    if (!hash.startsWith("project-")) return;
+    const projectId = hash.slice("project-".length);
+    if (!projects.find((p) => p.id === projectId)) return;
+    setActiveId(projectId);
+    // Give the panel time to mount before scrolling
+    const t = setTimeout(() => {
+      panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 400);
+    return () => clearTimeout(t);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const activeProject = useMemo(
     () => projects.find((p) => p.id === activeId) ?? null,
     [projects, activeId],
   );
 
   const toggle = (id: string) => {
-    setActiveId((prev) => (prev === id ? null : id));
+    const next = activeId === id ? null : id;
+    setActiveId(next);
+
+    // Keep URL in sync so the link is shareable
+    window.history.replaceState(null, "", next ? `#project-${next}` : "#projects");
 
     // scroll after DOM commits the panel
-    requestAnimationFrame(() => {
+    if (next) {
       requestAnimationFrame(() => {
-        panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        requestAnimationFrame(() => {
+          panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
       });
-    });
+    }
   };
 
-  const close = () => setActiveId(null);
+  const close = () => {
+    setActiveId(null);
+    window.history.replaceState(null, "", "#projects");
+  };
 
   return (
     <div className="mt-10">

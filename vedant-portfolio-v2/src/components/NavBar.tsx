@@ -144,6 +144,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", `#${id}`);
   };
 
   return (
@@ -264,6 +265,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
                 "text-[11px] tracking-[0.25em] uppercase",
                 "[writing-mode:vertical-rl]",
                 "transition",
+                "hover:cursor-pointer",
                 isActive ? "font-semibold text-white" : "text-white/55 hover:text-white",
               ].join(" ")}
             >
