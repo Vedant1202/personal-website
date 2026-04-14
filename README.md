@@ -1,6 +1,6 @@
 # Vedant Nandoskar — Personal Portfolio v2
 
-A sleek, performance-focused portfolio built with **React + TypeScript**, showcasing my work in scalable frontend systems, data-intensive research platforms, and production-grade engineering.
+A sleek, performance-focused, information dense portfolio built with **React + TypeScript**, showcasing my work in scalable frontend systems, data-intensive research platforms, and production-grade engineering.
 
 Live site: [https://vedant1202.github.io/personal-website/](https://vedant1202.github.io/personal-website/)
 GitHub Repo: [https://github.com/Vedant1202/personal-website](https://github.com/Vedant1202/personal-website)
