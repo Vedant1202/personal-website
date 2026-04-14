@@ -103,10 +103,10 @@ export function Journey() {
 
             <div className="space-y-12">
               <Block
-                org="University of Illinois"
+                org="University of Illinois Chicago"
                 title="M.S. Computer Science"
                 metaLeft="Class of 2025"
-                metaRight="Chicago"
+                metaRight="Chicago, IL"
                 bullets={[
                   <>
                     Thesis on VR help systems, improving onboarding with{" "}
@@ -144,22 +144,28 @@ export function Journey() {
 
             <div className="space-y-12">
               <Block
-                org="University of Illinois"
-                title="Software Research Engineer"
-                metaLeft="2024–Now"
-                metaRight="~2 yrs"
+                org="University of Illinois Chicago"
+                title="Software Engineer"
+                metaLeft="Jul 2024 – Present"
+                metaRight="Chicago, IL"
                 bullets={[
                   <>
-                    Built HIPAA-safe pipelines over <U>500K+ PHI</U> records across
-                    multi-site collaborators.
+                    Reduced manual reporting effort by <U>70%</U> and enabled predictive
+                    budgeting across <U>$10M+</U> in NIH, HRSA, and DoD grants by shipping
+                    an automated expense tracking platform from concept to production,
+                    iterating rapidly on stakeholder feedback.
                   </>,
                   <>
-                    Automated reporting workflows with <U>Django</U>, <U>MongoDB</U>, and
-                    validation tooling.
+                    Architected distributed data pipelines processing <U>500K+ PHI</U>{" "}
+                    records across Stanford, UWash, and UIC — implementing HIPAA-compliant
+                    access controls, end-to-end observability, and monitoring that boosted
+                    research throughput by <U>40%</U>.
                   </>,
                   <>
-                    Cut manual ops with expense tracking automation for <U>$10M+</U>{" "}
-                    research budgets.
+                    Built and owned a cloud-backed reporting system using{" "}
+                    <U>Python (FastAPI/Django)</U> and <U>PostgreSQL</U>, designing
+                    scalable REST APIs with monitoring hooks to guarantee production
+                    accuracy and data integrity across institutions.
                   </>,
                 ]}
               />
@@ -167,15 +173,26 @@ export function Journey() {
               <Block
                 org="CleverTap"
                 title="Senior Software Engineer"
-                metaLeft="2023"
-                metaRight="~1 yr"
+                metaLeft="Jan 2023 – Jul 2023"
+                metaRight="Mumbai, India"
                 bullets={[
                   <>
-                    Led dashboard revamp, reducing creation time by <U>~50%</U>.
+                    Cut campaign creation time by <U>50%</U> and increased enterprise
+                    feature adoption by <U>22%</U> — validated through A/B testing — by
+                    leading a full <U>React.js</U> dashboard revamp that redesigned
+                    customer-facing workflows into faster, more intuitive product flows.
                   </>,
                   <>
-                    Improved load + throughput via clustering and better data access
-                    patterns.
+                    Reduced backend latency by <U>80%</U> under millions of daily events
+                    by owning a full service redesign: modular dependencies, clustering,
+                    and load balancing — transforming a bottlenecked backend into a
+                    scalable, high-availability distributed system.
+                  </>,
+                  <>
+                    Safeguarded platform reliability for enterprise customers during a
+                    high-stakes beta rollout by leading production issue triage and
+                    collaborating cross-functionally with product and QA to resolve
+                    high-severity defects under tight release timelines.
                   </>,
                 ]}
               />
@@ -183,16 +200,20 @@ export function Journey() {
               <Block
                 org="CleverTap"
                 title="Software Engineer"
-                metaLeft="2021–2022"
-                metaRight="~2 yrs"
+                metaLeft="Jun 2021 – Dec 2022"
+                metaRight="Mumbai, India"
                 bullets={[
                   <>
-                    Built a reusable component system adopted across teams, boosting{" "}
-                    <U>delivery speed</U>.
+                    Accelerated feature delivery across engineering teams by designing and
+                    shipping a reusable modular component system adopted org-wide —
+                    standardizing UI patterns and eliminating duplicate code through
+                    structured code reviews.
                   </>,
                   <>
-                    Strengthened CI with automated testing, lowering{" "}
-                    <U>release regressions</U>.
+                    Reduced post-release defects by <U>70%</U> over six months
+                    post-deployment by integrating end-to-end <U>TestCafe</U> automation
+                    into the CI/CD pipeline, establishing automated regression coverage as
+                    a team quality standard.
                   </>,
                 ]}
               />

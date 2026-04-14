@@ -44,17 +44,16 @@ export const PROJECTS: Project[] = [
   {
     id: "gesturetips",
     title: "GestureTips",
-    tagline: "LLM-powered, in-VR voice assistance for gesture discoverability.",
-    tech: ["unity", "hololens", "ts"],
+    tagline:
+      "Context-aware VR help system — Master's thesis (Unity, C#, Microsoft HoloLens).",
+    tech: ["unity", "hololens"],
     size: "sm",
     longer:
-      "GestureTips is an AI-powered, voice-based, in-app help system for VR that provides just-in-time gesture guidance without breaking immersion. Built on HoloLens 2 using Unity, it integrates speech-to-text (OpenAI Whisper) and LLM-based intent recognition (GPT-4) to interpret user queries and trigger animated gesture demonstrations inside the VR environment. Instead of relying on static manuals, GestureTips acts like a contextual 'tooltip' for mid-air gestures, delivering assistance exactly when and where users need it.",
+      "GestureTips is a context-aware VR assistance system built in Unity/C# for Microsoft HoloLens. It delivers object-anchored, just-in-time guidance using gaze, proximity, and user action signals — so learners get help in place without leaving the task. This work was my Master's thesis: multimodal interaction design focused on reducing gesture learning effort in immersive environments.",
     bullets: [
-      "Voice → STT (Whisper) → LLM intent recognition → animated gesture feedback pipeline inside VR.",
-      "Implemented both Global and Local help modes, including gaze-triggered contextual assistance.",
-      "Evaluated in a 24-participant within-subjects study across three conditions (NGT, GGT, LGT).",
-      "Filtered hard-to-detect gestures to reveal stronger learning slopes for AI-assisted conditions.",
-      "Findings support a hybrid onboarding model: manual introduction + AI in-context reinforcement.",
+      "Reduced gesture learning effort by 30%, validated through a 24-participant user study, by shipping context-aware assistance that ties guidance to what the user is looking at, how close they are, and what they just did.",
+      "Global and local help modes with gaze-triggered and proximity-aware cues; animated gesture demonstrations inside the HoloLens scene.",
+      "Findings support hybrid onboarding: structured introduction plus in-context reinforcement for mid-air gestures.",
     ],
     media: [
       {
@@ -71,19 +70,18 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "grant-system",
-    title: "Grant Management System",
-    tagline: "End-to-end proposal lifecycle tracking with structured workflows.",
-    tech: ["node", "mongodb", "react", "ts"],
+    title: "AI-Assisted Grant Management System",
+    tagline:
+      "UIC · Nov 2024 – Aug 2025 — RAG layer over grant workflows across nine divisions.",
+    tech: ["node", "postgres", "mongodb", "python", "django", "react", "ts"],
     size: "md",
     links: { live: "https://gpms.dom.uic.edu/" },
     longer:
-      "A centralized proposal lifecycle platform built for the Department of Medicine to manage grants from initial PI submission through review, timeline planning, task execution, and submission. The system formalizes the real institutional workflow: PI submits proposal → Grant Manager reviews and accepts or requests revisions → structured tasklists and timelines are generated → collaborative execution begins. Designed to replace email chains and spreadsheets with auditable state transitions, role-based access, and structured coordination.",
+      "An end-to-end grant workflow platform for the University of Illinois Department of Medicine, extended with an AI-assisted layer: semantic indexing (Pinecone) and RAG pipelines surface relevant policies and context as PIs and grant managers work. The system spans nine divisions with HIPAA-compliant access controls, from intake through review, timelines, and coordinated execution — replacing ad hoc email and spreadsheets with auditable, structured workflows.",
     bullets: [
-      "Full proposal lifecycle modeling: submission, GM review, modification loop, acceptance, timeline + tasklist coordination.",
-      "Role-based access control for PIs, Grant Managers, and Admin users with clear status transitions.",
-      "Dynamic timeline + tasklist system with dependency tracking and progress visibility.",
-      "Structured proposal details view with sponsor data, funding mechanisms, deadlines, and attachments.",
-      "Designed for institutional scalability across divisions with centralized reporting capabilities.",
+      "Shipped the platform across nine divisions — cutting form completion time by 40% by implementing a RAG-based AI layer using Pinecone semantic indexing to surface relevant policies in context, with HIPAA-compliant access controls throughout.",
+      "Architected a distributed, event-driven knowledge layer backed by Pinecone to index grant documentation at scale, designed for reliable query performance and extensible integration with future AI-assisted healthcare workflows.",
+      "Full lifecycle: PI submission, grant manager review, modification loops, acceptance, and dynamic timelines + tasklists with role-based access for PIs, GMs, and admins.",
     ],
     media: [
       {
