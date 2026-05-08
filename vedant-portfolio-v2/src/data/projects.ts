@@ -44,16 +44,18 @@ export const PROJECTS: Project[] = [
   {
     id: "dionysys",
     title: "Dionysys",
-    tagline: "Adaptive UI experimentation framework for personalized interfaces with deterministic or MCP-guided decisioning.",
+    tagline:
+      "Adaptive UI experimentation framework for personalized interfaces with deterministic or MCP-guided decisioning.",
     tech: ["react", "ts", "node", "mongodb"],
     size: "lg",
     links: { github: "https://github.com/Vedant1202/Dionysys" },
-    longer: "Dionysys packages the decision logic, React runtime, telemetry backend, and reference demo needed to test adaptive experiences without hard-wiring everything into a single app. It is designed for teams that want to iterate on persona inference, variant selection, and runtime UI control while keeping the core logic reusable across products.",
+    longer:
+      "Dionysys packages the decision logic, React runtime, telemetry backend, and reference demo needed to test adaptive experiences without hard-wiring everything into a single app. It is designed for teams that want to iterate on persona inference, variant selection, and runtime UI control while keeping the core logic reusable across products.",
     bullets: [
       "Built deterministic and MCP-guided adaptive modes powered by custom InferenceEngine and PolicyEngine for dynamic UI delivery.",
       "Developed reusable @dionysys/core and @dionysys/react workspace packages for modular framework integration.",
       "Engineered a session-aware telemetry backend (Node/Express, MongoDB) with decision APIs and next-refresh application logic.",
-      "Implemented an in-memory runtime admin console for inspecting and tuning active configurations without database writes."
+      "Implemented an in-memory runtime admin console for inspecting and tuning active configurations without database writes.",
     ],
     media: [
       {
