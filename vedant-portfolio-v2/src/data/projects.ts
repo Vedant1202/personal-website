@@ -42,6 +42,80 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    id: "dionysys",
+    title: "Dionysys",
+    tagline:
+      "Adaptive UI experimentation framework — interfaces that evolve with the user via deterministic or MCP-guided decisioning.",
+    tech: ["react", "ts", "node", "mongodb"],
+    size: "lg",
+    links: {
+      github: "https://github.com/Vedant1202/Dionysys",
+      live: "https://dionysys-frontend.vercel.app/",
+      demo: "https://www.youtube.com/watch?v=U45lPx95GfU",
+      report:
+        "https://mewing-tuck-66c.notion.site/Dionysys-Adaptive-User-Interface-framework-36283d3a8f1d805d8bf0d4f31e3dcaa1",
+    },
+    longer:
+      "Dionysys is an adaptive UI experimentation framework that builds interfaces which evolve based on user behavior, persona signals, and runtime decisions. Rather than serving the same static layout to every user, Dionysys observes interaction patterns and applies structured, inspectable adaptations along two axes — Modality (draw-heavy vs. text-heavy) and Expertise (novice vs. power user). Decisions are queued and applied on next-refresh to avoid UI churn during active work, keeping the core decision logic reusable across products.",
+    bullets: [
+      "Two-axis adaptive model: adapts UI simultaneously along Modality (draw vs. text) and Expertise (novice vs. power user) for nuanced, composable variants.",
+      "Dual decision paths: Deterministic mode scores behavior directly; MCP mode uses LLMs to summarize sessions, score resources, and make bounded model-guided choices.",
+      "Next-refresh architecture queues adaptation decisions to avoid interrupting active work — changes apply only on remount, eliminating UI churn.",
+      "Developed reusable @dionysys/core and @dionysys/react workspace packages with a session-aware telemetry backend (Node/Express, MongoDB) and decision APIs.",
+      "In-memory runtime admin console for live inspection and tuning of inference weights, personality resources, and active mode — no database writes required.",
+    ],
+    media: [
+      {
+        type: "embed",
+        src: "https://www.youtube.com/embed/U45lPx95GfU",
+        title: "Meet Dionysys — Adaptive UI Experimentation",
+      },
+    ],
+  },
+  {
+    id: "agentic-architectures",
+    title: "Agentic AI Architectures",
+    tagline:
+      "Interactive multi-agent benchmarking dashboard to compare and visualize single, hybrid, and dynamic swarm patterns in real-time.",
+    tech: ["react", "ts", "node"],
+    size: "lg",
+    links: {
+      github: "https://github.com/Vedant1202/agentic-ai-architectures",
+      live: "https://agentic-ai-architectures-web.vercel.app/",
+    },
+    longer:
+      "An interactive benchmarking and visualization dashboard designed to compare multi-agent architectures (single-agent, centralized, hybrid, decentralized, and dynamic swarm) in real-time. Inspired by Google's 'Science of Scaling Agent Systems' research, the platform evaluates coordination tradeoffs across output quality, system latency, token consumption, and execution costs. The frontend uses dynamic flow visualizations and performance charts to make active agent decisions, graphs, and intermediate thinking traces fully transparent and inspectable.",
+    bullets: [
+      "Real-time multi-agent execution: Runs or replays benchmark tasks across single-agent, centralized, hybrid, decentralized, and dynamic swarm architectures using a LangGraph + Gemini orchestration runner.",
+      "Live execution streaming: Streams real-time progress, intermediate thoughts, and agent handoffs from the Express backend to the client via Server-Sent Events (SSE).",
+      "Dynamic flow visualization: Renders active agent coordination, graph states, and run metrics dynamically using @xyflow/react (React Flow) and Framer Motion.",
+      "Comprehensive metrics dashboard: Compares system latency, token usage, and model orchestration costs with interactive performance charts built on Recharts.",
+      "Dual execution modes: Operates as a live LLM execution sandbox or a high-fidelity visual replay tool using persisted JSON run history.",
+    ],
+    media: [
+      {
+        type: "image",
+        src: "./project-images/agentic-architectures/dashboard.png",
+        alt: "Agentic AI Architectures main dashboard view showing benchmarking configuration and model details",
+      },
+      {
+        type: "image",
+        src: "./project-images/agentic-architectures/running.png",
+        alt: "Live benchmark execution running concurrently across three multi-agent patterns",
+      },
+      {
+        type: "image",
+        src: "./project-images/agentic-architectures/results.png",
+        alt: "Comparative results showing runtime, token counts, and Judge quality ratings",
+      },
+      {
+        type: "image",
+        src: "./project-images/agentic-architectures/dark-mode.png",
+        alt: "Premium dark mode theme showing visual telemetry of agent handoffs",
+      },
+    ],
+  },
+  {
     id: "gesturetips",
     title: "GestureTips",
     tagline: "LLM-powered, in-VR voice assistance for gesture discoverability.",
