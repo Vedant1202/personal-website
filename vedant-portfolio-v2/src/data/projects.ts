@@ -52,7 +52,8 @@ export const PROJECTS: Project[] = [
       github: "https://github.com/Vedant1202/Dionysys",
       live: "https://dionysys-frontend.vercel.app/",
       demo: "https://www.youtube.com/watch?v=U45lPx95GfU",
-      report: "https://mewing-tuck-66c.notion.site/Dionysys-Adaptive-User-Interface-framework-36283d3a8f1d805d8bf0d4f31e3dcaa1",
+      report:
+        "https://mewing-tuck-66c.notion.site/Dionysys-Adaptive-User-Interface-framework-36283d3a8f1d805d8bf0d4f31e3dcaa1",
     },
     longer:
       "Dionysys is an adaptive UI experimentation framework that builds interfaces which evolve based on user behavior, persona signals, and runtime decisions. Rather than serving the same static layout to every user, Dionysys observes interaction patterns and applies structured, inspectable adaptations along two axes — Modality (draw-heavy vs. text-heavy) and Expertise (novice vs. power user). Decisions are queued and applied on next-refresh to avoid UI churn during active work, keeping the core decision logic reusable across products.",
