@@ -45,23 +45,29 @@ export const PROJECTS: Project[] = [
     id: "dionysys",
     title: "Dionysys",
     tagline:
-      "Adaptive UI experimentation framework for personalized interfaces with deterministic or MCP-guided decisioning.",
+      "Adaptive UI experimentation framework — interfaces that evolve with the user via deterministic or MCP-guided decisioning.",
     tech: ["react", "ts", "node", "mongodb"],
     size: "lg",
-    links: { github: "https://github.com/Vedant1202/Dionysys" },
+    links: {
+      github: "https://github.com/Vedant1202/Dionysys",
+      live: "https://dionysys-frontend.vercel.app/",
+      demo: "https://www.youtube.com/watch?v=U45lPx95GfU",
+      report: "https://mewing-tuck-66c.notion.site/Dionysys-Adaptive-User-Interface-framework-36283d3a8f1d805d8bf0d4f31e3dcaa1",
+    },
     longer:
-      "Dionysys packages the decision logic, React runtime, telemetry backend, and reference demo needed to test adaptive experiences without hard-wiring everything into a single app. It is designed for teams that want to iterate on persona inference, variant selection, and runtime UI control while keeping the core logic reusable across products.",
+      "Dionysys is an adaptive UI experimentation framework that builds interfaces which evolve based on user behavior, persona signals, and runtime decisions. Rather than serving the same static layout to every user, Dionysys observes interaction patterns and applies structured, inspectable adaptations along two axes — Modality (draw-heavy vs. text-heavy) and Expertise (novice vs. power user). Decisions are queued and applied on next-refresh to avoid UI churn during active work, keeping the core decision logic reusable across products.",
     bullets: [
-      "Built deterministic and MCP-guided adaptive modes powered by custom InferenceEngine and PolicyEngine for dynamic UI delivery.",
-      "Developed reusable @dionysys/core and @dionysys/react workspace packages for modular framework integration.",
-      "Engineered a session-aware telemetry backend (Node/Express, MongoDB) with decision APIs and next-refresh application logic.",
-      "Implemented an in-memory runtime admin console for inspecting and tuning active configurations without database writes.",
+      "Two-axis adaptive model: adapts UI simultaneously along Modality (draw vs. text) and Expertise (novice vs. power user) for nuanced, composable variants.",
+      "Dual decision paths: Deterministic mode scores behavior directly; MCP mode uses LLMs to summarize sessions, score resources, and make bounded model-guided choices.",
+      "Next-refresh architecture queues adaptation decisions to avoid interrupting active work — changes apply only on remount, eliminating UI churn.",
+      "Developed reusable @dionysys/core and @dionysys/react workspace packages with a session-aware telemetry backend (Node/Express, MongoDB) and decision APIs.",
+      "In-memory runtime admin console for live inspection and tuning of inference weights, personality resources, and active mode — no database writes required.",
     ],
     media: [
       {
         type: "embed",
-        src: "https://www.youtube.com/embed/SKq7UhHC5JU",
-        title: "Dionysys — Promo Video",
+        src: "https://www.youtube.com/embed/U45lPx95GfU",
+        title: "Meet Dionysys — Adaptive UI Experimentation",
       },
     ],
   },
