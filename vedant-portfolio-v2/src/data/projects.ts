@@ -71,9 +71,10 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "grant-system",
-    title: "Grant Management System",
-    tagline: "End-to-end proposal lifecycle tracking with structured workflows.",
-    tech: ["node", "mongodb", "react", "ts"],
+    title: "AI-Assisted Grant Management System",
+    tagline:
+      "HIPAA-compliant enterprise grant platform at UIC featuring an intelligent RAG pipeline and semantic policy search across nine divisions.",
+    tech: ["node", "postgres", "mongodb", "python", "django", "react", "ts"],
     size: "md",
     links: { live: "https://gpms.dom.uic.edu/" },
     longer:
