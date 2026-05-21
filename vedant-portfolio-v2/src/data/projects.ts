@@ -33,6 +33,8 @@ export type Project = {
     live?: string;
     paper?: string;
     demo?: string;
+    npmjs?: string;
+    docs?: string;
   };
   size?: "sm" | "md" | "lg";
   longer: string;
@@ -41,6 +43,27 @@ export type Project = {
 };
 
 export const PROJECTS: Project[] = [
+  {
+    id: "daily-work-summarizer",
+    title: "Daily Work Summarizer",
+    tagline:
+      "A TypeScript CLI and web UI that transforms your local Git history into automated daily stand-up summaries using Gemini AI.",
+    tech: ["ts", "node", "react"],
+    size: "md",
+    links: {
+      github: "https://github.com/Vedant1202/daily-work-summarizer",
+      npmjs: "https://www.npmjs.com/package/daily-commit-summarizer",
+      docs: "https://vedant1202.github.io/daily-work-summarizer/",
+    },
+    longer:
+      "Daily Work Summarizer is a TypeScript CLI and local web UI that turns local Git history into polished daily stand-up summaries. It scans commits for a configurable time window, filters out noise like lock files or build outputs, and categorizes the work. It enriches the reports with Linear issue metadata and detects commits needing documentation follow-up using Google's Gemini AI.",
+    bullets: [
+      "Scans commits for a configurable window and generates a stand-up-ready summary categorized by feature, fix, refactor, and more.",
+      "Intelligently filters out noise (lock files, binaries) and enriches reports with Linear issue metadata when referenced in commits.",
+      "Detects commits requiring documentation updates and polls/summarizes Mintlify documentation deployments.",
+      "Includes a local web UI to view exported Markdown/HTML reports, run controls, and manage configuration.",
+    ],
+  },
   {
     id: "dionysys",
     title: "Dionysys",
@@ -93,6 +116,11 @@ export const PROJECTS: Project[] = [
       "Dual execution modes: Operates as a live LLM execution sandbox or a high-fidelity visual replay tool using persisted JSON run history.",
     ],
     media: [
+      {
+        type: "embed",
+        src: "https://www.youtube.com/watch?v=uZfRaBMX8JU",
+        title: "Agentic AI Architectures — A Multi-Agent Systems Benchmarking & Visualization Platform",
+      },
       {
         type: "image",
         src: "./project-images/agentic-architectures/dashboard.png",

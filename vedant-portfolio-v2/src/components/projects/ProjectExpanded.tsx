@@ -57,6 +57,8 @@ export function ProjectExpanded({
       {(project.links?.github ||
         project.links?.live ||
         project.links?.report ||
+        project.links?.npmjs ||
+        project.links?.docs ||
         project.links?.demo) && (
         <div className="mt-6 flex flex-wrap gap-2">
           {project.links?.github && (
@@ -89,6 +91,22 @@ export function ProjectExpanded({
             <LinkPill
               href={project.links.demo}
               label="Demo"
+              variant="light"
+              icon={<TinyIcon d="M10 14L21 3m0 0h-6m6 0v6M21 14v6H3V3h6" />}
+            />
+          )}
+          {project.links?.npmjs && (
+            <LinkPill
+              href={project.links.npmjs}
+              label="NPM"
+              variant="light"
+              icon={<TinyIcon d="M10 14L21 3m0 0h-6m6 0v6M21 14v6H3V3h6" />}
+            />
+          )}
+          {project.links?.docs && (
+            <LinkPill
+              href={project.links.docs}
+              label="Docs"
               variant="light"
               icon={<TinyIcon d="M10 14L21 3m0 0h-6m6 0v6M21 14v6H3V3h6" />}
             />
