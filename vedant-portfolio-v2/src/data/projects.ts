@@ -44,6 +44,26 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    id: "agentpack",
+    title: "AgentPack",
+    tagline:
+      "Offline document-to-agent-context compiler that reduces context bloat for LLMs.",
+    tech: ["python", "node", "ts"],
+    size: "lg",
+    links: {
+      github: "https://github.com/Vedant1202/agentpack",
+      npmjs: "https://www.npmjs.com/package/agent-context-packager",
+    },
+    longer:
+      "AgentPack improves the context pipeline for document-grounded agents. It acts as an offline document-to-agent-context compiler that turns unstructured knowledge bases (PDFs, CSVs, Markdown, text) into clean semantic chunks with citations. It includes a built-in hybrid search engine (SQLite FTS5 + FastEmbed vector search) to retrieve the right evidence, and an interactive WebGL Corpus Explorer UI for visually debugging chunks.",
+    bullets: [
+      "Reduces context token usage significantly (up to 161x reduction) compared to raw document stuffing, resulting in cost savings and preventing the 'Lost in the Middle' phenomenon.",
+      "Parses and semantically extracts text from TXT (paragraph-aware), Markdown (heading-aware), CSV (Markdown tables), and PDFs (PyMuPDF).",
+      "Hybrid search engine using SQLite FTS5 and FastEmbed vector search to retrieve high-signal context.",
+      "Corpus Explorer UI: Local WebGL-powered 2D physics visualization to debug chunk semantic similarities and search trajectories.",
+    ],
+  },
+  {
     id: "daily-work-summarizer",
     title: "Daily Work Summarizer",
     tagline:
