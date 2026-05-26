@@ -106,6 +106,7 @@ export const PROJECTS: Project[] = [
       "Next-refresh architecture queues adaptation decisions to avoid interrupting active work — changes apply only on remount, eliminating UI churn.",
       "Developed reusable @dionysys/core and @dionysys/react workspace packages with a session-aware telemetry backend (Node/Express, MongoDB) and decision APIs.",
       "In-memory runtime admin console for live inspection and tuning of inference weights, personality resources, and active mode — no database writes required.",
+      "Beta Feedback Loop: A LangGraph-powered workflow that evaluates passive behavioral metrics and explicit user feedback, using a Thompson-sampling bandit and cross-session priors to continually optimize UI variant selection for returning users.",
     ],
     media: [
       {
