@@ -62,6 +62,13 @@ export const PROJECTS: Project[] = [
       "Hybrid search engine using SQLite FTS5 and FastEmbed vector search to retrieve high-signal context.",
       "Corpus Explorer UI: Local WebGL-powered 2D physics visualization to debug chunk semantic similarities and search trajectories.",
     ],
+    media: [
+      {
+        type: "embed",
+        src: "https://www.youtube.com/embed/4_Vak-a--Jg",
+        title: "AgentPack — Launch Video",
+      },
+    ],
   },
   {
     id: "daily-work-summarizer",
@@ -140,7 +147,8 @@ export const PROJECTS: Project[] = [
       {
         type: "embed",
         src: "https://www.youtube.com/watch?v=uZfRaBMX8JU",
-        title: "Agentic AI Architectures — A Multi-Agent Systems Benchmarking & Visualization Platform",
+        title:
+          "Agentic AI Architectures — A Multi-Agent Systems Benchmarking & Visualization Platform",
       },
       {
         type: "image",
