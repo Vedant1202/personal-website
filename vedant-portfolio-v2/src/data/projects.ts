@@ -15,7 +15,16 @@ export type TechKey =
   | "hololens"
   | "vue"
   | "graphql"
-  | "docker";
+  | "docker"
+  | "swift"
+  | "macos";
+
+// Display labels for tech keys whose correct casing differs from a plain
+// capitalize() of the key (e.g. "macos" -> "macOS"). Keys not listed here fall
+// back to the default capitalized rendering.
+export const TECH_LABELS: Partial<Record<TechKey, string>> = {
+  macos: "macOS",
+};
 
 export type Media =
   | { type: "image"; src: string; alt?: string }
@@ -43,6 +52,64 @@ export type Project = {
 };
 
 export const PROJECTS: Project[] = [
+  {
+    id: "cperch",
+    title: "cPerch",
+    tagline:
+      "Native macOS menu-bar app that surfaces every running Claude Code session — across terminals and the desktop app — and jumps you to the one that needs you.",
+    tech: ["swift", "macos"],
+    size: "lg",
+    links: {
+      github: "https://github.com/Vedant1202/cPerch",
+      live: "https://vedant1202.github.io/cPerch/",
+    },
+    longer:
+      "cPerch is a native macOS menu-bar app that watches your running Claude Code sessions — across terminal windows and the Claude desktop app — and surfaces them in one place. A glance at the menu bar tells you which agent is waiting on you, which is still working, and which has finished; one click jumps to the exact existing window. Detection is privacy-focused and fully local: it reads only your local ~/.claude directory and never makes a network request. It's built to solve a specific annoyance — when you're babysitting several agents at once, \"which window was that one in again?\" — without making you switch apps.",
+    bullets: [
+      "Every session in one place — terminal (claude) and Claude desktop sessions listed together, the ones needing you first, each with its latest message shown inline.",
+      "Status at a glance — every session is shape- and color-coded (needs-input, running, concluded), so state stays clear in grayscale or with color-vision deficiency.",
+      "One-click Jump — raises and focuses the existing host window (the exact terminal tab, or the desktop app) instead of ever spawning a duplicate.",
+      "Calm, opt-in notifications by kind (needs-input, error, completion), Focus/Do-Not-Disturb aware, plus a global hotkey (⌘⌥`) and optional launch-at-login.",
+      "Private by design — reads only ~/.claude, never writes to it, needs no Accessibility or Input-Monitoring permission, and sends nothing over the network.",
+      "Built in Swift (AppKit + SwiftUI) on a pure, Foundation-only detection core (CPerchCore, 143 passing tests) that merges process-scan, session-registry, and transcript signals.",
+    ],
+    media: [
+      {
+        type: "image",
+        src: "./project-images/cperch/og-image.png",
+        alt: "cPerch brand banner — the cPerch bird-on-a-terminal logo with the tagline 'A perch for your Claude sessions' and needs-input, running, and concluded status dots",
+      },
+    ],
+  },
+  {
+    id: "cprof",
+    title: "cprof",
+    tagline:
+      "Snapshot, scrub, and migrate your Claude Code setup as a redacted, portable profile.",
+    tech: ["ts", "node"],
+    size: "md",
+    links: {
+      github: "https://github.com/Vedant1202/claude-prof",
+      npmjs: "https://www.npmjs.com/package/@cprof/cli",
+      docs: "https://vedant1202.github.io/claude-prof/",
+    },
+    longer:
+      "cprof turns your scattered Claude Code setup — settings.json, MCP servers, CLAUDE.md memory, rules, skills, commands, and agents — into a portable, secret-redacted profile you can carry, diff, and re-apply anywhere. It snapshots your project or global config into a deterministic, schema-valid claude-profile.json, scrubs anything that looks like a secret into ${env:NAME} placeholders, and migrates a trusted profile onto another machine with a non-destructive deep merge. It is local-first, runs fully offline, and never executes hook or plugin code.",
+    bullets: [
+      "Snapshot — capture a project or global (~/.claude) setup into a deterministic, schema-valid claude-profile.json that diffs cleanly between machines.",
+      "Scrub — layered offline redaction (secretlint, secret-like key names, JWTs and high-entropy values) rewrites secrets to ${env:NAME}, and the manifest is re-scanned before write as a final leak gate.",
+      "Migrate — apply a trusted profile with a non-destructive deep merge: JSON config merges, permission lists union, asset files are backed up before overwrite, with --dry-run previews and a strict rollback.",
+      "Captures the whole setup — settings and permissions, local and remote MCP servers, CLAUDE.md memory and rules, and skills/commands/agents, plus a recorded (never executed) hook and plugin inventory.",
+      "Ships as @cprof/cli (Node 22+) from a pnpm + TypeScript monorepo (core, schema, CLI), with the core paths tested across Linux, macOS, and Windows.",
+    ],
+    media: [
+      {
+        type: "image",
+        src: "./project-images/cprof/social-card.svg",
+        alt: "cprof social card — the cprof wordmark over the tagline 'Snapshot, scrub, and migrate your Claude Code setup as a redacted, portable profile' and the install command npm i -g @cprof/cli@alpha",
+      },
+    ],
+  },
   {
     id: "agentpack",
     title: "AgentPack",
