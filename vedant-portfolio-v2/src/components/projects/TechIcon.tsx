@@ -18,6 +18,8 @@ import {
   SiDocker,
   SiVuedotjs,
   SiGraphql,
+  SiSwift,
+  SiApple,
 } from "react-icons/si";
 
 import { Glasses } from "lucide-react"; // for hololens (closest clean lucide icon)
@@ -69,6 +71,10 @@ export function TechIcon({ k }: { k: TechKey }) {
       return <BrandIcon Icon={SiGooglecloud} color="#4285F4" />;
     case "unity":
       return <BrandIcon Icon={SiUnity} color="#FFFFFF" />;
+    case "swift":
+      return <BrandIcon Icon={SiSwift} color="#F05138" />;
+    case "macos":
+      return <BrandIcon Icon={SiApple} color="#FFFFFF" />;
     case "docker":
       return <BrandIcon Icon={SiDocker} color="#2496ED" />;
     case "vue":

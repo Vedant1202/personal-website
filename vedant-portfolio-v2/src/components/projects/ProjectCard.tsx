@@ -1,6 +1,7 @@
 // src/components/projects/ProjectCard.tsx
 import { motion } from "framer-motion";
 import type { Project } from "../../data/projects";
+import { TECH_LABELS } from "../../data/projects";
 import { TechIcon } from "./TechIcon";
 
 function baseSpan(size?: Project["size"]) {
@@ -56,15 +57,18 @@ export function ProjectCard({
         </div>
 
         <div className="mt-4 flex flex-wrap items-center gap-2">
-          {project.tech.map((t) => (
-            <span
-              key={`${project.id}-${t}`}
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 text-xs text-white/70 transition hover:border-blue-500/25"
-            >
-              <TechIcon k={t} />
-              <span className="capitalize">{t}</span>
-            </span>
-          ))}
+          {project.tech.map((t) => {
+            const label = TECH_LABELS[t];
+            return (
+              <span
+                key={`${project.id}-${t}`}
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 text-xs text-white/70 transition hover:border-blue-500/25"
+              >
+                <TechIcon k={t} />
+                <span className={label ? "" : "capitalize"}>{label ?? t}</span>
+              </span>
+            );
+          })}
         </div>
 
         {isActive ? (
