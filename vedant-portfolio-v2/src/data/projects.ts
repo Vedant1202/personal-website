@@ -79,6 +79,26 @@ export const PROJECTS: Project[] = [
         src: "./project-images/cperch/og-image.png",
         alt: "cPerch brand banner — the cPerch bird-on-a-terminal logo with the tagline 'A perch for your Claude sessions' and needs-input, running, and concluded status dots",
       },
+      {
+        type: "image",
+        src: "./project-images/cperch/session-list.png",
+        alt: "cPerch menu-bar dropdown listing running Claude Code sessions grouped as Needs you / Working / Done, each with a shape- and color-coded status indicator, latest message, and a one-click Jump button",
+      },
+      {
+        type: "image",
+        src: "./project-images/cperch/settings-general.png",
+        alt: "cPerch Settings — General tab: appearance (System/Light/Dark), session-list grouping, how long finished sessions linger, launch at login, and the global shortcut",
+      },
+      {
+        type: "image",
+        src: "./project-images/cperch/settings-notifications.png",
+        alt: "cPerch Settings — Notifications tab: opt-in alerts for needs-input, error, and completion, with Focus/Do-Not-Disturb behavior and banner persistence",
+      },
+      {
+        type: "image",
+        src: "./project-images/cperch/settings-accessibility.png",
+        alt: "cPerch Settings — Accessibility tab: a shape-coded status toggle with a triangle/half-circle/checkmark legend, plus Follow-System controls for high contrast, reduce motion, and reduce transparency",
+      },
     ],
   },
   {
