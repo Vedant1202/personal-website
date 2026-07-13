@@ -7,9 +7,9 @@ import { FiFileText } from "react-icons/fi";
 import { useEffect, useRef } from "react";
 import { HeroIntro } from "../components/hero/HeroIntro";
 
-/** Opens in a new tab — Google Drive shared resume. */
+/** Opens in a new tab — Google Docs shared resume. */
 const RESUME_URL =
-  "https://drive.google.com/file/d/1az4R8kYCsFiQftbPrs_BaVOSUVIlHiRO/view?usp=drivesdk";
+  "https://docs.google.com/document/d/1lwHFMcUfTxe1Z_X8Em2QXG0nV6RKty-C/edit?usp=sharing";
 
 export function Home({
   onLinksInViewChange,
