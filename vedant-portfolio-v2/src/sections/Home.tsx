@@ -7,9 +7,9 @@ import { FiFileText } from "react-icons/fi";
 import { useEffect, useRef } from "react";
 import { HeroIntro } from "../components/hero/HeroIntro";
 
-/** Opens in a new tab — Google Docs shared resume. */
+/** Opens in a new tab — Google Docs shared resume (clean read-only preview view). */
 const RESUME_URL =
-  "https://docs.google.com/document/d/1lwHFMcUfTxe1Z_X8Em2QXG0nV6RKty-C/edit?usp=sharing";
+  "https://docs.google.com/document/d/1lwHFMcUfTxe1Z_X8Em2QXG0nV6RKty-C/preview";
 
 export function Home({
   onLinksInViewChange,
