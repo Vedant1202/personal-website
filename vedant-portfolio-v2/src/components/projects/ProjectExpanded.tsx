@@ -57,6 +57,7 @@ export function ProjectExpanded({
       {(project.links?.github ||
         project.links?.live ||
         project.links?.report ||
+        project.links?.paper ||
         project.links?.npmjs ||
         project.links?.docs ||
         project.links?.demo) && (
@@ -83,6 +84,14 @@ export function ProjectExpanded({
             <LinkPill
               href={project.links.report}
               label="Report"
+              variant="light"
+              icon={<TinyIcon d="M10 14L21 3m0 0h-6m6 0v6M21 14v6H3V3h6" />}
+            />
+          )}
+          {project.links?.paper && (
+            <LinkPill
+              href={project.links.paper}
+              label="Paper"
               variant="light"
               icon={<TinyIcon d="M10 14L21 3m0 0h-6m6 0v6M21 14v6H3V3h6" />}
             />
