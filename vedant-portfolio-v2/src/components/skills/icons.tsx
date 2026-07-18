@@ -13,17 +13,21 @@ export function cn(...s: Array<string | false | null | undefined>) {
 export function BrandIcon({
   Icon,
   color,
-  size = 40,
+  size = 16,
 }: {
   Icon: React.ComponentType<{ size?: number; className?: string; color?: string }>;
   color: string;
   size?: number;
 }) {
-  return <Icon size={size} className="skill-icon" color={color} />;
+  return <Icon size={size} className="skill-icon" color={color} aria-hidden />;
 }
 
 export function GenericIcon({ icon }: { icon: React.ReactNode }) {
-  return <div className="skill-icon">{icon}</div>;
+  return (
+    <div aria-hidden className="skill-icon">
+      {icon}
+    </div>
+  );
 }
 
 export type Skill = {

@@ -13,25 +13,20 @@ export function Projects() {
         <div id="skills" className="scroll-mt-24">
           <div className="max-w-3xl">
             <p className="text-xs tracking-[0.35em] text-white/50 uppercase">Skills</p>
-            <h3 className="mt-6 text-[2.1rem] leading-[1.05] font-semibold tracking-tight text-white sm:text-[2.7rem]">
+            <h2 className="mt-6 text-[2.1rem] leading-[1.05] font-semibold tracking-tight text-white sm:text-[2.7rem]">
               Tools and Technologies I work with
               <span className="accent-punct">.</span>{" "}
-            </h3>
+            </h2>
             <div className="mt-8 h-px w-16 bg-blue-500/70 shadow-[0_0_16px_rgba(59,130,246,0.4)]" />
           </div>
 
-          {/* Full-bleed marquee — uses overflow-clip to avoid horizontal scrollbar */}
-          <div className="relative mt-10 overflow-x-clip">
-            <div className="relative left-1/2 w-screen -translate-x-1/2">
-              <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-10">
-                <SkillTiles />
-              </div>
-            </div>
+          <div className="mt-10">
+            <SkillTiles />
           </div>
         </div>
 
         {/* Divider */}
-        <div className="my-16 h-px w-full bg-white/10" />
+        <div className="my-10 h-px w-full bg-white/10" />
 
         {/* ── Projects ───────────────────────────── */}
         <div id="projects" className="scroll-mt-24">
@@ -84,7 +79,7 @@ export function Projects() {
 
           {/* Pinterest-ish projects grid */}
           <ProjectGrid projects={PROJECTS} />
-          <div className="mt-16 mb-0 h-px w-full bg-white/10" />
+          <div className="mt-10 mb-0 h-px w-full bg-white/10" />
         </div>
       </div>
     </Section>

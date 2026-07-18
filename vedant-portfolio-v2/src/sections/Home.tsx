@@ -1,6 +1,6 @@
 // src/sections/Home.tsx
 import { useInView } from "framer-motion";
-import vedantImg from "../assets/vedant.png";
+import vedantImg from "../assets/vedant.webp";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { FiFileText } from "react-icons/fi";
@@ -130,6 +130,9 @@ export function Home({
               <img
                 src={vedantImg}
                 alt="Vedant Nandoskar"
+                width={1100}
+                height={1267}
+                fetchPriority="high"
                 draggable={false}
                 className="aspect-[4/5] max-h-[58svh] w-full object-cover sm:max-h-[62svh] md:max-h-[72svh]"
               />

@@ -1,4 +1,4 @@
-import { LayoutGroup } from "framer-motion";
+import { LayoutGroup, MotionConfig } from "framer-motion";
 import { useEffect, useState } from "react";
 import { NavBar } from "./components/NavBar";
 import { Home } from "./sections/Home";
@@ -37,16 +37,18 @@ export default function App() {
   }, []);
 
   return (
-    <LayoutGroup>
-      <div className="min-h-screen bg-black text-white">
-        <NavBar showSocialDock={showSocialDock} />
-        <main className="pt-20">
-          <Home onLinksInViewChange={setHomeLinksInView} />
-          <Projects />
-          <Journey />
-          <Contact onLinksInViewChange={setContactInView} />
-        </main>
-      </div>
-    </LayoutGroup>
+    <MotionConfig reducedMotion="user">
+      <LayoutGroup>
+        <div className="min-h-screen bg-black text-white">
+          <NavBar showSocialDock={showSocialDock} />
+          <main className="pt-20">
+            <Home onLinksInViewChange={setHomeLinksInView} />
+            <Projects />
+            <Journey />
+            <Contact onLinksInViewChange={setContactInView} />
+          </main>
+        </div>
+      </LayoutGroup>
+    </MotionConfig>
   );
 }

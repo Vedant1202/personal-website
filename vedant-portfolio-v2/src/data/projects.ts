@@ -45,7 +45,10 @@ export type Project = {
     npmjs?: string;
     docs?: string;
   };
-  size?: "sm" | "md" | "lg";
+  /** Featured projects render as large visual cards; the rest as compact rows. */
+  featured?: boolean;
+  /** Card cover image for featured projects; omit for a styled text cover. */
+  cover?: { src: string; alt: string };
   longer: string;
   bullets?: string[];
   media?: Media[];
@@ -58,7 +61,11 @@ export const PROJECTS: Project[] = [
     tagline:
       "Native macOS menu-bar app that surfaces every running Claude Code session — across terminals and the desktop app — and jumps you to the one that needs you.",
     tech: ["swift", "macos"],
-    size: "lg",
+    featured: true,
+    cover: {
+      src: "./project-images/cperch/og-image.png",
+      alt: "cPerch menu-bar session list",
+    },
     links: {
       github: "https://github.com/Vedant1202/cPerch",
       live: "https://vedant1202.github.io/cPerch/",
@@ -107,7 +114,11 @@ export const PROJECTS: Project[] = [
     tagline:
       "Snapshot, scrub, and migrate your Claude Code setup as a redacted, portable profile.",
     tech: ["ts", "node"],
-    size: "md",
+    featured: true,
+    cover: {
+      src: "./project-images/cprof/social-card.svg",
+      alt: "cprof — snapshot, scrub, and migrate Claude Code profiles",
+    },
     links: {
       github: "https://github.com/Vedant1202/claude-prof",
       npmjs: "https://www.npmjs.com/package/@cprof/cli",
@@ -136,7 +147,7 @@ export const PROJECTS: Project[] = [
     tagline:
       "Offline document-to-agent-context compiler that reduces context bloat for LLMs.",
     tech: ["python", "node", "ts"],
-    size: "lg",
+    featured: true,
     links: {
       github: "https://github.com/Vedant1202/agentpack",
       npmjs: "https://www.npmjs.com/package/agent-context-packager",
@@ -163,7 +174,6 @@ export const PROJECTS: Project[] = [
     tagline:
       "A TypeScript CLI and web UI that transforms your local Git history into automated daily stand-up summaries using Gemini AI.",
     tech: ["ts", "node", "react"],
-    size: "md",
     links: {
       github: "https://github.com/Vedant1202/daily-work-summarizer",
       npmjs: "https://www.npmjs.com/package/daily-commit-summarizer",
@@ -184,7 +194,7 @@ export const PROJECTS: Project[] = [
     tagline:
       "Adaptive UI experimentation framework — interfaces that evolve with the user via deterministic or MCP-guided decisioning.",
     tech: ["react", "ts", "node", "mongodb"],
-    size: "lg",
+    featured: true,
     links: {
       github: "https://github.com/Vedant1202/Dionysys",
       live: "https://dionysys-frontend.vercel.app/",
@@ -216,7 +226,11 @@ export const PROJECTS: Project[] = [
     tagline:
       "Interactive multi-agent benchmarking dashboard to compare and visualize single, hybrid, and dynamic swarm patterns in real-time.",
     tech: ["react", "ts", "node"],
-    size: "lg",
+    // cover kept for whenever this gets re-featured
+    cover: {
+      src: "./project-images/agentic-architectures/cover.webp",
+      alt: "Agentic AI Architectures benchmarking dashboard",
+    },
     links: {
       github: "https://github.com/Vedant1202/agentic-ai-architectures",
       live: "https://agentic-ai-architectures-web.vercel.app/",
@@ -265,7 +279,6 @@ export const PROJECTS: Project[] = [
     tagline:
       "Context-aware VR help system — Master's thesis (Unity, C#, Microsoft HoloLens).",
     tech: ["unity", "hololens"],
-    size: "sm",
     links: {
       paper:
         "https://www.proquest.com/dissertations-theses/gesturetips-enhancing-gesture-discoverability/docview/3362039910/se-2",
@@ -296,7 +309,6 @@ export const PROJECTS: Project[] = [
     tagline:
       "HIPAA-compliant enterprise grant platform at UIC featuring an intelligent RAG pipeline and semantic policy search across nine divisions.",
     tech: ["node", "postgres", "mongodb", "python", "django", "react", "ts"],
-    size: "md",
     links: { live: "https://gpms.dom.uic.edu/" },
     longer:
       "An end-to-end grant workflow platform for the University of Illinois Department of Medicine, extended with an AI-assisted layer: semantic indexing (Pinecone) and RAG pipelines surface relevant policies and context as PIs and grant managers work. The system spans nine divisions with HIPAA-compliant access controls, from intake through review, timelines, and coordinated execution — replacing ad hoc email and spreadsheets with auditable, structured workflows.",
@@ -333,7 +345,6 @@ export const PROJECTS: Project[] = [
     title: "Lights, Camera, Run!",
     tagline: "Third-person stealth adventure, outrun paparazzi before midnight.",
     tech: ["unity", "js"],
-    size: "sm",
     links: { github: "https://github.com/Vedant1202/Lights-camera-run" },
     longer:
       "A third-person stealth-adventure game where you play a rising celebrity navigating a busy city to reach auditions before midnight, while avoiding aggressive paparazzi. Players can use teleportation taxis, disguise at clothing stores, and choose alleys or main roads to survive the chaos of fame.",
@@ -357,7 +368,6 @@ export const PROJECTS: Project[] = [
     title: "Stars Explorer",
     tagline: "Immersive VR constellation exploration with time controls.",
     tech: ["unity"],
-    size: "md",
     links: {
       live: "https://vedant1202.github.io/CS528-vedant-project/index.html",
       github: "https://github.com/Vedant1202/CS528-vedant-project",
@@ -385,7 +395,6 @@ export const PROJECTS: Project[] = [
     title: "CaMicroscope (GSoC)",
     tagline: "Real-time collaborative pathology viewing.",
     tech: ["js", "node", "redis", "docker"],
-    size: "sm",
     links: {
       github: "https://github.com/camicroscope/caMicroscope",
       demo: "https://www.youtube.com/watch?v=Ae9sb6g64eQ",
@@ -405,7 +414,6 @@ export const PROJECTS: Project[] = [
     title: "Garuda - AI Clickjacking Threat Blocker",
     tagline: "LLM-driven detection of visual deception on the web.",
     tech: ["js", "node", "docker"],
-    size: "md",
     links: { github: "https://github.com/Vedant1202/Garuda" },
     longer:
       "Garuda is an AI-assisted Chrome extension that detects and mitigates clickjacking attacks by combining DOM-level heuristics with probabilistic reasoning from a large language model. Instead of relying purely on static filter lists, Garuda analyzes overlays, embedded third-party content, deceptive UI structures, and contextual signals in real time. Suspicious elements are scored for malicious intent using a structured prompt pipeline, and elements exceeding a defined probability threshold are dynamically suppressed to protect users.",
@@ -434,7 +442,6 @@ export const PROJECTS: Project[] = [
     title: "Content Shield",
     tagline: "Parent-controlled web filtering with explainable blocking + insights.",
     tech: ["js", "node", "react", "ts"],
-    size: "md",
     links: {
       demo: "https://www.youtube.com/watch?v=WF9hAoSbt_w",
       report:
@@ -467,7 +474,6 @@ export const PROJECTS: Project[] = [
     title: "TreeMap",
     tagline: "Discover, log, and map trees around you.",
     tech: ["react", "js", "node", "mongodb"],
-    size: "md",
     links: {
       github: "https://github.com/vedant1202/treemap",
       demo: "https://www.youtube.com/watch?v=2omqNPIuvk0",

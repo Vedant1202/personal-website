@@ -155,8 +155,8 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
           {/* Mobile-only: always-visible brand text */}
           <button
             onClick={() => scrollTo("home")}
-            aria-label="Scroll to top"
-            className="text-sm font-semibold tracking-tight text-white/90 md:hidden"
+            aria-label="Vedant Nandoskar — scroll to top"
+            className="rounded-full border border-white/10 bg-black/40 px-3 py-1.5 text-sm font-semibold tracking-tight text-white/90 backdrop-blur md:hidden"
           >
             Vedant Nandoskar
           </button>
@@ -164,7 +164,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
           {/* Desktop: scroll-animated brand pill */}
           <motion.button
             onClick={() => scrollTo("home")}
-            aria-label="Scroll to top"
+            aria-label="Vedant Nandoskar — scroll to top"
             className={[
               "relative hidden md:inline-flex",
               "rounded-full",

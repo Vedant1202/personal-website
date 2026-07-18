@@ -229,3 +229,33 @@ export const SKILLS: Skill[] = [
     icon: <BrandIcon Icon={SiPandas} color="#150458" />,
   },
 ];
+
+/** Ordered display groups for the compact chips layout. */
+export const SKILL_GROUPS: { label: string; keys: string[] }[] = [
+  {
+    label: "Languages",
+    keys: ["python", "typescript", "javascript", "cpp", "csharp", "shell"],
+  },
+  {
+    label: "Frameworks & APIs",
+    keys: ["react", "vue", "node", "flask", "django", "rest", "graphql"],
+  },
+  {
+    label: "Infra & Data",
+    keys: [
+      "linux",
+      "docker",
+      "cicd",
+      "aws",
+      "gcp",
+      "postgres",
+      "mysql",
+      "mongo",
+      "redis",
+      "lb",
+      "micro",
+    ],
+  },
+  { label: "Testing & Quality", keys: ["pytest", "jest", "junit", "tdd"] },
+  { label: "AI & ML", keys: ["llm", "rag", "tf", "pandas"] },
+];

@@ -1,8 +1,9 @@
 // src/components/projects/ProjectGrid.tsx
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import type { Project } from "../../data/projects";
 import { ProjectCard } from "./ProjectCard";
+import { ProjectRow } from "./ProjectRow";
 import { ProjectExpandedPanel } from "./ProjectExpandedPanel";
 
 export function ProjectGrid({ projects }: { projects: Project[] }) {
@@ -50,19 +51,14 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
     window.history.replaceState(null, "", "#projects");
   };
 
+  const featured = projects.filter((p) => p.featured);
+  const rest = projects.filter((p) => !p.featured);
+
   return (
     <div className="mt-10">
-      {/* grid */}
-      <motion.div
-        layout
-        className={[
-          "grid gap-4",
-          "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
-          // masonry row sizing only on sm+ (2+ columns); mobile is natural auto height
-          "sm:auto-rows-[12px]",
-        ].join(" ")}
-      >
-        {projects.map((p) => (
+      {/* featured cards — natural height, covers on top */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {featured.map((p) => (
           <ProjectCard
             key={p.id}
             project={p}
@@ -71,7 +67,23 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
             onToggle={() => toggle(p.id)}
           />
         ))}
-      </motion.div>
+      </div>
+
+      {/* the rest — compact rows */}
+      <p className="mt-10 mb-4 text-xs tracking-[0.3em] text-white/45 uppercase">
+        More projects
+      </p>
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {rest.map((p) => (
+          <ProjectRow
+            key={p.id}
+            project={p}
+            isActive={p.id === activeId}
+            isMuted={activeId !== null && p.id !== activeId}
+            onToggle={() => toggle(p.id)}
+          />
+        ))}
+      </div>
 
       {/* expanded panel below */}
       <div ref={panelRef} className="scroll-mt-28">

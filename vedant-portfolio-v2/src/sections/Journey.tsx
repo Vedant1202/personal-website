@@ -53,7 +53,7 @@ export function Journey() {
     <Section id="journey">
       <div className="relative mx-auto max-w-6xl px-0">
         {/* header */}
-        <div className="mb-20 max-w-3xl">
+        <div className="mb-12 max-w-3xl">
           <p className="text-xs tracking-[0.35em] text-white/50 uppercase">Journey</p>
 
           <h2 className="mt-6 text-[2.2rem] leading-[1.05] font-semibold tracking-tight text-white sm:text-[2.8rem] md:text-[3.2rem]">
@@ -93,131 +93,127 @@ export function Journey() {
           <div className="mt-8 h-px w-16 bg-blue-500/70 shadow-[0_0_16px_rgba(59,130,246,0.4)]" />
         </div>
 
-        {/* two-column layout */}
-        <div className="grid grid-cols-12 gap-y-16 md:gap-x-14">
-          {/* EDUCATION */}
-          <div className="col-span-12 md:col-span-5">
-            <p className="mb-10 text-sm tracking-[0.28em] text-white/60 uppercase">
-              Education
-            </p>
+        {/* education — compact two-up band */}
+        <div className="mb-14">
+          <p className="mb-6 text-sm tracking-[0.28em] text-white/60 uppercase">
+            Education
+          </p>
 
-            <div className="space-y-12">
-              <Block
-                org="University of Illinois Chicago"
-                title="M.S. Computer Science"
-                metaLeft="Class of 2025"
-                metaRight="Chicago, IL"
-                bullets={[
-                  <>
-                    Thesis on VR help systems, improving onboarding with{" "}
-                    <U>context-aware guidance</U>.
-                  </>,
-                  <>
-                    Built data-heavy dashboards and pipelines for <U>clinical research</U>
-                    .
-                  </>,
-                ]}
-              />
+          <div className="grid gap-10 sm:grid-cols-2">
+            <Block
+              org="University of Illinois Chicago"
+              title="M.S. Computer Science"
+              metaLeft="Class of 2025"
+              metaRight="Chicago, IL"
+              bullets={[
+                <>
+                  Thesis on VR help systems, improving onboarding with{" "}
+                  <U>context-aware guidance</U>.
+                </>,
+                <>
+                  Built data-heavy dashboards and pipelines for <U>clinical research</U>.
+                </>,
+              ]}
+            />
 
-              <Block
-                org="University of Mumbai"
-                title="B.E. Information Technology"
-                metaLeft="Class of 2021"
-                metaRight="Mumbai"
-                bullets={[
-                  <>
-                    Strong base in <U>systems</U>, networking, and software engineering.
-                  </>,
-                  <>
-                    Shipped full-stack projects with an emphasis on <U>performance</U>.
-                  </>,
-                ]}
-              />
-            </div>
+            <Block
+              org="University of Mumbai"
+              title="B.E. Information Technology"
+              metaLeft="Class of 2021"
+              metaRight="Mumbai"
+              bullets={[
+                <>
+                  Strong base in <U>systems</U>, networking, and software engineering.
+                </>,
+                <>
+                  Shipped full-stack projects with an emphasis on <U>performance</U>.
+                </>,
+              ]}
+            />
           </div>
+        </div>
 
-          {/* EXPERIENCE */}
-          <div className="col-span-12 md:col-span-7">
-            <p className="mb-10 text-sm tracking-[0.28em] text-white/60 uppercase">
-              Experience
-            </p>
+        {/* experience — full-width timeline */}
+        <div>
+          <p className="mb-6 text-sm tracking-[0.28em] text-white/60 uppercase">
+            Experience
+          </p>
 
-            <div className="space-y-12">
-              <Block
-                org="University of Illinois Chicago"
-                title="Software Engineer"
-                metaLeft="Jul 2024 – Present"
-                metaRight="Chicago, IL"
-                bullets={[
-                  <>
-                    Reduced manual reporting effort by <U>70%</U> and enabled predictive
-                    budgeting across <U>$10M+</U> in NIH, HRSA, and DoD grants by shipping
-                    an automated expense tracking platform from concept to production,
-                    iterating rapidly on stakeholder feedback.
-                  </>,
-                  <>
-                    Architected distributed data pipelines processing <U>500K+ PHI</U>{" "}
-                    records across Stanford, UWash, and UIC — implementing HIPAA-compliant
-                    access controls, end-to-end observability, and monitoring that boosted
-                    research throughput by <U>40%</U>.
-                  </>,
-                  <>
-                    Built and owned a cloud-backed reporting system using{" "}
-                    <U>Python (FastAPI/Django)</U> and <U>PostgreSQL</U>, designing
-                    scalable REST APIs with monitoring hooks to guarantee production
-                    accuracy and data integrity across institutions.
-                  </>,
-                ]}
-              />
+          <div className="max-w-4xl space-y-10">
+            <Block
+              org="University of Illinois Chicago"
+              title="Software Engineer"
+              metaLeft="Jul 2024 – Present"
+              metaRight="Chicago, IL"
+              bullets={[
+                <>
+                  Reduced manual reporting effort by <U>70%</U> and enabled predictive
+                  budgeting across <U>$10M+</U> in NIH, HRSA, and DoD grants by shipping
+                  an automated expense tracking platform from concept to production,
+                  iterating rapidly on stakeholder feedback.
+                </>,
+                <>
+                  Architected distributed data pipelines processing <U>500K+ PHI</U>{" "}
+                  records across Stanford, UWash, and UIC — implementing HIPAA-compliant
+                  access controls, end-to-end observability, and monitoring that boosted
+                  research throughput by <U>40%</U>.
+                </>,
+                <>
+                  Built and owned a cloud-backed reporting system using{" "}
+                  <U>Python (FastAPI/Django)</U> and <U>PostgreSQL</U>, designing scalable
+                  REST APIs with monitoring hooks to guarantee production accuracy and
+                  data integrity across institutions.
+                </>,
+              ]}
+            />
 
-              <Block
-                org="CleverTap"
-                title="Senior Software Engineer"
-                metaLeft="Jan 2023 – Jul 2023"
-                metaRight="Mumbai, India"
-                bullets={[
-                  <>
-                    Cut campaign creation time by <U>50%</U> and increased enterprise
-                    feature adoption by <U>22%</U> — validated through A/B testing — by
-                    leading a full <U>React.js</U> dashboard revamp that redesigned
-                    customer-facing workflows into faster, more intuitive product flows.
-                  </>,
-                  <>
-                    Reduced backend latency by <U>80%</U> under millions of daily events
-                    by owning a full service redesign: modular dependencies, clustering,
-                    and load balancing — transforming a bottlenecked backend into a
-                    scalable, high-availability distributed system.
-                  </>,
-                  <>
-                    Safeguarded platform reliability for enterprise customers during a
-                    high-stakes beta rollout by leading production issue triage and
-                    collaborating cross-functionally with product and QA to resolve
-                    high-severity defects under tight release timelines.
-                  </>,
-                ]}
-              />
+            <Block
+              org="CleverTap"
+              title="Senior Software Engineer"
+              metaLeft="Jan 2023 – Jul 2023"
+              metaRight="Mumbai, India"
+              bullets={[
+                <>
+                  Cut campaign creation time by <U>50%</U> and increased enterprise
+                  feature adoption by <U>22%</U> — validated through A/B testing — by
+                  leading a full <U>React.js</U> dashboard revamp that redesigned
+                  customer-facing workflows into faster, more intuitive product flows.
+                </>,
+                <>
+                  Reduced backend latency by <U>80%</U> under millions of daily events by
+                  owning a full service redesign: modular dependencies, clustering, and
+                  load balancing — transforming a bottlenecked backend into a scalable,
+                  high-availability distributed system.
+                </>,
+                <>
+                  Safeguarded platform reliability for enterprise customers during a
+                  high-stakes beta rollout by leading production issue triage and
+                  collaborating cross-functionally with product and QA to resolve
+                  high-severity defects under tight release timelines.
+                </>,
+              ]}
+            />
 
-              <Block
-                org="CleverTap"
-                title="Software Engineer"
-                metaLeft="Jun 2021 – Dec 2022"
-                metaRight="Mumbai, India"
-                bullets={[
-                  <>
-                    Accelerated feature delivery across engineering teams by designing and
-                    shipping a reusable modular component system adopted org-wide —
-                    standardizing UI patterns and eliminating duplicate code through
-                    structured code reviews.
-                  </>,
-                  <>
-                    Reduced post-release defects by <U>70%</U> over six months
-                    post-deployment by integrating end-to-end <U>TestCafe</U> automation
-                    into the CI/CD pipeline, establishing automated regression coverage as
-                    a team quality standard.
-                  </>,
-                ]}
-              />
-            </div>
+            <Block
+              org="CleverTap"
+              title="Software Engineer"
+              metaLeft="Jun 2021 – Dec 2022"
+              metaRight="Mumbai, India"
+              bullets={[
+                <>
+                  Accelerated feature delivery across engineering teams by designing and
+                  shipping a reusable modular component system adopted org-wide —
+                  standardizing UI patterns and eliminating duplicate code through
+                  structured code reviews.
+                </>,
+                <>
+                  Reduced post-release defects by <U>70%</U> over six months
+                  post-deployment by integrating end-to-end <U>TestCafe</U> automation
+                  into the CI/CD pipeline, establishing automated regression coverage as a
+                  team quality standard.
+                </>,
+              ]}
+            />
           </div>
         </div>
       </div>
