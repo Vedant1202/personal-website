@@ -41,6 +41,7 @@ export type Project = {
     github?: string;
     live?: string;
     paper?: string;
+    doi?: string;
     demo?: string;
     npmjs?: string;
     docs?: string;
@@ -280,8 +281,7 @@ export const PROJECTS: Project[] = [
       "Context-aware VR help system — Master's thesis (Unity, C#, Microsoft HoloLens).",
     tech: ["unity", "hololens"],
     links: {
-      paper:
-        "https://www.proquest.com/dissertations-theses/gesturetips-enhancing-gesture-discoverability/docview/3362039910/se-2",
+      doi: "https://doi.org/10.25417/uic.32991932",
     },
     longer:
       "GestureTips is a context-aware VR assistance system built in Unity/C# for Microsoft HoloLens. It delivers object-anchored, just-in-time guidance using gaze, proximity, and user action signals — so learners get help in place without leaving the task. This work was my Master's thesis: multimodal interaction design focused on reducing gesture learning effort in immersive environments.",

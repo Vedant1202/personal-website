@@ -7,6 +7,19 @@ function U({ children }: { children: React.ReactNode }) {
   );
 }
 
+function A({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="text-blue-300/90 underline decoration-blue-500/50 underline-offset-2 transition-colors hover:text-blue-200 hover:decoration-blue-400"
+    >
+      {children}
+    </a>
+  );
+}
+
 function Block({
   org,
   title,
@@ -108,7 +121,8 @@ export function Journey() {
               bullets={[
                 <>
                   Thesis on VR help systems, improving onboarding with{" "}
-                  <U>context-aware guidance</U>.
+                  <U>context-aware guidance</U> —{" "}
+                  <A href="https://doi.org/10.25417/uic.32991932">published thesis</A>.
                 </>,
                 <>
                   Built data-heavy dashboards and pipelines for <U>clinical research</U>.
@@ -147,22 +161,22 @@ export function Journey() {
               metaRight="Chicago, IL"
               bullets={[
                 <>
-                  Reduced manual reporting effort by <U>70%</U> and enabled predictive
-                  budgeting across <U>$10M+</U> in NIH, HRSA, and DoD grants by shipping
-                  an automated expense tracking platform from concept to production,
-                  iterating rapidly on stakeholder feedback.
+                  Cut manual reporting <U>70%</U> across <U>$10M+</U> in grant funding by
+                  building a financial operations platform that automated budgeting,
+                  expense reporting, and <U>EDI X12 837/834</U> (claims and enrollment)
+                  compliance.
                 </>,
                 <>
-                  Architected distributed data pipelines processing <U>500K+ PHI</U>{" "}
-                  records across Stanford, UWash, and UIC — implementing HIPAA-compliant
-                  access controls, end-to-end observability, and monitoring that boosted
-                  research throughput by <U>40%</U>.
+                  Increased reporting throughput <U>40%</U> by rebuilding analytics
+                  dashboards for research teams at Stanford, UWash, and UIC, adding faster
+                  filtering, drill-down views, and data-heavy table workflows across{" "}
+                  <U>500K+</U> records.
                 </>,
                 <>
-                  Built and owned a cloud-backed reporting system using{" "}
-                  <U>Python (FastAPI/Django)</U> and <U>PostgreSQL</U>, designing scalable
-                  REST APIs with monitoring hooks to guarantee production accuracy and
-                  data integrity across institutions.
+                  Built an AI-assisted healthcare screening workflow with <U>Twilio</U>,{" "}
+                  <U>OpenAI</U>, <U>LangChain</U>, and <U>REDCap</U>, converting
+                  recruitment and eligibility calls into structured records with branching
+                  logic, transcripts, and human-review paths.
                 </>,
               ]}
             />
@@ -174,22 +188,20 @@ export function Journey() {
               metaRight="Mumbai, India"
               bullets={[
                 <>
-                  Cut campaign creation time by <U>50%</U> and increased enterprise
-                  feature adoption by <U>22%</U> — validated through A/B testing — by
-                  leading a full <U>React.js</U> dashboard revamp that redesigned
-                  customer-facing workflows into faster, more intuitive product flows.
+                  Cut campaign creation time <U>50%</U> and increased enterprise feature
+                  adoption <U>22%</U>, validated through A/B testing, by leading a full{" "}
+                  <U>React</U> dashboard revamp of customer-facing campaign workflows.
                 </>,
                 <>
-                  Reduced backend latency by <U>80%</U> under millions of daily events by
-                  owning a full service redesign: modular dependencies, clustering, and
-                  load balancing — transforming a bottlenecked backend into a scalable,
-                  high-availability distributed system.
+                  Reduced backend latency <U>80%</U> across services processing millions
+                  of daily events by re-architecting toward modular dependencies,
+                  clustering, and load balancing on a high-availability distributed
+                  system.
                 </>,
                 <>
-                  Safeguarded platform reliability for enterprise customers during a
-                  high-stakes beta rollout by leading production issue triage and
-                  collaborating cross-functionally with product and QA to resolve
-                  high-severity defects under tight release timelines.
+                  Led triage of high-severity production defects during an enterprise beta
+                  rollout, partnering cross-functionally with product and QA to protect
+                  reliability under tight release timelines.
                 </>,
               ]}
             />
@@ -201,16 +213,14 @@ export function Journey() {
               metaRight="Mumbai, India"
               bullets={[
                 <>
-                  Accelerated feature delivery across engineering teams by designing and
-                  shipping a reusable modular component system adopted org-wide —
-                  standardizing UI patterns and eliminating duplicate code through
-                  structured code reviews.
+                  Accelerated feature delivery org-wide by designing and shipping a
+                  reusable <U>React</U> component system that standardized UI patterns and
+                  eliminated duplicated code across engineering teams.
                 </>,
                 <>
-                  Reduced post-release defects by <U>70%</U> over six months
-                  post-deployment by integrating end-to-end <U>TestCafe</U> automation
-                  into the CI/CD pipeline, establishing automated regression coverage as a
-                  team quality standard.
+                  Reduced post-release defects <U>70%</U> by integrating end-to-end{" "}
+                  <U>TestCafe</U> automation into the CI/CD pipeline, establishing
+                  automated regression coverage as a team quality standard.
                 </>,
               ]}
             />
