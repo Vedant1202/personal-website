@@ -57,6 +57,33 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    id: "agentpack",
+    title: "AgentPack",
+    tagline:
+      "Offline document-to-agent-context compiler that reduces context bloat for LLMs.",
+    tech: ["python", "node", "ts"],
+    featured: true,
+    links: {
+      github: "https://github.com/Vedant1202/agentpack",
+      npmjs: "https://www.npmjs.com/package/agent-context-packager",
+    },
+    longer:
+      "AgentPack improves the context pipeline for document-grounded agents. It acts as an offline document-to-agent-context compiler that turns unstructured knowledge bases (PDFs, CSVs, Markdown, text) into clean semantic chunks with citations. It includes a built-in hybrid search engine (SQLite FTS5 + FastEmbed vector search) to retrieve the right evidence, and an interactive WebGL Corpus Explorer UI for visually debugging chunks.",
+    bullets: [
+      "Reduces context token usage significantly (up to 161x reduction) compared to raw document stuffing, resulting in cost savings and preventing the 'Lost in the Middle' phenomenon.",
+      "Parses and semantically extracts text from TXT (paragraph-aware), Markdown (heading-aware), CSV (Markdown tables), and PDFs (PyMuPDF).",
+      "Hybrid search engine using SQLite FTS5 and FastEmbed vector search to retrieve high-signal context.",
+      "Corpus Explorer UI: Local WebGL-powered 2D physics visualization to debug chunk semantic similarities and search trajectories.",
+    ],
+    media: [
+      {
+        type: "embed",
+        src: "https://www.youtube.com/embed/4_Vak-a--Jg",
+        title: "AgentPack — Launch Video",
+      },
+    ],
+  },
+  {
     id: "cperch",
     title: "cPerch",
     tagline:
@@ -143,33 +170,6 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-    id: "agentpack",
-    title: "AgentPack",
-    tagline:
-      "Offline document-to-agent-context compiler that reduces context bloat for LLMs.",
-    tech: ["python", "node", "ts"],
-    featured: true,
-    links: {
-      github: "https://github.com/Vedant1202/agentpack",
-      npmjs: "https://www.npmjs.com/package/agent-context-packager",
-    },
-    longer:
-      "AgentPack improves the context pipeline for document-grounded agents. It acts as an offline document-to-agent-context compiler that turns unstructured knowledge bases (PDFs, CSVs, Markdown, text) into clean semantic chunks with citations. It includes a built-in hybrid search engine (SQLite FTS5 + FastEmbed vector search) to retrieve the right evidence, and an interactive WebGL Corpus Explorer UI for visually debugging chunks.",
-    bullets: [
-      "Reduces context token usage significantly (up to 161x reduction) compared to raw document stuffing, resulting in cost savings and preventing the 'Lost in the Middle' phenomenon.",
-      "Parses and semantically extracts text from TXT (paragraph-aware), Markdown (heading-aware), CSV (Markdown tables), and PDFs (PyMuPDF).",
-      "Hybrid search engine using SQLite FTS5 and FastEmbed vector search to retrieve high-signal context.",
-      "Corpus Explorer UI: Local WebGL-powered 2D physics visualization to debug chunk semantic similarities and search trajectories.",
-    ],
-    media: [
-      {
-        type: "embed",
-        src: "https://www.youtube.com/embed/4_Vak-a--Jg",
-        title: "AgentPack — Launch Video",
-      },
-    ],
-  },
-  {
     id: "daily-work-summarizer",
     title: "Daily Work Summarizer",
     tagline:
@@ -218,6 +218,39 @@ export const PROJECTS: Project[] = [
         type: "embed",
         src: "https://www.youtube.com/embed/U45lPx95GfU",
         title: "Meet Dionysys — Adaptive UI Experimentation",
+      },
+    ],
+  },
+  {
+    id: "ashborn",
+    title: "Ashborn",
+    tagline:
+      "Open, reproducible benchmark for AI-agent security — scoring how well signals catch real attacks on tool-using agents, built on AgentDojo.",
+    tech: ["ts", "node"],
+    featured: true,
+    cover: {
+      src: "./project-images/ashborn/social-card.png",
+      alt: "Ashborn — see what your AI agents access, call, and send",
+    },
+    links: {
+      github: "https://github.com/Vedant1202/ashborn",
+      npmjs: "https://www.npmjs.com/package/@ashborn-sec/cli",
+      docs: "https://vedant1202.github.io/ashborn/",
+    },
+    longer:
+      "Ashborn is a visibility toolkit and open benchmark for what AI agents access, call, and send. It measures how reliably security signals separate a real attack from an agent just doing its job, scoring three attack classes — tool-output (prompt) injection, untrusted-data egress, and tool-definition drift — against ground truth from AgentDojo. The 790-trace corpus is model-free and fully deterministic, so every result reproduces byte-for-byte offline with no API keys. Ashborn ships the honest scorecard rather than a marketing one: the tool-definition-drift detector separates cleanly, egress is reported as a risk annotation because the 'lethal trifecta' is normal agent behavior, and the over-defense failure in injection detection is documented instead of hidden.",
+    bullets: [
+      "Scores three agent-attack classes against AgentDojo ground truth on a model-free, deterministic 790-trace corpus (57 benign, 389 attack-resisted, 344 compromised) that reproduces byte-for-byte offline, no API keys.",
+      "Ships one clean detector — tool-definition drift (AUC 1.000 on synthetic pairs) — with its synthetic, near-tautological caveat stated plainly rather than oversold.",
+      "Reports the honest result: untrusted-data egress is demoted to a risk annotation (AUC 0.603) because the 'lethal trifecta' is ordinary agent work, and the tool-output-injection over-defense failure is written down, not buried.",
+      "Published as @ashborn-sec/{core,bench,cli} on npm with provenance from a pnpm + TypeScript monorepo (Turborepo, tsup, Vitest), CI publishing, and a golden scorecard test that pins every number.",
+      "Ships an industry-grade Docusaurus documentation site and a traced brand identity; the design goal throughout is to not overclaim — the 'what is and isn't claimed' section is load-bearing.",
+    ],
+    media: [
+      {
+        type: "image",
+        src: "./project-images/ashborn/social-card.png",
+        alt: "Ashborn social card — the Ashborn flame-helm emblem and wordmark over the tagline 'See what your AI agents access, call, and send.'",
       },
     ],
   },
