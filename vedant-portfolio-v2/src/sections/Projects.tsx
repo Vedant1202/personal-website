@@ -5,6 +5,7 @@ import { PROJECTS } from "../data/projects";
 import { ProjectGrid } from "../components/projects/ProjectGrid";
 import { SectionPicture } from "../components/SectionPicture";
 import { InkMark } from "../components/ink/InkMark";
+import { Constellation } from "../components/ink/Scribbles";
 import { useAudition } from "../components/audition/auditionContext";
 import projectsPhoto from "../assets/section-photos/wide.svg";
 import "../styles/Projects.css";
@@ -14,13 +15,16 @@ const HEADING =
   "font-display text-ink mt-5 text-[2.1rem] leading-[1.05] font-semibold tracking-tight sm:text-[2.7rem]";
 
 export function Projects() {
-  const { active: auditing } = useAudition();
+  const { active: auditing, inkDrawings } = useAudition();
 
   return (
     <Section id="projects-and-skills">
       <div className="relative mx-auto max-w-6xl">
         {/* ── Skills ─────────────────────────────── */}
-        <div id="skills" className="scroll-mt-24">
+        <div id="skills" className="relative scroll-mt-24">
+          {inkDrawings && (
+            <Constellation className="absolute -top-4 right-0 hidden h-24 w-40 lg:block" />
+          )}
           <div className="max-w-3xl">
             <p className={KICKER}>Skills</p>
             <h2 className={HEADING}>Tools and Technologies I work with.</h2>

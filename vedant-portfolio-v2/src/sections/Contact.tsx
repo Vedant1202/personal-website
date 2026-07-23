@@ -6,7 +6,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { useEffect, useRef } from "react";
 import { SectionPicture } from "../components/SectionPicture";
 import { InkMark } from "../components/ink/InkMark";
-import { ArrowScribble } from "../components/ink/Scribbles";
+import { ArrowScribble, ShootingStar } from "../components/ink/Scribbles";
 import { useAudition } from "../components/audition/auditionContext";
 import contactPhoto from "../assets/section-photos/square.svg";
 
@@ -42,7 +42,10 @@ export function Contact({
 
   return (
     <Section id="contact">
-      <div ref={contactRef} className="scroll-mt-24">
+      <div ref={contactRef} className="relative scroll-mt-24">
+        {inkDrawings && (
+          <ShootingStar className="absolute -top-6 right-2 hidden h-24 w-40 sm:right-8 md:block" />
+        )}
         <p className="text-ink-soft text-xs tracking-[0.35em] uppercase">Contact</p>
 
         <h2 className="font-display text-ink mt-5 mb-6 text-[2.1rem] leading-[1.05] font-semibold tracking-tight sm:text-[2.7rem] md:text-[3.1rem]">
