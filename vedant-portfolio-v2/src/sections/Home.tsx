@@ -81,7 +81,7 @@ export function Home({
               </a>
 
               <a
-                className={`${LINK_CLASS} ink-link--boxed border-accent/45 text-accent hover:border-accent hover:text-accent rounded-md border px-2.5 py-1`}
+                className={`${LINK_CLASS} ink-link--boxed ink-edge-sm border-accent/55 text-accent hover:border-accent hover:text-accent border px-3 py-1`}
                 href={RESUME_URL}
                 target="_blank"
                 rel="noopener noreferrer"

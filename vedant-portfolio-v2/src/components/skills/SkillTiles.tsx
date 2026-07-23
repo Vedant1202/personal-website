@@ -8,7 +8,7 @@ function SkillChip({ s }: { s: Skill }) {
     <li
       title={s.tagline}
       className={[
-        "inline-flex items-center gap-2 rounded-xl border border-black/12 px-3 py-1.5",
+        "ink-edge-sm inline-flex items-center gap-2 border border-black/22 px-3 py-1.5",
         "text-ink-soft hover:border-accent/45 hover:text-ink text-xs transition duration-200",
         // shrink + mute the brand icons; full color on hover
         "[&_svg]:h-[15px] [&_svg]:w-[15px] [&_svg]:opacity-80 [&_svg]:grayscale-[0.55] [&_svg]:transition [&_svg]:duration-200 hover:[&_svg]:opacity-100 hover:[&_svg]:grayscale-0",

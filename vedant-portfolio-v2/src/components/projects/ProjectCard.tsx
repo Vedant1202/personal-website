@@ -20,8 +20,8 @@ export function ProjectCard({
       layout="position"
       transition={{ type: "spring", stiffness: 380, damping: 34 }}
       className={[
-        "group bg-paper relative cursor-pointer overflow-hidden rounded-2xl border will-change-transform",
-        isActive ? "border-accent" : "hover:border-accent/60 border-black/15",
+        "group bg-paper ink-edge relative cursor-pointer overflow-hidden border-[1.5px] will-change-transform",
+        isActive ? "border-accent" : "hover:border-accent/60 border-black/25",
         !isActive
           ? "transition-[transform,box-shadow,border-color] duration-200 ease-out hover:-translate-y-[2px] hover:shadow-[0_10px_28px_rgba(0,0,0,0.10)]"
           : "shadow-[0_10px_28px_rgba(0,0,0,0.08)] transition-[box-shadow,border-color] duration-200 ease-out",
@@ -64,7 +64,7 @@ export function ProjectCard({
             return (
               <span
                 key={`${project.id}-${t}`}
-                className="text-ink-soft hover:border-accent/40 inline-flex items-center gap-2 rounded-xl border border-black/10 px-3 py-2 text-xs transition"
+                className="text-ink-soft hover:border-accent/40 ink-edge-sm inline-flex items-center gap-2 border border-black/18 px-3 py-2 text-xs transition"
               >
                 <TechIcon k={t} />
                 <span className={label ? "" : "capitalize"}>{label ?? t}</span>

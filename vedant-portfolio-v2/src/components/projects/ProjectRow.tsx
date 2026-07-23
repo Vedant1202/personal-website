@@ -16,11 +16,11 @@ export function ProjectRow({
   return (
     <div
       className={[
-        "flex cursor-pointer items-center justify-between gap-4 rounded-xl border px-4 py-3",
+        "ink-edge-sm flex cursor-pointer items-center justify-between gap-4 border px-4 py-3",
         "transition-[border-color,background-color,opacity] duration-200 ease-out",
         isActive
           ? "border-accent bg-black/[0.02]"
-          : "hover:border-accent/60 border-black/12 hover:bg-black/[0.02]",
+          : "hover:border-accent/60 border-black/22 hover:bg-black/[0.02]",
         isMuted ? "opacity-40" : "opacity-100",
       ].join(" ")}
       onClick={onToggle}

@@ -25,7 +25,7 @@ export function ProjectExpanded({
 
         <button
           className={[
-            "shrink-0 rounded-xl border border-black/15",
+            "ink-edge-sm shrink-0 border border-black/25",
             "text-ink-soft px-3 py-2 text-xs font-semibold",
             "hover:border-accent hover:text-ink transition",
           ].join(" ")}
@@ -36,7 +36,7 @@ export function ProjectExpanded({
         </button>
       </div>
 
-      <div className="mt-5 h-px w-full bg-black/10" />
+      <div className="ink-rule mt-5 w-full" />
 
       {!!project.bullets?.length && (
         <ul className="text-ink-soft mt-5 space-y-2 text-sm">

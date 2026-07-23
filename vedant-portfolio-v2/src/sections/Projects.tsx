@@ -31,7 +31,7 @@ export function Projects() {
           </div>
         </div>
 
-        <div className="my-14 h-px w-full bg-black/10" />
+        <div className="ink-rule my-14 w-full" />
 
         {/* ── Projects ───────────────────────────── */}
         <div id="projects" className="scroll-mt-24">

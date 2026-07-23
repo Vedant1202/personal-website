@@ -103,7 +103,7 @@ export function Lightbox({ images, initialIndex = 0, onClose }: LightboxProps) {
           type="button"
           aria-label="Close lightbox"
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/75 transition hover:bg-white/20 hover:text-white"
+          className="ink-edge-sm absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center bg-white/10 text-white/75 transition hover:bg-white/20 hover:text-white"
         >
           <svg
             viewBox="0 0 24 24"
@@ -129,7 +129,7 @@ export function Lightbox({ images, initialIndex = 0, onClose }: LightboxProps) {
             type="button"
             aria-label="Previous image"
             onClick={prev}
-            className="absolute left-2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/75 transition hover:bg-white/22 hover:text-white sm:left-4"
+            className="ink-edge-sm absolute left-2 z-10 flex h-10 w-10 items-center justify-center bg-white/10 text-white/75 transition hover:bg-white/22 hover:text-white sm:left-4"
           >
             <svg
               viewBox="0 0 24 24"
@@ -175,7 +175,7 @@ export function Lightbox({ images, initialIndex = 0, onClose }: LightboxProps) {
             type="button"
             aria-label="Next image"
             onClick={next}
-            className="absolute right-2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/75 transition hover:bg-white/22 hover:text-white sm:right-4"
+            className="ink-edge-sm absolute right-2 z-10 flex h-10 w-10 items-center justify-center bg-white/10 text-white/75 transition hover:bg-white/22 hover:text-white sm:right-4"
           >
             <svg
               viewBox="0 0 24 24"

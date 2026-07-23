@@ -23,16 +23,17 @@ export function HeroIntro({
         variants={roleV}
         initial="hidden"
         animate="show"
-        className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-black/10 pb-3"
+        className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1"
       >
         <p className="text-ink-soft text-xs tracking-[0.22em] uppercase">{location}</p>
         <p className="text-ink-soft text-xs tracking-[0.22em] uppercase">
           {roleLines.join(" · ")}
         </p>
       </motion.div>
+      <div aria-hidden className="ink-rule mt-3 w-full" />
 
       {/* Name — the hero is carried by type, not by the photo */}
-      <h1 className="mt-6 mb-0">
+      <h1 className="mt-5 mb-0">
         <span className="sr-only">
           {firstName} {lastName}
         </span>

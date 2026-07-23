@@ -49,17 +49,14 @@ export function SectionPicture({
 }: SectionPictureProps) {
   const behind = placement === "behind";
 
+  // The sketch frame's drawn corners come from .ink-edge, shared with the rest
+  // of the chrome so every boundary on the page is cut from the same pen.
   const frameStyle: CSSProperties =
-    treatment === "sketch"
-      ? // Uneven radii read as a drawn-by-hand border at any size.
-        { borderRadius: "225px 15px 235px 15px / 15px 235px 15px 225px" }
-      : treatment === "snapshot"
-        ? { transform: "rotate(-1.6deg)" }
-        : {};
+    treatment === "snapshot" ? { transform: "rotate(-1.6deg)" } : {};
 
   const frameClass = {
     snapshot: "bg-white p-2.5 pb-8 shadow-[0_6px_24px_rgba(0,0,0,0.14)]",
-    sketch: "border-2 border-ink/80 p-1.5",
+    sketch: "ink-edge border-2 border-ink/80 p-1.5",
     natural: "shadow-[0_10px_30px_rgba(0,0,0,0.12)] rounded-sm",
     washed: "",
   }[treatment];

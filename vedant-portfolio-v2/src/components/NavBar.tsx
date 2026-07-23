@@ -156,7 +156,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
           <button
             onClick={() => scrollTo("home")}
             aria-label="Vedant Nandoskar — scroll to top"
-            className="bg-paper/80 text-ink font-display rounded-full border border-black/12 px-3 py-1.5 text-sm font-semibold tracking-tight backdrop-blur md:hidden"
+            className="bg-paper/80 text-ink font-display ink-pill border border-black/25 px-3.5 py-1.5 text-sm font-semibold tracking-tight backdrop-blur md:hidden"
           >
             Vedant Nandoskar
           </button>
@@ -167,10 +167,10 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
             aria-label="Vedant Nandoskar — scroll to top"
             className={[
               "relative hidden md:inline-flex",
-              "rounded-full",
+              "ink-pill",
               "text-sm font-semibold tracking-tight",
               "text-ink hover:text-ink font-display",
-              "border border-black/12",
+              "border border-black/25",
               "bg-paper/80 backdrop-blur",
               "shadow-[0_10px_30px_rgba(0,0,0,0.35)]",
               "overflow-hidden",
@@ -218,7 +218,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
             type="button"
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Open menu"
-            className="bg-paper/80 text-ink-soft hover:text-ink inline-flex items-center justify-center rounded-full border border-black/12 p-2 backdrop-blur transition md:hidden"
+            className="bg-paper/80 text-ink-soft hover:text-ink ink-edge-sm inline-flex items-center justify-center border border-black/25 p-2 backdrop-blur transition md:hidden"
           >
             <HiMenu className="h-5 w-5" />
           </button>
@@ -230,15 +230,12 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
         ref={navRef}
         className="fixed top-1/2 right-6 z-50 hidden -translate-y-1/2 flex-col items-center gap-10 md:flex"
       >
-        <div
-          aria-hidden
-          className="absolute top-0 right-[-12px] h-full w-px bg-black/12"
-        />
+        <div aria-hidden className="ink-rail absolute top-0 right-[-14px] h-full" />
 
         {indicator ? (
           <motion.div
             aria-hidden
-            className="bg-accent absolute left-[-12px] w-px"
+            className="ink-rail ink-rail--accent absolute left-[-14px]"
             animate={{ top: indicator.y, height: indicator.h, opacity: 1 }}
             initial={{ opacity: 0, top: indicator.y, height: indicator.h }}
             transition={{
@@ -350,14 +347,14 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   aria-label="Close menu"
-                  className="text-ink-soft hover:text-ink rounded-full border border-black/12 p-2 transition-colors"
+                  className="text-ink-soft hover:text-ink ink-edge-sm border border-black/25 p-2 transition-colors"
                 >
                   <HiX className="h-4 w-4" />
                 </button>
               </div>
 
               {/* Divider */}
-              <div className="mt-5 h-px w-full bg-black/10" />
+              <div className="ink-rule mt-5 w-full" />
 
               {/* Nav links */}
               <nav className="mt-8 flex flex-col gap-1">
@@ -385,7 +382,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
 
               {/* Social links at bottom */}
               <div className="mt-auto">
-                <div className="mb-5 h-px w-full bg-black/10" />
+                <div className="ink-rule mb-5 w-full" />
                 <div className="flex items-center gap-5">
                   <a
                     href="https://github.com/Vedant1202"

@@ -19,7 +19,7 @@ export function ProjectExpandedPanel({
       transition={{ duration: 0.22, ease: "easeOut" }}
       className={[
         "relative mt-8",
-        "bg-paper rounded-3xl border border-black/15",
+        "bg-paper ink-edge border-[1.5px] border-black/25",
         "shadow-[0_12px_40px_rgba(0,0,0,0.10)]",
         "overflow-hidden",
       ].join(" ")}

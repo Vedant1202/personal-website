@@ -22,6 +22,13 @@
 
   --brand-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
   --brand-hand: "Caveat Variable", "Comic Sans MS", cursive;
+
+  /*
+   * Pen-stroke shapes used as masks, so the colour still comes from a token and
+   * follows the audition — a data URI cannot read a CSS variable itself.
+   */
+  --sketch-rule: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='5' viewBox='0 0 140 5'%3E%3Cpath d='M0 2.5 C 23 1.1, 47 3.9, 70 2.5 S 117 1.1, 140 2.5' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  --sketch-rail: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5' height='140' viewBox='0 0 5 140'%3E%3Cpath d='M2.5 0 C 1.1 23, 3.9 47, 2.5 70 S 1.1 117, 2.5 140' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
 }
 
 /* Audition overrides — set by AuditionProvider from URL params */
@@ -45,7 +52,51 @@ html[data-serif="instrument"] {
   --font-hand: var(--brand-hand);
 }
 
-/* Link with an accent rule that draws in on hover — the ink layer's quiet cousin */
+/*
+ * Hand-drawn chrome. Uneven corner radii read as drawn-by-hand at any size and
+ * cost nothing to render; these set radius only, so Tailwind keeps control of
+ * border width and colour (including active states).
+ */
+.ink-edge {
+  border-radius: 225px 15px 235px 15px / 15px 235px 15px 225px;
+}
+
+.ink-edge-sm {
+  border-radius: 42px 6px 46px 8px / 8px 46px 6px 42px;
+}
+
+.ink-pill {
+  border-radius: 120px 14px 130px 16px / 16px 130px 14px 120px;
+}
+
+/* Drawn divider rules, in place of hairline boxes */
+.ink-rule {
+  height: 5px;
+  background-color: color-mix(in srgb, var(--brand-ink) 32%, transparent);
+  -webkit-mask-image: var(--sketch-rule);
+  mask-image: var(--sketch-rule);
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-size: auto 100%;
+  mask-size: auto 100%;
+}
+
+.ink-rail {
+  width: 5px;
+  background-color: color-mix(in srgb, var(--brand-ink) 26%, transparent);
+  -webkit-mask-image: var(--sketch-rail);
+  mask-image: var(--sketch-rail);
+  -webkit-mask-repeat: repeat-y;
+  mask-repeat: repeat-y;
+  -webkit-mask-size: 100% auto;
+  mask-size: 100% auto;
+}
+
+.ink-rail--accent {
+  background-color: var(--brand-accent);
+}
+
+/* Link with an accent stroke that draws in on hover — the ink layer's quiet cousin */
 .ink-link {
   position: relative;
   color: var(--brand-ink-soft);
@@ -60,10 +111,16 @@ html[data-serif="instrument"] {
   content: "";
   position: absolute;
   right: 0;
-  bottom: -5px;
+  bottom: -6px;
   left: 0;
-  height: 1.5px;
-  background: var(--brand-accent);
+  height: 5px;
+  background-color: var(--brand-accent);
+  -webkit-mask-image: var(--sketch-rule);
+  mask-image: var(--sketch-rule);
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-size: auto 100%;
+  mask-size: auto 100%;
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -72,6 +129,27 @@ html[data-serif="instrument"] {
 .ink-link:hover::after,
 .ink-link:focus-visible::after {
   transform: scaleX(1);
+}
+
+/* Inline emphasis: a drawn stroke under the words rather than a ruled border */
+.ink-underline {
+  position: relative;
+}
+
+.ink-underline::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -4px;
+  left: 0;
+  height: 5px;
+  background-color: color-mix(in srgb, var(--brand-accent) 60%, transparent);
+  -webkit-mask-image: var(--sketch-rule);
+  mask-image: var(--sketch-rule);
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-size: auto 100%;
+  mask-size: auto 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {

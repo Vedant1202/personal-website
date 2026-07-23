@@ -67,7 +67,7 @@ export function Contact({
           </motion.p>
 
           {/* Divider */}
-          <motion.div variants={itemV} className="mt-8 h-px w-12 bg-black/15" />
+          <motion.div variants={itemV} className="ink-rule mt-8 w-16" />
 
           {/* Links */}
           <motion.div

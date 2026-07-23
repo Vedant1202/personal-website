@@ -25,10 +25,10 @@ function Option({ label, active, overrides }: OptionProps) {
     <a
       href={variantHref(overrides)}
       aria-current={active ? "true" : undefined}
-      className={`rounded-full px-2.5 py-1 text-xs transition-colors ${
+      className={`ink-edge-sm px-2.5 py-1 text-xs transition-colors ${
         active
           ? "bg-ink text-paper"
-          : "text-ink-soft hover:text-ink border border-black/15 hover:border-black/40"
+          : "text-ink-soft hover:text-ink border border-black/25 hover:border-black/50"
       }`}
     >
       {label}
@@ -43,8 +43,7 @@ export function AuditionPanel() {
   return (
     <aside
       aria-label="Design audition controls"
-      className="bg-paper/95 fixed bottom-3 left-3 z-[60] max-w-[15rem] rounded-xl border border-black/15 p-3 shadow-lg backdrop-blur"
-      style={{ borderRadius: "18px 6px 20px 8px / 8px 20px 6px 18px" }}
+      className="bg-paper/95 ink-edge-sm fixed bottom-3 left-3 z-[60] max-w-[15rem] border border-black/25 p-3 shadow-lg backdrop-blur"
     >
       <p className="font-hand text-ink mb-2 text-lg leading-none">Try a variant</p>
 

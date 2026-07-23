@@ -7,11 +7,7 @@ import { useAudition } from "../components/audition/auditionContext";
 import journeyPhoto from "../assets/section-photos/panorama.svg";
 
 function U({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="border-accent/40 text-ink border-b pb-[2px] font-medium">
-      {children}
-    </span>
-  );
+  return <span className="ink-underline text-ink font-medium">{children}</span>;
 }
 
 function A({ href, children }: { href: string; children: React.ReactNode }) {
@@ -45,7 +41,7 @@ function Block({
 }) {
   return (
     <div className="group relative pl-8">
-      {rail && <div className="absolute top-2 left-[15px] h-full w-px bg-black/12" />}
+      {rail && <div className="ink-rail absolute top-2 left-[13px] h-full" />}
       <div className="bg-accent absolute top-2 left-[11px] h-2.5 w-2.5 rounded-full" />
 
       <div className="transition duration-300 group-hover:translate-x-1">
