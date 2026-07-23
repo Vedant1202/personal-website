@@ -43,9 +43,19 @@ export function BackdropStroke({
       aria-hidden
       viewBox={shape === "zigzag" ? "0 0 302 84" : "0 0 324 130"}
       className={`pointer-events-none ${className ?? ""}`}
-      // Under reduced motion nothing animates, so the muted level has to come
-      // from style — otherwise the shape would sit at full opacity.
-      style={{ color: TONE[tone], opacity: reduce ? opacity : undefined }}
+      style={{
+        color: TONE[tone],
+        // Under reduced motion nothing animates, so the muted level has to come
+        // from style — otherwise the shape would sit at full opacity.
+        opacity: reduce ? opacity : undefined,
+        // Feathers the shape out at its own edges. Without this a backdrop that
+        // bleeds past a clipped parent ends in a hard razor line, which reads as
+        // a cut rectangle rather than paint.
+        maskImage:
+          "radial-gradient(120% 130% at 35% 45%, #000 42%, rgba(0,0,0,0.65) 68%, transparent 92%)",
+        WebkitMaskImage:
+          "radial-gradient(120% 130% at 35% 45%, #000 42%, rgba(0,0,0,0.65) 68%, transparent 92%)",
+      }}
       initial={reduce ? false : { opacity: 0 }}
       whileInView={reduce ? undefined : { opacity }}
       viewport={{ once: true, amount: 0.2 }}

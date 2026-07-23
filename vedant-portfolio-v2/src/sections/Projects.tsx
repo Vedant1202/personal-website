@@ -7,6 +7,7 @@ import { SectionPicture } from "../components/SectionPicture";
 import { Guitar, Pencil } from "lucide-react";
 import { InkMark } from "../components/ink/InkMark";
 import { HobbyDoodle } from "../components/ink/HobbyDoodle";
+import { BrushStroke } from "../components/ink/BrushStroke";
 import { useAudition } from "../components/audition/auditionContext";
 import projectsPhoto from "../assets/section-photos/wide.svg";
 import "../styles/Projects.css";
@@ -56,6 +57,9 @@ export function Projects() {
               <h2 className={`${HEADING} md:text-[3.1rem]`}>
                 Ideas turned into working software.
               </h2>
+              {inkDrawings && (
+                <BrushStroke variant={2} delay={0.1} className="mt-2 ml-1 w-44 sm:w-56" />
+              )}
 
               <p className="text-ink-soft mt-6 text-base leading-relaxed sm:text-lg">
                 <InkMark delay={0.2}>Interfaces</InkMark> that feel simple. <br />

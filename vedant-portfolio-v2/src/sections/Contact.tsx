@@ -47,19 +47,16 @@ export function Contact({
   return (
     <Section id="contact">
       <div ref={contactRef} className="relative isolate scroll-mt-24">
-        {/* Ambient backdrop at the page's end corner. The wrapper clips the
-            bleed so it never adds horizontal scroll. */}
+        {/* Ambient backdrop near the page's end. Kept inside the container
+            rather than bled past a clip: a clip cuts it at the container edge —
+            mid-page — which reads as a sliced rectangle instead of paint. Its
+            own feathered mask softens all four edges. */}
         {inkDrawings && (
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
-          >
-            <BackdropStroke
-              tone="blue"
-              opacity={0.75}
-              className="absolute -right-24 -bottom-20 w-[26rem] rotate-6 md:w-[34rem]"
-            />
-          </div>
+          <BackdropStroke
+            tone="blue"
+            opacity={0.75}
+            className="absolute right-0 bottom-2 -z-10 w-[22rem] rotate-6 md:w-[30rem]"
+          />
         )}
 
         {inkDrawings && (

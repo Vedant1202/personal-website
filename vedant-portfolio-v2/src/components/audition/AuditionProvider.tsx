@@ -3,8 +3,10 @@ import { useEffect, useMemo, type PropsWithChildren } from "react";
 import {
   AUDITION_DEFAULTS,
   AuditionContext,
+  BRUSH_CHOICES,
   type AuditionState,
   type BlueChoice,
+  type BrushChoice,
   type SerifChoice,
 } from "./auditionContext";
 
@@ -14,6 +16,7 @@ function readParams(): AuditionState {
   const params = new URLSearchParams(window.location.search);
   const serif = params.get("serif");
   const blue = params.get("blue");
+  const brush = params.get("brush");
 
   return {
     active: params.get("audition") === "1",
@@ -21,6 +24,9 @@ function readParams(): AuditionState {
     blue: blue === "deep" || blue === "teal" ? (blue as BlueChoice) : "default",
     // ?ink=off strips the hero arc and journey path
     inkDrawings: params.get("ink") !== "off",
+    brush: BRUSH_CHOICES.includes(brush as BrushChoice)
+      ? (brush as BrushChoice)
+      : AUDITION_DEFAULTS.brush,
   };
 }
 

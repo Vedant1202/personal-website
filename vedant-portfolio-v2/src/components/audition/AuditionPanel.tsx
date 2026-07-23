@@ -1,5 +1,5 @@
 // src/components/audition/AuditionPanel.tsx
-import { useAudition } from "./auditionContext";
+import { BRUSH_CHOICES, useAudition } from "./auditionContext";
 
 /**
  * Variant switcher shown only with ?audition=1. Plain links rather than state
@@ -37,7 +37,7 @@ function Option({ label, active, overrides }: OptionProps) {
 }
 
 export function AuditionPanel() {
-  const { active, serif, blue, inkDrawings } = useAudition();
+  const { active, serif, blue, inkDrawings, brush } = useAudition();
   if (!active) return null;
 
   return (
@@ -86,6 +86,22 @@ export function AuditionPanel() {
               active={blue === "teal"}
               overrides={{ blue: "teal" }}
             />
+          </div>
+        </div>
+
+        <div>
+          <p className="text-ink-soft mb-1 text-[10px] tracking-[0.18em] uppercase">
+            Brush
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {BRUSH_CHOICES.map((b) => (
+              <Option
+                key={b}
+                label={b}
+                active={brush === b}
+                overrides={{ brush: b === "gouache" ? null : b }}
+              />
+            ))}
           </div>
         </div>
 

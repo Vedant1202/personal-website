@@ -5,6 +5,7 @@ import { InkMark } from "../components/ink/InkMark";
 import { BookOpen } from "lucide-react";
 import { JourneyPath, StarScribble } from "../components/ink/Scribbles";
 import { HobbyDoodle } from "../components/ink/HobbyDoodle";
+import { BrushStroke } from "../components/ink/BrushStroke";
 import { useAudition } from "../components/audition/auditionContext";
 import journeyPhoto from "../assets/section-photos/panorama.svg";
 
@@ -91,6 +92,7 @@ export function Journey() {
             <br />
             Experience.
           </h2>
+          {inkDrawings && <BrushStroke delay={0.1} className="mt-2 ml-1 w-48 sm:w-60" />}
 
           <p className="text-ink-soft mt-6 text-base leading-relaxed sm:text-lg">
             I built <InkMark delay={0.2}>strong conceptual foundations</InkMark> in
