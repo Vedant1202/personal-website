@@ -101,8 +101,8 @@ export function JourneyPath({ className }: ScribbleProps) {
   );
 }
 
-/* ── Stargazing ──────────────────────────────────────────────────────────
-   A quiet night-sky motif, tied to the Stars Explorer VR work. Kept sparse
+/* ── Astronomy ────────────────────────────────────────────────────────────
+   A quiet celestial motif — a planet, a solar system, a galaxy. Kept sparse
    and drawn in the same pen as the rest of the ink layer. */
 
 /** Concave four-point sparkle centred at (cx,cy), matching the STAR proportions. */
@@ -121,7 +121,7 @@ function sparkle(cx: number, cy: number, r: number): string {
   );
 }
 
-/** Small open circle, for the fainter stars in a constellation. */
+/** Small open circle — a planet disc, a sun, a galaxy core. */
 function dot(cx: number, cy: number, r: number): string {
   return (
     `M${cx - r} ${cy} A ${r} ${r} 0 1 0 ${cx + r} ${cy}` +
@@ -129,60 +129,27 @@ function dot(cx: number, cy: number, r: number): string {
   );
 }
 
-const CONSTELLATION: InkStroke[] = [
-  // faint joining lines, drawn first
-  { d: "M14 84 L48 52 L86 66 L118 30 L152 48", width: 1.1, duration: 1.3 },
-  // fainter stars as open dots
-  { d: dot(14, 84, 2.6), width: 1.5, delay: 1.0, duration: 0.3 },
-  { d: dot(48, 52, 2.3), width: 1.5, delay: 1.12, duration: 0.3 },
-  { d: dot(86, 66, 2.8), width: 1.5, delay: 1.24, duration: 0.3 },
-  { d: dot(152, 48, 2.3), width: 1.5, delay: 1.36, duration: 0.3 },
-  // brightest star, the one accent note
+const SATURN: InkStroke[] = [
+  // planet
+  { d: dot(45, 36, 16), width: 2, duration: 0.9 },
+  // ring — a tilted ellipse crossing the disc
   {
-    d: sparkle(118, 30, 9),
-    width: 1.6,
-    delay: 1.5,
-    duration: 0.5,
+    d: "M79 26 A 36 11 -16 1 1 11 46 A 36 11 -16 1 1 79 26",
+    width: 1.8,
+    delay: 0.5,
+    duration: 1.1,
+  },
+  // a small companion, the one accent note
+  {
+    d: sparkle(82, 12, 5),
+    width: 1.5,
+    delay: 1.2,
+    duration: 0.4,
     stroke: "var(--brand-accent)",
   },
 ];
 
-/** A loose star map — five stars joined, the brightest picked out in accent. */
-export function Constellation({ className }: ScribbleProps) {
-  return (
-    <InkDrawing viewBox="0 0 166 100" strokes={CONSTELLATION} className={className} />
-  );
-}
-
-const SHOOTING_STAR: InkStroke[] = [
-  // brushstroke trail — three tapered passes read as a comet tail
-  { d: "M6 80 Q 54 60, 100 34", width: 3.4, duration: 0.7 },
-  { d: "M13 84 Q 58 65, 104 38", width: 2, delay: 0.1, duration: 0.65 },
-  { d: "M4 73 Q 48 55, 96 31", width: 1.2, delay: 0.18, duration: 0.6 },
-  // the star, arriving after the trail
-  { d: sparkle(117, 24, 12), width: 2, delay: 0.72, duration: 0.5 },
-];
-
-/** A shooting star: a sparkle with a brushed trail sweeping up behind it. */
-export function ShootingStar({ className }: ScribbleProps) {
-  return (
-    <InkDrawing viewBox="0 0 150 92" strokes={SHOOTING_STAR} className={className} />
-  );
-}
-
-const TWINKLES: InkStroke[] = [
-  { d: sparkle(16, 22, 9), width: 1.8, duration: 0.55 },
-  {
-    d: sparkle(48, 12, 6),
-    width: 1.6,
-    delay: 0.25,
-    duration: 0.45,
-    stroke: "var(--brand-accent)",
-  },
-  { d: sparkle(54, 38, 4.5), width: 1.4, delay: 0.5, duration: 0.4 },
-];
-
-/** Three stray sparkles of varying size — a whisper of night sky. */
-export function Twinkles({ className }: ScribbleProps) {
-  return <InkDrawing viewBox="0 0 72 52" strokes={TWINKLES} className={className} />;
+/** A ringed planet — the astronomy note in the hero. */
+export function Saturn({ className }: ScribbleProps) {
+  return <InkDrawing viewBox="0 0 98 62" strokes={SATURN} className={className} />;
 }

@@ -6,7 +6,9 @@ import { HiOutlineMail } from "react-icons/hi";
 import { useEffect, useRef } from "react";
 import { SectionPicture } from "../components/SectionPicture";
 import { InkMark } from "../components/ink/InkMark";
-import { ArrowScribble, ShootingStar } from "../components/ink/Scribbles";
+import { Palette, Dumbbell } from "lucide-react";
+import { ArrowScribble } from "../components/ink/Scribbles";
+import { HobbyDoodle } from "../components/ink/HobbyDoodle";
 import { useAudition } from "../components/audition/auditionContext";
 import contactPhoto from "../assets/section-photos/square.svg";
 
@@ -44,7 +46,12 @@ export function Contact({
     <Section id="contact">
       <div ref={contactRef} className="relative scroll-mt-24">
         {inkDrawings && (
-          <ShootingStar className="absolute -top-6 right-2 hidden h-24 w-40 sm:right-8 md:block" />
+          <HobbyDoodle
+            icon={Palette}
+            size={56}
+            tilt={7}
+            className="absolute -top-2 right-4 hidden sm:right-10 md:inline-flex"
+          />
         )}
         <p className="text-ink-soft text-xs tracking-[0.35em] uppercase">Contact</p>
 
@@ -140,6 +147,16 @@ export function Contact({
             label={auditing ? "Contact" : undefined}
           />
         </div>
+
+        {inkDrawings && (
+          <HobbyDoodle
+            icon={Dumbbell}
+            size={50}
+            rough={3}
+            tilt={-6}
+            className="absolute right-10 bottom-24 hidden lg:inline-flex"
+          />
+        )}
       </div>
     </Section>
   );

@@ -2,7 +2,9 @@
 import { Section } from "../components/Section";
 import { SectionPicture } from "../components/SectionPicture";
 import { InkMark } from "../components/ink/InkMark";
+import { BookOpen } from "lucide-react";
 import { JourneyPath, StarScribble } from "../components/ink/Scribbles";
+import { HobbyDoodle } from "../components/ink/HobbyDoodle";
 import { useAudition } from "../components/audition/auditionContext";
 import journeyPhoto from "../assets/section-photos/panorama.svg";
 
@@ -72,6 +74,14 @@ export function Journey() {
   return (
     <Section id="journey">
       <div className="relative mx-auto max-w-6xl px-0">
+        {inkDrawings && (
+          <HobbyDoodle
+            icon={BookOpen}
+            size={54}
+            tilt={-5}
+            className="absolute top-0 right-2 hidden lg:inline-flex"
+          />
+        )}
         {/* header */}
         <div className="mb-12 max-w-3xl">
           <p className="text-ink-soft text-xs tracking-[0.35em] uppercase">Journey</p>

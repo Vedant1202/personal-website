@@ -4,8 +4,9 @@ import { SkillTiles } from "../components/skills/SkillTiles";
 import { PROJECTS } from "../data/projects";
 import { ProjectGrid } from "../components/projects/ProjectGrid";
 import { SectionPicture } from "../components/SectionPicture";
+import { Guitar, Pencil } from "lucide-react";
 import { InkMark } from "../components/ink/InkMark";
-import { Constellation } from "../components/ink/Scribbles";
+import { HobbyDoodle } from "../components/ink/HobbyDoodle";
 import { useAudition } from "../components/audition/auditionContext";
 import projectsPhoto from "../assets/section-photos/wide.svg";
 import "../styles/Projects.css";
@@ -23,7 +24,12 @@ export function Projects() {
         {/* ── Skills ─────────────────────────────── */}
         <div id="skills" className="relative scroll-mt-24">
           {inkDrawings && (
-            <Constellation className="absolute -top-4 right-0 hidden h-24 w-40 lg:block" />
+            <HobbyDoodle
+              icon={Guitar}
+              size={52}
+              tilt={-8}
+              className="absolute top-1 right-2 hidden lg:inline-flex"
+            />
           )}
           <div className="max-w-3xl">
             <p className={KICKER}>Skills</p>
@@ -56,6 +62,16 @@ export function Projects() {
                 <InkMark delay={0.45}>Systems</InkMark> that aren’t. <br />I care about
                 performance, clarity, and making software that actually holds up.
               </p>
+
+              {inkDrawings && (
+                <HobbyDoodle
+                  icon={Pencil}
+                  size={46}
+                  rough={2}
+                  tilt={6}
+                  className="mt-8 ml-1 hidden sm:inline-flex"
+                />
+              )}
             </div>
 
             <div className="col-span-12 sm:col-span-8 md:col-span-4 md:col-start-9">

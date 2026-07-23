@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { NavBar } from "./components/NavBar";
 import { AuditionProvider } from "./components/audition/AuditionProvider";
 import { AuditionPanel } from "./components/audition/AuditionPanel";
+import { InkFilters } from "./components/ink/InkFilters";
 import { Home } from "./sections/Home";
 import { Journey } from "./sections/Journey";
 import { Projects } from "./sections/Projects";
@@ -42,6 +43,7 @@ export default function App() {
     <AuditionProvider>
       <MotionConfig reducedMotion="user">
         <LayoutGroup>
+          <InkFilters />
           <div className="bg-paper text-ink min-h-screen">
             <NavBar showSocialDock={showSocialDock} />
             <main className="pt-20">

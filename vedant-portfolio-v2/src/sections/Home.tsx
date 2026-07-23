@@ -8,7 +8,7 @@ import { useEffect, useRef } from "react";
 import { HeroBlurb, HeroIntro } from "../components/hero/HeroIntro";
 import { SectionPicture } from "../components/SectionPicture";
 import { InkMark } from "../components/ink/InkMark";
-import { SoccerArc, Twinkles } from "../components/ink/Scribbles";
+import { Saturn, SoccerArc } from "../components/ink/Scribbles";
 import { useAudition } from "../components/audition/auditionContext";
 
 /** Opens in a new tab — Google Drive shared resume. */
@@ -108,9 +108,9 @@ export function Home({
           </div>
         </div>
 
-        {/* A quiet night-sky note in the hero's calm lower-left */}
+        {/* A quiet ringed planet in the hero's calm lower-left */}
         {inkDrawings && (
-          <Twinkles className="pointer-events-none absolute bottom-8 left-6 hidden h-12 w-16 sm:left-8 md:block" />
+          <Saturn className="pointer-events-none absolute bottom-6 left-6 hidden h-14 w-20 sm:left-8 md:block" />
         )}
       </div>
     </section>
