@@ -8,8 +8,8 @@ function SkillChip({ s }: { s: Skill }) {
     <li
       title={s.tagline}
       className={[
-        "inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-1.5",
-        "text-xs text-white/70 transition duration-200 hover:border-blue-500/30 hover:bg-white/[0.05] hover:text-white",
+        "inline-flex items-center gap-2 rounded-xl border border-black/12 px-3 py-1.5",
+        "text-ink-soft hover:border-accent/45 hover:text-ink text-xs transition duration-200",
         // shrink + mute the brand icons; full color on hover
         "[&_svg]:h-[15px] [&_svg]:w-[15px] [&_svg]:opacity-80 [&_svg]:grayscale-[0.55] [&_svg]:transition [&_svg]:duration-200 hover:[&_svg]:opacity-100 hover:[&_svg]:grayscale-0",
       ].join(" ")}
@@ -27,7 +27,7 @@ export function SkillTiles() {
     <div className="space-y-5">
       {SKILL_GROUPS.map((g) => (
         <div key={g.label} className="flex flex-col gap-3 sm:flex-row sm:gap-6">
-          <p className="w-44 shrink-0 pt-1.5 text-[11px] tracking-[0.25em] text-white/45 uppercase">
+          <p className="text-ink-soft w-44 shrink-0 pt-1.5 text-[11px] tracking-[0.25em] uppercase">
             {g.label}
           </p>
           <ul className="flex flex-wrap gap-2">

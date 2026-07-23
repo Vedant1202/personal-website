@@ -1,9 +1,5 @@
 import React from "react";
 
-export function cn(...s: Array<string | false | null | undefined>) {
-  return s.filter(Boolean).join(" ");
-}
-
 /**
  * BrandIcon:
  * - keep real brand colors

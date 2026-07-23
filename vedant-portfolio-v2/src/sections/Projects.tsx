@@ -3,21 +3,27 @@ import { Section } from "../components/Section";
 import { SkillTiles } from "../components/skills/SkillTiles";
 import { PROJECTS } from "../data/projects";
 import { ProjectGrid } from "../components/projects/ProjectGrid";
+import { SectionPicture } from "../components/SectionPicture";
+import { InkMark } from "../components/ink/InkMark";
+import { useAudition } from "../components/audition/auditionContext";
+import projectsPhoto from "../assets/section-photos/wide.svg";
 import "../styles/Projects.css";
 
+const KICKER = "text-ink-soft text-xs tracking-[0.35em] uppercase";
+const HEADING =
+  "font-display text-ink mt-5 text-[2.1rem] leading-[1.05] font-semibold tracking-tight sm:text-[2.7rem]";
+
 export function Projects() {
+  const { active: auditing } = useAudition();
+
   return (
     <Section id="projects-and-skills">
       <div className="relative mx-auto max-w-6xl">
         {/* ── Skills ─────────────────────────────── */}
         <div id="skills" className="scroll-mt-24">
           <div className="max-w-3xl">
-            <p className="text-xs tracking-[0.35em] text-white/50 uppercase">Skills</p>
-            <h2 className="mt-6 text-[2.1rem] leading-[1.05] font-semibold tracking-tight text-white sm:text-[2.7rem]">
-              Tools and Technologies I work with
-              <span className="accent-punct">.</span>{" "}
-            </h2>
-            <div className="mt-8 h-px w-16 bg-blue-500/70 shadow-[0_0_16px_rgba(59,130,246,0.4)]" />
+            <p className={KICKER}>Skills</p>
+            <h2 className={HEADING}>Tools and Technologies I work with.</h2>
           </div>
 
           <div className="mt-10">
@@ -25,61 +31,40 @@ export function Projects() {
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="my-10 h-px w-full bg-white/10" />
+        <div className="my-14 h-px w-full bg-black/10" />
 
         {/* ── Projects ───────────────────────────── */}
         <div id="projects" className="scroll-mt-24">
-          <div className="mb-14 max-w-3xl">
-            <p className="text-xs tracking-[0.35em] text-white/50 uppercase">
-              Projects & Work
-            </p>
+          <div className="mb-12 grid grid-cols-12 items-start gap-x-10 gap-y-8">
+            <div className="col-span-12 md:col-span-7">
+              <p className={KICKER}>
+                <InkMark type="circle" padding={7} strokeWidth={1.6} multiline={false}>
+                  Projects &amp; Work
+                </InkMark>
+              </p>
 
-            <h2 className="mt-6 text-[2.1rem] leading-[1.05] font-semibold tracking-tight text-white sm:text-[2.7rem] md:text-[3.1rem]">
-              Ideas turned into working software<span className="accent-punct">.</span>
-            </h2>
+              <h2 className={`${HEADING} md:text-[3.1rem]`}>
+                Ideas turned into working software.
+              </h2>
 
-            <p className="mt-6 text-base leading-relaxed text-white/65 sm:text-lg">
-              <span className="relative inline-block">
-                <span className="relative z-10">Interfaces</span>
-                <span
-                  aria-hidden
-                  className="absolute bottom-[0.08em] left-0 z-0 h-[40%] w-full rounded-[0.25em] bg-blue-500/28 shadow-[0_0_16px_rgba(59,130,246,0.22)]"
-                />
-              </span>{" "}
-              that feel simple. <br />
-              <span className="relative inline-block">
-                <span className="relative z-10">Systems</span>
-                <span
-                  aria-hidden
-                  className="absolute bottom-[0.08em] left-0 z-0 h-[20%] w-full rounded-[0.25em] bg-blue-500/28 shadow-[0_0_16px_rgba(59,130,246,0.22)]"
-                />
-              </span>{" "}
-              that aren’t. <br />I care about{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10">performance</span>
-                <span
-                  aria-hidden
-                  className="absolute bottom-[0.08em] left-0 z-0 h-[20%] w-full rounded-[0.25em] bg-blue-500/28 shadow-[0_0_16px_rgba(59,130,246,0.22)]"
-                />
-              </span>
-              , clarity, and making software that{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10">actually holds up</span>
-                <span
-                  aria-hidden
-                  className="absolute bottom-[0.08em] left-0 z-0 h-[20%] w-full rounded-[0.25em] bg-blue-500/28 shadow-[0_0_16px_rgba(59,130,246,0.22)]"
-                />
-              </span>
-              .
-            </p>
+              <p className="text-ink-soft mt-6 text-base leading-relaxed sm:text-lg">
+                <InkMark delay={0.2}>Interfaces</InkMark> that feel simple. <br />
+                <InkMark delay={0.45}>Systems</InkMark> that aren’t. <br />I care about
+                performance, clarity, and making software that actually holds up.
+              </p>
+            </div>
 
-            <div className="mt-8 h-px w-16 bg-blue-500/70 shadow-[0_0_16px_rgba(59,130,246,0.4)]" />
+            <div className="col-span-12 sm:col-span-8 md:col-span-4 md:col-start-9">
+              <SectionPicture
+                src={projectsPhoto}
+                alt="A moment from Vedant's work"
+                treatment="sketch"
+                label={auditing ? "Projects" : undefined}
+              />
+            </div>
           </div>
 
-          {/* Pinterest-ish projects grid */}
           <ProjectGrid projects={PROJECTS} />
-          <div className="mt-10 mb-0 h-px w-full bg-white/10" />
         </div>
       </div>
     </Section>

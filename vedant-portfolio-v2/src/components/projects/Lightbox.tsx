@@ -71,7 +71,10 @@ export function Lightbox({ images, initialIndex = 0, onClose }: LightboxProps) {
   const onPointerUp = (e: React.PointerEvent) => {
     if (pointerStartX.current === null) return;
     const delta = e.clientX - pointerStartX.current;
-    if (Math.abs(delta) > 40) delta < 0 ? next() : prev();
+    if (Math.abs(delta) > 40) {
+      if (delta < 0) next();
+      else prev();
+    }
     pointerStartX.current = null;
   };
 

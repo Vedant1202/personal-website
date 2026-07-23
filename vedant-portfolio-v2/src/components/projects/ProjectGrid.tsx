@@ -6,18 +6,23 @@ import { ProjectCard } from "./ProjectCard";
 import { ProjectRow } from "./ProjectRow";
 import { ProjectExpandedPanel } from "./ProjectExpandedPanel";
 
+/** Reads #project-{id} so a shared deep link opens that project on first paint. */
+function activeIdFromHash(projects: Project[]): string | null {
+  const hash = window.location.hash.slice(1); // strip '#'
+  if (!hash.startsWith("project-")) return null;
+  const projectId = hash.slice("project-".length);
+  return projects.some((p) => p.id === projectId) ? projectId : null;
+}
+
 export function ProjectGrid({ projects }: { projects: Project[] }) {
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string | null>(() =>
+    activeIdFromHash(projects),
+  );
   const panelRef = useRef<HTMLDivElement | null>(null);
 
-  // Open the correct project if the URL hash is #project-{id} on first render
+  // Deep-linked project is already open; just bring the panel into view once mounted.
   useEffect(() => {
-    const hash = window.location.hash.slice(1); // strip '#'
-    if (!hash.startsWith("project-")) return;
-    const projectId = hash.slice("project-".length);
-    if (!projects.find((p) => p.id === projectId)) return;
-    setActiveId(projectId);
-    // Give the panel time to mount before scrolling
+    if (!activeIdFromHash(projects)) return;
     const t = setTimeout(() => {
       panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 400);
@@ -70,7 +75,7 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
       </div>
 
       {/* the rest — compact rows */}
-      <p className="mt-10 mb-4 text-xs tracking-[0.3em] text-white/45 uppercase">
+      <p className="text-ink-soft mt-10 mb-4 text-xs tracking-[0.3em] uppercase">
         More projects
       </p>
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">

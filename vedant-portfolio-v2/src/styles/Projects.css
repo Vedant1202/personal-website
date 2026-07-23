@@ -1,8 +1,9 @@
-/* muted by default */
+/* Muted by default. brightness is pulled down rather than up, since these brand
+   icons now sit on white and light logos would otherwise wash out. */
 .proj-tech-icon {
   display: inline-flex;
-  filter: grayscale(1) saturate(0.6) brightness(0.9);
-  opacity: 0.8;
+  filter: grayscale(1) saturate(0.6) brightness(0.55);
+  opacity: 0.75;
   transition:
     filter 180ms ease,
     opacity 180ms ease,

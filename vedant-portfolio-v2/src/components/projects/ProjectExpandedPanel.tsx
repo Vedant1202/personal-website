@@ -19,21 +19,11 @@ export function ProjectExpandedPanel({
       transition={{ duration: 0.22, ease: "easeOut" }}
       className={[
         "relative mt-8",
-        "rounded-3xl border border-white/12 bg-white/[0.03]",
-        "shadow-[0_0_60px_rgba(59,130,246,0.14)]",
+        "bg-paper rounded-3xl border border-black/15",
+        "shadow-[0_12px_40px_rgba(0,0,0,0.10)]",
         "overflow-hidden",
       ].join(" ")}
     >
-      {/* subtle vignette */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(1200px 420px at 20% 0%, rgba(59,130,246,0.14), transparent 55%), radial-gradient(900px 420px at 85% 10%, rgba(96,165,250,0.10), transparent 60%)",
-        }}
-      />
-
       <div className="relative p-5 sm:p-7">
         <ProjectExpanded project={project} onClose={onClose} />
       </div>
