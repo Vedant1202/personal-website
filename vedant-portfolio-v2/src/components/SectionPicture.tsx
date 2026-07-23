@@ -32,7 +32,8 @@ const TREATMENT_LABELS: Record<PictureTreatment, string> = {
  * natural proportions (no aspect-* crop, no fixed height) so any painting or
  * snapshot can drop in later without the layout being retuned.
  *
- * With placement="behind", give the positioning parent `relative isolate` — the
+ * With placement="behind" the figure positions itself to fill its parent, so give
+ * that parent `relative isolate` and pass no position class of your own. The
  * isolation keeps a negatively-stacked child from sliding behind an ancestor's
  * background instead of behind the text it belongs to.
  */
@@ -84,7 +85,13 @@ export function SectionPicture({
 
   return (
     <figure
-      className={`relative m-0 ${behind ? "pointer-events-none" : ""} ${className ?? ""}`}
+      className={`m-0 ${
+        behind
+          ? // Fills the positioning parent itself — callers must not also pass a
+            // position class, since `relative` and `absolute` would collide.
+            "pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+          : "relative"
+      } ${className ?? ""}`}
       aria-hidden={behind ? true : undefined}
     >
       <div

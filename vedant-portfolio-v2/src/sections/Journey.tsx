@@ -1,9 +1,16 @@
 // src/sections/Journey.tsx
 import { Section } from "../components/Section";
+import { SectionPicture } from "../components/SectionPicture";
+import { InkMark } from "../components/ink/InkMark";
+import { JourneyPath, StarScribble } from "../components/ink/Scribbles";
+import { useAudition } from "../components/audition/auditionContext";
+import journeyPhoto from "../assets/section-photos/panorama.svg";
 
 function U({ children }: { children: React.ReactNode }) {
   return (
-    <span className="border-b border-blue-500/60 pb-[2px] text-white">{children}</span>
+    <span className="border-accent/40 text-ink border-b pb-[2px] font-medium">
+      {children}
+    </span>
   );
 }
 
@@ -13,7 +20,7 @@ function A({ href, children }: { href: string; children: React.ReactNode }) {
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="text-blue-300/90 underline decoration-blue-500/50 underline-offset-2 transition-colors hover:text-blue-200 hover:decoration-blue-400"
+      className="text-accent decoration-accent/50 hover:decoration-accent underline underline-offset-2 transition-colors"
     >
       {children}
     </a>
@@ -26,30 +33,32 @@ function Block({
   metaLeft,
   metaRight,
   bullets,
+  rail = true,
 }: {
   org: string;
   title: string;
   metaLeft: string;
   metaRight: string;
   bullets: React.ReactNode[];
+  /** False when a drawn path supplies the spine for the whole list instead. */
+  rail?: boolean;
 }) {
   return (
     <div className="group relative pl-8">
-      {/* rail */}
-      <div className="absolute top-2 left-0 h-full w-px bg-white/10" />
-      <div className="absolute top-2 left-[-2px] h-3 w-3 rounded-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.5)]" />
+      {rail && <div className="absolute top-2 left-[15px] h-full w-px bg-black/12" />}
+      <div className="bg-accent absolute top-2 left-[11px] h-2.5 w-2.5 rounded-full" />
 
       <div className="transition duration-300 group-hover:translate-x-1">
-        <div className="flex flex-col gap-1 text-sm text-white/55 sm:flex-row sm:items-baseline sm:justify-between">
-          <span className="text-white/70">{org}</span>
-          <span className="text-white/45">
+        <div className="text-ink-soft flex flex-col gap-1 text-sm sm:flex-row sm:items-baseline sm:justify-between">
+          <span className="text-ink font-medium">{org}</span>
+          <span>
             {metaLeft} · {metaRight}
           </span>
         </div>
 
-        <p className="mt-2 text-base font-semibold text-white">{title}</p>
+        <p className="text-ink mt-2 text-base font-semibold">{title}</p>
 
-        <ul className="mt-4 space-y-2 text-sm text-white/70">
+        <ul className="text-ink-soft mt-4 space-y-2 text-sm">
           {bullets.map((b, i) => (
             <li key={i} className="leading-relaxed">
               {b}
@@ -62,54 +71,36 @@ function Block({
 }
 
 export function Journey() {
+  const { active: auditing, inkDrawings } = useAudition();
+
   return (
     <Section id="journey">
       <div className="relative mx-auto max-w-6xl px-0">
         {/* header */}
         <div className="mb-12 max-w-3xl">
-          <p className="text-xs tracking-[0.35em] text-white/50 uppercase">Journey</p>
+          <p className="text-ink-soft text-xs tracking-[0.35em] uppercase">Journey</p>
 
-          <h2 className="mt-6 text-[2.2rem] leading-[1.05] font-semibold tracking-tight text-white sm:text-[2.8rem] md:text-[3.2rem]">
-            Education <span className="accent-punct italic">&</span>
+          <h2 className="font-display text-ink mt-5 text-[2.2rem] leading-[1.05] font-semibold tracking-tight sm:text-[2.8rem] md:text-[3.2rem]">
+            Education <span className="italic">&</span>
             <br />
-            Experience<span className="accent-punct">.</span>
+            Experience.
           </h2>
 
-          <p className="mt-6 text-base leading-relaxed text-white/65 sm:text-lg">
-            I built{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10">strong conceptual foundations</span>
-              <span
-                aria-hidden
-                className="absolute bottom-[0.08em] left-0 z-0 h-[40%] w-full rounded-[0.25em] bg-blue-500/28 shadow-[0_0_16px_rgba(59,130,246,0.22)]"
-              />
-            </span>{" "}
-            in graduate school, and refined them through{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10">real-world engineering</span>
-              <span
-                aria-hidden
-                className="absolute bottom-[0.08em] left-0 z-0 h-[40%] w-full rounded-[0.25em] bg-blue-500/28 shadow-[0_0_16px_rgba(59,130,246,0.22)]"
-              />
-            </span>{" "}
-            where{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10">scale and reliability</span>
-              <span
-                aria-hidden
-                className="absolute bottom-[0.08em] left-0 z-0 h-[40%] w-full rounded-[0.25em] bg-blue-500/28 shadow-[0_0_16px_rgba(59,130,246,0.22)]"
-              />
-            </span>{" "}
-            matter.
+          <p className="text-ink-soft mt-6 text-base leading-relaxed sm:text-lg">
+            I built <InkMark delay={0.2}>strong conceptual foundations</InkMark> in
+            graduate school, and refined them through{" "}
+            <InkMark delay={0.5}>real-world engineering</InkMark> where scale and
+            reliability matter.
           </p>
-
-          <div className="mt-8 h-px w-16 bg-blue-500/70 shadow-[0_0_16px_rgba(59,130,246,0.4)]" />
         </div>
 
         {/* education — compact two-up band */}
         <div className="mb-14">
-          <p className="mb-6 text-sm tracking-[0.28em] text-white/60 uppercase">
+          <p className="text-ink-soft relative mb-6 text-sm tracking-[0.28em] uppercase">
             Education
+            {inkDrawings && (
+              <StarScribble className="absolute -top-3 left-[6.5rem] hidden h-5 w-5 sm:block" />
+            )}
           </p>
 
           <div className="grid gap-10 sm:grid-cols-2">
@@ -148,13 +139,29 @@ export function Journey() {
         </div>
 
         {/* experience — full-width timeline */}
-        <div>
-          <p className="mb-6 text-sm tracking-[0.28em] text-white/60 uppercase">
+        <div className="relative isolate">
+          <SectionPicture
+            src={journeyPhoto}
+            alt=""
+            treatment="washed"
+            placement="behind"
+          />
+          {auditing && (
+            <p className="font-hand text-accent absolute -top-1 right-0 text-lg">
+              Journey — washed duotone, behind text
+            </p>
+          )}
+
+          <p className="text-ink-soft mb-6 text-sm tracking-[0.28em] uppercase">
             Experience
           </p>
 
-          <div className="max-w-4xl space-y-10">
+          <div className="relative max-w-4xl space-y-10">
+            {inkDrawings && (
+              <JourneyPath className="absolute top-2 left-0 -z-10 h-[calc(100%-1rem)] w-8" />
+            )}
             <Block
+              rail={!inkDrawings}
               org="University of Illinois Chicago"
               title="Software Engineer"
               metaLeft="Jul 2024 – Present"
@@ -182,6 +189,7 @@ export function Journey() {
             />
 
             <Block
+              rail={!inkDrawings}
               org="CleverTap"
               title="Senior Software Engineer"
               metaLeft="Jan 2023 – Jul 2023"
@@ -207,6 +215,7 @@ export function Journey() {
             />
 
             <Block
+              rail={!inkDrawings}
               org="CleverTap"
               title="Software Engineer"
               metaLeft="Jun 2021 – Dec 2022"
