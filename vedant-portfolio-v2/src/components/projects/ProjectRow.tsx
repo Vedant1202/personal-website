@@ -14,7 +14,7 @@ export function ProjectRow({
   onToggle: () => void;
 }) {
   return (
-    <article
+    <div
       className={[
         "flex cursor-pointer items-center justify-between gap-4 rounded-xl border px-4 py-3",
         "transition-[border-color,background-color,opacity] duration-200 ease-out",
@@ -60,6 +60,6 @@ export function ProjectRow({
           />
         </svg>
       </div>
-    </article>
+    </div>
   );
 }

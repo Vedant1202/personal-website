@@ -16,7 +16,7 @@ export function ProjectCard({
   onToggle: () => void;
 }) {
   return (
-    <motion.article
+    <motion.div
       layout="position"
       transition={{ type: "spring", stiffness: 380, damping: 34 }}
       className={[
@@ -79,6 +79,6 @@ export function ProjectCard({
           </div>
         ) : null}
       </div>
-    </motion.article>
+    </motion.div>
   );
 }
