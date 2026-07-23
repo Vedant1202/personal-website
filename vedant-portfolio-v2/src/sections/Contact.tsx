@@ -9,6 +9,7 @@ import { InkMark } from "../components/ink/InkMark";
 import { Palette, Dumbbell } from "lucide-react";
 import { ArrowScribble } from "../components/ink/Scribbles";
 import { HobbyDoodle } from "../components/ink/HobbyDoodle";
+import { BrushStroke } from "../components/ink/BrushStroke";
 import { useAudition } from "../components/audition/auditionContext";
 import contactPhoto from "../assets/section-photos/square.svg";
 
@@ -55,9 +56,13 @@ export function Contact({
         )}
         <p className="text-ink-soft text-xs tracking-[0.35em] uppercase">Contact</p>
 
-        <h2 className="font-display text-ink mt-5 mb-6 text-[2.1rem] leading-[1.05] font-semibold tracking-tight sm:text-[2.7rem] md:text-[3.1rem]">
+        <h2 className="font-display text-ink mt-5 text-[2.1rem] leading-[1.05] font-semibold tracking-tight sm:text-[2.7rem] md:text-[3.1rem]">
           Let's talk.
         </h2>
+        {inkDrawings && (
+          <BrushStroke delay={0.15} className="mt-2 mb-6 ml-1 w-40 sm:w-52" />
+        )}
+        {!inkDrawings && <div className="mb-6" />}
 
         <motion.div
           variants={wrapV}

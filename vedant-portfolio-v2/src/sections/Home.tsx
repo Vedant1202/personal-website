@@ -9,6 +9,7 @@ import { HeroBlurb, HeroIntro } from "../components/hero/HeroIntro";
 import { SectionPicture } from "../components/SectionPicture";
 import { InkMark } from "../components/ink/InkMark";
 import { Saturn, SoccerArc } from "../components/ink/Scribbles";
+import { BrushStroke } from "../components/ink/BrushStroke";
 import { useAudition } from "../components/audition/auditionContext";
 
 /** Opens in a new tab — Google Drive shared resume. */
@@ -40,7 +41,11 @@ export function Home({
           roleLines={["Software Engineer", "UI/UX Design", "Virtual Reality"]}
         />
 
-        <div className="mt-8 grid grid-cols-12 items-start gap-y-8 md:gap-x-8">
+        {inkDrawings && (
+          <BrushStroke variant={2} delay={0.6} className="mt-3 ml-1 w-52 sm:w-64" />
+        )}
+
+        <div className="mt-6 grid grid-cols-12 items-start gap-y-8 md:gap-x-8">
           {/* Blurb, availability, links */}
           <div className="col-span-12 md:col-span-7">
             <HeroBlurb />
