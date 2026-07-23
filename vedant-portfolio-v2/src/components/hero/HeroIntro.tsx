@@ -3,22 +3,18 @@ import { motion } from "framer-motion";
 import { introV, revealV, roleV } from "./heroAnimations";
 import { InkMark } from "../ink/InkMark";
 
-type HeroIntroProps = {
+type HeroMetaProps = {
   location?: string;
   roleLines?: string[];
-  firstName: string;
-  lastName: string;
 };
 
-export function HeroIntro({
+/** Location and disciplines, spanning the full width above the name. */
+export function HeroMeta({
   location = "Chicago, IL",
   roleLines = ["Software Engineer", "UI/UX Design", "Virtual Reality"],
-  firstName,
-  lastName,
-}: HeroIntroProps) {
+}: HeroMetaProps) {
   return (
     <>
-      {/* Meta row — location left, disciplines right */}
       <motion.div
         variants={roleV}
         initial="hidden"
@@ -31,34 +27,49 @@ export function HeroIntro({
         </p>
       </motion.div>
       <div aria-hidden className="ink-rule mt-3 w-full" />
-
-      {/* Name — the hero is carried by type, not by the photo */}
-      <h1 className="mt-5 mb-0">
-        <span className="sr-only">
-          {firstName} {lastName}
-        </span>
-        <span aria-hidden className="block">
-          <motion.span
-            variants={revealV}
-            initial="hidden"
-            animate="show"
-            transition={{ delay: 0.1 }}
-            className="font-display text-ink block text-[clamp(3.2rem,13.5vw,10rem)] leading-[0.84] font-semibold tracking-[-0.02em]"
-          >
-            {firstName}
-          </motion.span>
-          <motion.span
-            variants={revealV}
-            initial="hidden"
-            animate="show"
-            transition={{ delay: 0.24 }}
-            className="font-display text-ink block text-[clamp(3.2rem,13.5vw,10rem)] leading-[0.84] font-semibold tracking-[-0.02em]"
-          >
-            {lastName}
-          </motion.span>
-        </span>
-      </h1>
     </>
+  );
+}
+
+type HeroNameProps = {
+  firstName: string;
+  lastName: string;
+};
+
+/**
+ * The name — the hero is carried by type, not by the photo. Sized to fit the
+ * left column beside the portrait, so the two share a top edge.
+ */
+export function HeroName({ firstName, lastName }: HeroNameProps) {
+  const line =
+    "font-display text-ink block text-[clamp(3rem,10.5vw,8rem)] leading-[0.84] font-semibold tracking-[-0.02em]";
+
+  return (
+    <h1 className="mt-0 mb-0">
+      <span className="sr-only">
+        {firstName} {lastName}
+      </span>
+      <span aria-hidden className="block">
+        <motion.span
+          variants={revealV}
+          initial="hidden"
+          animate="show"
+          transition={{ delay: 0.1 }}
+          className={line}
+        >
+          {firstName}
+        </motion.span>
+        <motion.span
+          variants={revealV}
+          initial="hidden"
+          animate="show"
+          transition={{ delay: 0.24 }}
+          className={line}
+        >
+          {lastName}
+        </motion.span>
+      </span>
+    </h1>
   );
 }
 

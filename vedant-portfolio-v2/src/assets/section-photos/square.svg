@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" width="700" height="700" role="img" aria-label="Placeholder 1:1">
-  <rect width="700" height="700" fill="#eef2f5"/>
+  <rect width="700" height="700" fill="#ffffff"/>
   <rect x="8" y="8" width="684" height="684" fill="none" stroke="#9fb3c0" stroke-width="3" stroke-dasharray="14 10"/>
   <g stroke="#7c98a8" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="350" cy="292" r="50"/>

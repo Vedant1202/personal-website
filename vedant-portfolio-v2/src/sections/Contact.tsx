@@ -10,6 +10,7 @@ import { Palette, Dumbbell } from "lucide-react";
 import { ArrowScribble } from "../components/ink/Scribbles";
 import { HobbyDoodle } from "../components/ink/HobbyDoodle";
 import { BrushStroke } from "../components/ink/BrushStroke";
+import { BackdropStroke } from "../components/ink/BackdropStroke";
 import { useAudition } from "../components/audition/auditionContext";
 import contactPhoto from "../assets/section-photos/square.svg";
 
@@ -45,7 +46,22 @@ export function Contact({
 
   return (
     <Section id="contact">
-      <div ref={contactRef} className="relative scroll-mt-24">
+      <div ref={contactRef} className="relative isolate scroll-mt-24">
+        {/* Ambient backdrop at the page's end corner. The wrapper clips the
+            bleed so it never adds horizontal scroll. */}
+        {inkDrawings && (
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+          >
+            <BackdropStroke
+              tone="blue"
+              opacity={0.75}
+              className="absolute -right-24 -bottom-20 w-[26rem] rotate-6 md:w-[34rem]"
+            />
+          </div>
+        )}
+
         {inkDrawings && (
           <HobbyDoodle
             icon={Palette}
