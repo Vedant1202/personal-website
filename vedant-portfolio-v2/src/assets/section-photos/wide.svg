@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540" role="img" aria-label="Placeholder 16:9">
+  <rect width="960" height="540" fill="#eef2f5"/>
+  <rect x="8" y="8" width="944" height="524" fill="none" stroke="#9fb3c0" stroke-width="3" stroke-dasharray="14 10"/>
+  <g stroke="#7c98a8" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="480" cy="225" r="38"/>
+    <path d="M240 360 L400 270 L600 337 L720 292"/>
+  </g>
+  <text x="480" y="473" font-family="Georgia, serif" font-size="33" fill="#5b7484" text-anchor="middle">photo goes here · 16:9</text>
+</svg>
