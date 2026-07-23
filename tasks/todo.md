@@ -30,8 +30,12 @@ Branch: `feat/v4-light-rework` (off `main`, PR into `main`) — see [plan.md](pl
 - Lint: 0 errors (5 pre-existing errors fixed along the way, incl. a real rules-of-hooks bug)
 - Mobile: scrollWidth == viewport at 390px (12-col grid gap overflow fixed)
 
-## User selections (fill at Checkpoint C)
-- Photo treatment winner: _
-- Ink drawings (hero arc / journey path): _
-- Serif: Fraunces / Instrument Serif: _
-- Blue token: #0369A1 / #075985 / #0E7490: _
+## User selections (confirmed)
+- Photo treatment winner: **sketch frame** (hero + contact gallery; journey keeps washed-behind-text, which is functional)
+- Serif: **Fraunces**
+- Blue token: **#0369A1**
+- Brush style: **gouache**
+- Ink drawings (hero arc / journey path): still open — assumed ON
+
+## Remaining
+- T11 lock-in: strip the audition provider/panel/params, drop Instrument Serif from the bundle, remove the losing photo treatments, final Lighthouse

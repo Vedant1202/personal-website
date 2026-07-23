@@ -153,3 +153,16 @@ const SATURN: InkStroke[] = [
 export function Saturn({ className }: ScribbleProps) {
   return <InkDrawing viewBox="0 0 98 62" strokes={SATURN} className={className} />;
 }
+
+const SMILEY: InkStroke[] = [
+  { d: dot(23, 23, 18), width: 2, duration: 0.8 },
+  // eyes — small arcs rather than dots, so they read as drawn
+  { d: "M15 18 C 15.8 16.2 17.2 16.2 18 18", width: 2, delay: 0.6, duration: 0.25 },
+  { d: "M28 18 C 28.8 16.2 30.2 16.2 31 18", width: 2, delay: 0.72, duration: 0.25 },
+  { d: "M14 26 C 18 31.5 28 31.5 32 25.5", width: 2, delay: 0.85, duration: 0.45 },
+];
+
+/** A little drawn smiley, for signing off a caption. */
+export function Smiley({ className }: ScribbleProps) {
+  return <InkDrawing viewBox="0 0 46 46" strokes={SMILEY} className={className} />;
+}

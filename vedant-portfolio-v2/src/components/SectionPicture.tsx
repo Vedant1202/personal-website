@@ -1,5 +1,5 @@
 // src/components/SectionPicture.tsx
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 /** Audition treatments — one per section, labelled, so the winner is picked in situ. */
 export type PictureTreatment = "snapshot" | "sketch" | "natural" | "washed";
@@ -14,8 +14,11 @@ type SectionPictureProps = {
   placement?: PicturePlacement;
   /** Shown as a handwritten tag while auditioning. */
   label?: string;
-  caption?: string;
+  /** Handwritten note under the frame; takes nodes so a doodle can sit inline. */
+  caption?: ReactNode;
   className?: string;
+  /** Small rotation in degrees, so a wall of prints sits hand-placed. */
+  tilt?: number;
   /** Hero photo is above the fold; everything else lazy-loads. */
   eager?: boolean;
 };
@@ -45,6 +48,7 @@ export function SectionPicture({
   label,
   caption,
   className,
+  tilt,
   eager = false,
 }: SectionPictureProps) {
   const behind = placement === "behind";
@@ -52,7 +56,11 @@ export function SectionPicture({
   // The sketch frame's drawn corners come from .ink-edge, shared with the rest
   // of the chrome so every boundary on the page is cut from the same pen.
   const frameStyle: CSSProperties =
-    treatment === "snapshot" ? { transform: "rotate(-1.6deg)" } : {};
+    tilt !== undefined
+      ? { transform: `rotate(${tilt}deg)` }
+      : treatment === "snapshot"
+        ? { transform: "rotate(-1.6deg)" }
+        : {};
 
   const frameClass = {
     snapshot: "bg-white p-2.5 pb-8 shadow-[0_6px_24px_rgba(0,0,0,0.14)]",
@@ -125,13 +133,17 @@ export function SectionPicture({
       )}
 
       {(caption || label) && (
-        <figcaption className="mt-2 flex flex-wrap items-baseline gap-x-2">
+        <figcaption className="mt-2">
           {label && (
-            <span className="font-hand text-accent text-lg leading-none">
+            <span className="font-hand text-accent block text-lg leading-none">
               {label} — {TREATMENT_LABELS[treatment]}
             </span>
           )}
-          {caption && <span className="text-ink-soft text-xs">{caption}</span>}
+          {caption && (
+            <span className="font-hand text-ink-soft mt-1 block text-lg leading-snug">
+              {caption}
+            </span>
+          )}
         </figcaption>
       )}
     </figure>

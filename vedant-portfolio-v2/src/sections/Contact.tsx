@@ -12,7 +12,31 @@ import { HobbyDoodle } from "../components/ink/HobbyDoodle";
 import { BrushStroke } from "../components/ink/BrushStroke";
 import { BackdropStroke } from "../components/ink/BackdropStroke";
 import { useAudition } from "../components/audition/auditionContext";
-import contactPhoto from "../assets/section-photos/square.svg";
+import squarePhoto from "../assets/section-photos/square.svg";
+import widePhoto from "../assets/section-photos/wide.svg";
+import portraitPhoto from "../assets/section-photos/portrait.svg";
+import panoramaPhoto from "../assets/section-photos/panorama.svg";
+
+/**
+ * A wall of prints. Captions are placeholders alongside the placeholder images —
+ * swap both together when the real photos land.
+ */
+const GALLERY = [
+  { src: squarePhoto, alt: "Painting at home", caption: "first canvas", tilt: -2.2 },
+  { src: widePhoto, alt: "Playing football", caption: "match day", tilt: 1.8 },
+  {
+    src: portraitPhoto,
+    alt: "Playing guitar",
+    caption: "the one that started it",
+    tilt: -1.4,
+  },
+  {
+    src: panoramaPhoto,
+    alt: "A clear night sky",
+    caption: "clear skies, finally",
+    tilt: 2.4,
+  },
+];
 
 const wrapV = {
   hidden: {},
@@ -38,7 +62,7 @@ export function Contact({
 }) {
   const contactRef = useRef<HTMLDivElement | null>(null);
   const contactInView = useInView(contactRef, { amount: 0.35 });
-  const { active: auditing, inkDrawings } = useAudition();
+  const { inkDrawings } = useAudition();
 
   useEffect(() => {
     onLinksInViewChange(contactInView);
@@ -157,21 +181,30 @@ export function Contact({
           </motion.div>
         </motion.div>
 
-        <div className="relative mt-12 max-w-xs">
+        <div className="relative mt-14">
           {inkDrawings && (
             <BackdropStroke
               shape="streak"
               tone="teal"
               opacity={0.65}
-              className="absolute -top-8 -left-12 -z-10 w-[24rem] -rotate-6"
+              className="absolute -top-10 -left-12 -z-10 w-[24rem] -rotate-6"
             />
           )}
-          <SectionPicture
-            src={contactPhoto}
-            alt="A moment worth remembering"
-            treatment="natural"
-            label={auditing ? "Contact" : undefined}
-          />
+
+          <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-x-8 lg:grid-cols-4">
+            {GALLERY.map((shot, i) => (
+              <SectionPicture
+                key={shot.src}
+                src={shot.src}
+                alt={shot.alt}
+                treatment="sketch"
+                tilt={shot.tilt}
+                caption={shot.caption}
+                // Stagger every other print so the wall isn't a straight rule
+                className={i % 2 === 1 ? "lg:mt-10" : undefined}
+              />
+            ))}
+          </div>
         </div>
 
         {inkDrawings && (

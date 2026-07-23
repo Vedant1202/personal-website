@@ -8,7 +8,7 @@ import { useEffect, useRef } from "react";
 import { HeroBlurb, HeroMeta, HeroName } from "../components/hero/HeroIntro";
 import { SectionPicture } from "../components/SectionPicture";
 import { InkMark } from "../components/ink/InkMark";
-import { Saturn, SoccerArc } from "../components/ink/Scribbles";
+import { Saturn, SoccerArc, Smiley } from "../components/ink/Scribbles";
 import { BrushStroke } from "../components/ink/BrushStroke";
 import { BackdropStroke } from "../components/ink/BackdropStroke";
 import { useAudition } from "../components/audition/auditionContext";
@@ -129,10 +129,16 @@ export function Home({
             <SectionPicture
               src={vedantImg}
               alt="Vedant Nandoskar"
-              treatment="snapshot"
+              treatment="sketch"
               eager
               label={auditing ? "Hero" : undefined}
-              className="max-w-[15rem] md:ml-auto"
+              caption={
+                <>
+                  Hi! Welcome to my website, it’s great to have you here!
+                  <Smiley className="ml-1 inline-block h-5 w-5 translate-y-1" />
+                </>
+              }
+              className="max-w-[20rem] md:ml-auto"
             />
           </div>
         </div>
