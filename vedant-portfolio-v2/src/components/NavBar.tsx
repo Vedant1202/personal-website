@@ -156,7 +156,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
           <button
             onClick={() => scrollTo("home")}
             aria-label="Vedant Nandoskar — scroll to top"
-            className="bg-paper/80 text-ink font-display ink-pill border border-black/25 px-3.5 py-1.5 text-sm font-semibold tracking-tight backdrop-blur md:hidden"
+            className="bg-paper text-ink font-display ink-pill -rotate-[0.6deg] border-[1.5px] border-black/45 px-3.5 py-1.5 text-sm font-semibold tracking-tight shadow-[0_3px_10px_rgba(0,0,0,0.09)] md:hidden"
           >
             Vedant Nandoskar
           </button>
@@ -170,9 +170,11 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
               "ink-pill",
               "text-sm font-semibold tracking-tight",
               "text-ink hover:text-ink font-display",
-              "border border-black/25",
-              "bg-paper/80 backdrop-blur",
-              "shadow-[0_10px_30px_rgba(0,0,0,0.35)]",
+              "border-[1.5px] border-black/45",
+              // A paper label, not glass: opaque stock with a light drop, so it
+              // reads as something set down on the page rather than floating over it.
+              "bg-paper",
+              "shadow-[0_3px_10px_rgba(0,0,0,0.09)]",
               "overflow-hidden",
               "select-none",
               "go-home-nav-button",
@@ -182,6 +184,9 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
               y: brandY,
               filter: brandBlur,
               scale: brandScale,
+              // Set here, not as a class — Motion writes an inline transform for
+              // scale/y, which would overwrite a Tailwind rotate utility.
+              rotate: -0.6,
               paddingLeft: padX,
               paddingRight: padX,
               paddingTop: padY,
@@ -189,14 +194,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
               pointerEvents: brandInteractive ? "auto" : "none",
             }}
           >
-            <span
-              aria-hidden
-              className="pointer-events-none absolute inset-0"
-              style={{
-                background:
-                  "radial-gradient(120% 140% at 30% 20%, rgba(59,130,246,0.18), transparent 55%), radial-gradient(120% 140% at 80% 70%, rgba(0,0,0,0.55), transparent 60%), linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0))",
-              }}
-            />
+            {/* Scroll-driven sweep, now a highlighter pass in the accent token */}
             <motion.span
               aria-hidden
               className="pointer-events-none absolute inset-0"
@@ -205,7 +203,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
                 scaleX: wipeScaleX,
                 transformOrigin: "left",
                 background:
-                  "linear-gradient(135deg, transparent 0%, rgba(59,130,246,0.14) 35%, rgba(59,130,246,0.06) 55%, transparent 72%)",
+                  "linear-gradient(115deg, transparent 0%, color-mix(in srgb, var(--brand-accent) 15%, transparent) 42%, color-mix(in srgb, var(--brand-accent) 6%, transparent) 62%, transparent 80%)",
               }}
             />
             <span className="relative flex items-center whitespace-nowrap">
@@ -218,7 +216,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
             type="button"
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Open menu"
-            className="bg-paper/80 text-ink-soft hover:text-ink ink-edge-sm inline-flex items-center justify-center border border-black/25 p-2 backdrop-blur transition md:hidden"
+            className="bg-paper text-ink-soft hover:text-ink ink-edge-sm inline-flex items-center justify-center border-[1.5px] border-black/45 p-2 shadow-[0_3px_10px_rgba(0,0,0,0.09)] transition md:hidden"
           >
             <HiMenu className="h-5 w-5" />
           </button>

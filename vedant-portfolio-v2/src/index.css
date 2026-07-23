@@ -27,8 +27,8 @@
    * Pen-stroke shapes used as masks, so the colour still comes from a token and
    * follows the audition — a data URI cannot read a CSS variable itself.
    */
-  --sketch-rule: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='5' viewBox='0 0 140 5'%3E%3Cpath d='M0 2.5 C 23 1.1, 47 3.9, 70 2.5 S 117 1.1, 140 2.5' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
-  --sketch-rail: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5' height='140' viewBox='0 0 5 140'%3E%3Cpath d='M2.5 0 C 1.1 23, 3.9 47, 2.5 70 S 1.1 117, 2.5 140' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  --sketch-rule: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='5' viewBox='0 0 420 5'%3E%3Cpath d='M0 2.5 C 28 1.3, 54 3.7, 84 2.6 C 112 1.6, 138 3.9, 170 2.4 C 198 1.2, 226 3.4, 258 2.8 C 286 2.2, 312 1.1, 344 2.5 C 372 3.6, 396 1.7, 420 2.5' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  --sketch-rail: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5' height='420' viewBox='0 0 5 420'%3E%3Cpath d='M2.5 0 C 1.3 28, 3.7 54, 2.6 84 C 1.6 112, 3.9 138, 2.4 170 C 1.2 198, 3.4 226, 2.8 258 C 2.2 286, 1.1 312, 2.5 344 C 3.6 372, 1.7 396, 2.5 420' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
 }
 
 /* Audition overrides — set by AuditionProvider from URL params */
@@ -69,6 +69,47 @@ html[data-serif="instrument"] {
   border-radius: 120px 14px 130px 16px / 16px 130px 14px 120px;
 }
 
+/*
+ * Hand-made variance. One radius signature stamped forty times reads as a shape,
+ * not a doodle — a person drawing the same box twice never repeats themselves.
+ * Rotating the signature across siblings costs nothing and applies to any list
+ * automatically. The differences are deliberately small: which corners are sharp
+ * shifts, the silhouette does not.
+ */
+.ink-edge:nth-of-type(3n + 2) {
+  border-radius: 18px 210px 14px 245px / 235px 12px 250px 16px;
+}
+
+.ink-edge:nth-of-type(3n + 3) {
+  border-radius: 245px 16px 205px 20px / 14px 250px 12px 215px;
+}
+
+.ink-edge-sm:nth-of-type(4n + 2) {
+  border-radius: 8px 44px 7px 40px / 38px 9px 46px 8px;
+}
+
+.ink-edge-sm:nth-of-type(4n + 3) {
+  border-radius: 46px 9px 36px 7px / 8px 40px 10px 44px;
+}
+
+.ink-edge-sm:nth-of-type(4n + 4) {
+  border-radius: 7px 38px 9px 48px / 44px 8px 40px 6px;
+}
+
+/* Opt-in nudge for small repeated tokens, so a row of chips sits hand-placed
+   rather than machine-aligned. Kept under half a degree — past that it is noise. */
+.ink-jitter:nth-of-type(3n + 1) {
+  transform: rotate(-0.4deg);
+}
+
+.ink-jitter:nth-of-type(3n + 2) {
+  transform: rotate(0.32deg);
+}
+
+.ink-jitter:nth-of-type(3n + 3) {
+  transform: rotate(-0.12deg);
+}
+
 /* Drawn divider rules, in place of hairline boxes */
 .ink-rule {
   height: 5px;
@@ -94,6 +135,17 @@ html[data-serif="instrument"] {
 
 .ink-rail--accent {
   background-color: var(--brand-accent);
+}
+
+/* Offset the stroke's phase so two rules on a page never start the same way */
+.ink-rule:nth-of-type(2n) {
+  -webkit-mask-position: -137px 0;
+  mask-position: -137px 0;
+}
+
+.ink-rule:nth-of-type(3n) {
+  -webkit-mask-position: -271px 0;
+  mask-position: -271px 0;
 }
 
 /* Link with an accent stroke that draws in on hover — the ink layer's quiet cousin */

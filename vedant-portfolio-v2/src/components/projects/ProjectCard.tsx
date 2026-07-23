@@ -64,7 +64,7 @@ export function ProjectCard({
             return (
               <span
                 key={`${project.id}-${t}`}
-                className="text-ink-soft hover:border-accent/40 ink-edge-sm inline-flex items-center gap-2 border border-black/18 px-3 py-2 text-xs transition"
+                className="text-ink-soft hover:border-accent/40 ink-edge-sm ink-jitter inline-flex items-center gap-2 border border-black/18 px-3 py-2 text-xs transition"
               >
                 <TechIcon k={t} />
                 <span className={label ? "" : "capitalize"}>{label ?? t}</span>
