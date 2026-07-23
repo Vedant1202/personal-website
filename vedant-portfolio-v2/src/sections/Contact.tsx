@@ -157,7 +157,15 @@ export function Contact({
           </motion.div>
         </motion.div>
 
-        <div className="mt-12 max-w-xs">
+        <div className="relative mt-12 max-w-xs">
+          {inkDrawings && (
+            <BackdropStroke
+              shape="streak"
+              tone="teal"
+              opacity={0.65}
+              className="absolute -top-8 -left-12 -z-10 w-[24rem] -rotate-6"
+            />
+          )}
           <SectionPicture
             src={contactPhoto}
             alt="A moment worth remembering"

@@ -7,6 +7,7 @@ import { SectionPicture } from "../components/SectionPicture";
 import { Guitar, Pencil } from "lucide-react";
 import { InkMark } from "../components/ink/InkMark";
 import { HobbyDoodle } from "../components/ink/HobbyDoodle";
+import { BackdropStroke } from "../components/ink/BackdropStroke";
 import { BrushStroke } from "../components/ink/BrushStroke";
 import { useAudition } from "../components/audition/auditionContext";
 import projectsPhoto from "../assets/section-photos/wide.svg";
@@ -23,7 +24,16 @@ export function Projects() {
     <Section id="projects-and-skills">
       <div className="relative mx-auto max-w-6xl">
         {/* ── Skills ─────────────────────────────── */}
-        <div id="skills" className="relative scroll-mt-24">
+        <div id="skills" className="relative isolate scroll-mt-24">
+          {/* Large sweep behind the whole skills block */}
+          {inkDrawings && (
+            <BackdropStroke
+              shape="curve"
+              tone="blue"
+              opacity={0.6}
+              className="absolute -top-10 -left-16 -z-10 hidden w-[30rem] sm:block md:w-[44rem]"
+            />
+          )}
           {inkDrawings && (
             <HobbyDoodle
               icon={Guitar}
@@ -48,7 +58,16 @@ export function Projects() {
         <div className="ink-rule my-14 w-full" />
 
         {/* ── Projects ───────────────────────────── */}
-        <div id="projects" className="scroll-mt-24">
+        <div id="projects" className="relative isolate scroll-mt-24">
+          {/* Long low sweep running behind the project grid */}
+          {inkDrawings && (
+            <BackdropStroke
+              shape="streak"
+              tone="periwinkle"
+              opacity={0.55}
+              className="absolute top-[22rem] -right-20 -z-10 hidden w-[32rem] -rotate-3 sm:block md:w-[46rem]"
+            />
+          )}
           <div className="mb-12 grid grid-cols-12 items-start gap-y-8 md:gap-x-10">
             <div className="col-span-12 md:col-span-7">
               <p className={KICKER}>
@@ -81,7 +100,15 @@ export function Projects() {
               )}
             </div>
 
-            <div className="col-span-12 sm:col-span-8 md:col-span-4 md:col-start-9">
+            <div className="relative col-span-12 sm:col-span-8 md:col-span-4 md:col-start-9">
+              {inkDrawings && (
+                <BackdropStroke
+                  shape="ribbon"
+                  tone="teal"
+                  opacity={0.7}
+                  className="absolute -top-10 -left-16 -z-10 w-[22rem] rotate-6"
+                />
+              )}
               <SectionPicture
                 src={projectsPhoto}
                 alt="A moment from Vedant's work"

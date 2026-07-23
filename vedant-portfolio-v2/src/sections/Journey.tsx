@@ -5,6 +5,7 @@ import { InkMark } from "../components/ink/InkMark";
 import { BookOpen } from "lucide-react";
 import { JourneyPath, StarScribble } from "../components/ink/Scribbles";
 import { HobbyDoodle } from "../components/ink/HobbyDoodle";
+import { BackdropStroke } from "../components/ink/BackdropStroke";
 import { BrushStroke } from "../components/ink/BrushStroke";
 import { useAudition } from "../components/audition/auditionContext";
 import journeyPhoto from "../assets/section-photos/panorama.svg";
@@ -74,7 +75,16 @@ export function Journey() {
 
   return (
     <Section id="journey">
-      <div className="relative mx-auto max-w-6xl px-0">
+      <div className="relative isolate mx-auto max-w-6xl px-0">
+        {/* Large sweep behind the section */}
+        {inkDrawings && (
+          <BackdropStroke
+            shape="ribbon"
+            tone="blue"
+            opacity={0.5}
+            className="absolute -top-8 -left-24 -z-10 hidden w-[34rem] sm:block md:w-[48rem]"
+          />
+        )}
         {inkDrawings && (
           <HobbyDoodle
             icon={BookOpen}
@@ -167,6 +177,14 @@ export function Journey() {
           </p>
 
           <div className="relative max-w-4xl space-y-10">
+            {inkDrawings && (
+              <BackdropStroke
+                shape="curve"
+                tone="teal"
+                opacity={0.5}
+                className="absolute top-[28rem] -right-28 -z-10 hidden w-[26rem] rotate-[8deg] sm:block md:w-[36rem]"
+              />
+            )}
             {inkDrawings && (
               <JourneyPath className="absolute top-2 left-0 -z-10 h-[calc(100%-1rem)] w-8" />
             )}
