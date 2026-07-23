@@ -1,5 +1,47 @@
 @import "tailwindcss";
 
+/* Self-hosted fonts — subset-split with font-display: swap, no external requests */
+@import "@fontsource-variable/fraunces";
+@import "@fontsource/instrument-serif/400.css";
+@import "@fontsource/instrument-serif/400-italic.css";
+@import "@fontsource-variable/caveat";
+
+/*
+ * v4 brand tokens. Raw values live on :root so audition attributes can override
+ * them; @theme inline republishes them as Tailwind utilities (bg-paper, text-ink,
+ * text-accent, font-display, font-hand) that follow the override at runtime.
+ */
+:root {
+  --brand-paper: #ffffff;
+  --brand-ink: #111111;
+  --brand-ink-soft: #52525b;
+  --brand-accent: #0369a1;
+
+  --brand-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
+  --brand-hand: "Caveat Variable", "Comic Sans MS", cursive;
+}
+
+/* Audition overrides — set by AuditionProvider from URL params */
+html[data-blue="deep"] {
+  --brand-accent: #075985;
+}
+html[data-blue="teal"] {
+  --brand-accent: #0e7490;
+}
+html[data-serif="instrument"] {
+  --brand-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+}
+
+@theme inline {
+  --color-paper: var(--brand-paper);
+  --color-ink: var(--brand-ink);
+  --color-ink-soft: var(--brand-ink-soft);
+  --color-accent: var(--brand-accent);
+
+  --font-display: var(--brand-display);
+  --font-hand: var(--brand-hand);
+}
+
 /* Reset the Vite template defaults */
 html,
 body,
