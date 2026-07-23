@@ -30,12 +30,3 @@ export const introV: Variants = {
     transition: { duration: 1, ease: EASE_OUT },
   },
 };
-
-export const highlightV: Variants = {
-  off: { scaleX: 0, opacity: 0 },
-  on: {
-    scaleX: 1,
-    opacity: 1,
-    transition: { delay: 0.5, duration: 4, ease: EASE_OUT },
-  },
-};

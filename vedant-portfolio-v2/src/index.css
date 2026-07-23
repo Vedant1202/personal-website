@@ -42,6 +42,41 @@ html[data-serif="instrument"] {
   --font-hand: var(--brand-hand);
 }
 
+/* Link with an accent rule that draws in on hover — the ink layer's quiet cousin */
+.ink-link {
+  position: relative;
+  color: var(--brand-ink-soft);
+  transition: color 180ms ease;
+}
+
+.ink-link:hover {
+  color: var(--brand-ink);
+}
+
+.ink-link:not(.ink-link--boxed)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+  left: 0;
+  height: 1.5px;
+  background: var(--brand-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ink-link:hover::after,
+.ink-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ink-link::after {
+    transition: none;
+  }
+}
+
 /* Reset the Vite template defaults */
 html,
 body,

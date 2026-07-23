@@ -59,22 +59,21 @@ export function CircleScribble({ className }: ScribbleProps) {
 
 const SOCCER_ARC: InkStroke[] = [
   // flight path
-  { d: "M6 150 C 58 44, 178 14, 286 40", width: 2, duration: 1.4 },
-  // ball
+  { d: "M6 150 C 54 48, 160 16, 262 44", width: 2.6, duration: 1.4 },
+  // ball — sized to still read as a ball when the drawing is only ~200px wide
   {
-    d: "M300 30 A 13 13 0 1 0 300 56 A 13 13 0 1 0 300 30",
-    width: 2,
+    d: "M292 18 A 22 22 0 1 0 292 62 A 22 22 0 1 0 292 18",
+    width: 2.6,
     delay: 1.25,
     duration: 0.5,
   },
-  // pentagon facets
+  // pentagon facet
   {
-    d: "M300 36 L305 41 L303 47 L297 47 L295 41 Z",
-    width: 1.4,
+    d: "M292 28 L301 35 L297 45 L287 45 L283 35 Z",
+    width: 2,
     delay: 1.6,
-    duration: 0.4,
+    duration: 0.45,
   },
-  { d: "M305 41 L311 40 M303 47 L305 53 M295 41 L289 40", width: 1.2, delay: 1.8 },
 ];
 
 /** Hero signature: a ball's flight path arcing across the whitespace. */

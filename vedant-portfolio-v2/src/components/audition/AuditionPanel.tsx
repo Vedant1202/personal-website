@@ -43,7 +43,7 @@ export function AuditionPanel() {
   return (
     <aside
       aria-label="Design audition controls"
-      className="bg-paper/95 fixed right-3 bottom-3 z-[60] max-w-[15rem] rounded-xl border border-black/15 p-3 shadow-lg backdrop-blur"
+      className="bg-paper/95 fixed bottom-3 left-3 z-[60] max-w-[15rem] rounded-xl border border-black/15 p-3 shadow-lg backdrop-blur"
       style={{ borderRadius: "18px 6px 20px 8px / 8px 20px 6px 18px" }}
     >
       <p className="font-hand text-ink mb-2 text-lg leading-none">Try a variant</p>
