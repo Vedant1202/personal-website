@@ -1,6 +1,8 @@
 import { LayoutGroup, MotionConfig } from "framer-motion";
 import { useEffect, useState } from "react";
 import { NavBar } from "./components/NavBar";
+import { AuditionProvider } from "./components/audition/AuditionProvider";
+import { AuditionPanel } from "./components/audition/AuditionPanel";
 import { Home } from "./sections/Home";
 import { Journey } from "./sections/Journey";
 import { Projects } from "./sections/Projects";
@@ -37,18 +39,21 @@ export default function App() {
   }, []);
 
   return (
-    <MotionConfig reducedMotion="user">
-      <LayoutGroup>
-        <div className="min-h-screen bg-black text-white">
-          <NavBar showSocialDock={showSocialDock} />
-          <main className="pt-20">
-            <Home onLinksInViewChange={setHomeLinksInView} />
-            <Projects />
-            <Journey />
-            <Contact onLinksInViewChange={setContactInView} />
-          </main>
-        </div>
-      </LayoutGroup>
-    </MotionConfig>
+    <AuditionProvider>
+      <MotionConfig reducedMotion="user">
+        <LayoutGroup>
+          <div className="min-h-screen bg-black text-white">
+            <NavBar showSocialDock={showSocialDock} />
+            <main className="pt-20">
+              <Home onLinksInViewChange={setHomeLinksInView} />
+              <Projects />
+              <Journey />
+              <Contact onLinksInViewChange={setContactInView} />
+            </main>
+          </div>
+          <AuditionPanel />
+        </LayoutGroup>
+      </MotionConfig>
+    </AuditionProvider>
   );
 }
