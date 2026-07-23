@@ -12,6 +12,9 @@
  * text-accent, font-display, font-hand) that follow the override at runtime.
  */
 :root {
+  /* Light only — keeps UA chrome (scrollbars, form controls) in step. */
+  color-scheme: light;
+
   --brand-paper: #ffffff;
   --brand-ink: #111111;
   --brand-ink-soft: #52525b;
@@ -86,8 +89,8 @@ body,
 
 body {
   margin: 0;
-  background: #000;
-  color: #fff;
+  background: var(--brand-paper);
+  color: var(--brand-ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -70,11 +70,11 @@ export function TechIcon({ k }: { k: TechKey }) {
     case "gcp":
       return <BrandIcon Icon={SiGooglecloud} color="#4285F4" />;
     case "unity":
-      return <BrandIcon Icon={SiUnity} color="#FFFFFF" />;
+      return <BrandIcon Icon={SiUnity} color="#111111" />;
     case "swift":
       return <BrandIcon Icon={SiSwift} color="#F05138" />;
     case "macos":
-      return <BrandIcon Icon={SiApple} color="#FFFFFF" />;
+      return <BrandIcon Icon={SiApple} color="#111111" />;
     case "docker":
       return <BrandIcon Icon={SiDocker} color="#2496ED" />;
     case "vue":
@@ -84,7 +84,7 @@ export function TechIcon({ k }: { k: TechKey }) {
     case "hololens":
       return (
         <GenericIcon>
-          <Glasses size={16} className="text-white/80" />
+          <Glasses size={16} className="text-ink-soft" />
         </GenericIcon>
       );
     default:

@@ -42,7 +42,7 @@ export default function App() {
     <AuditionProvider>
       <MotionConfig reducedMotion="user">
         <LayoutGroup>
-          <div className="min-h-screen bg-black text-white">
+          <div className="bg-paper text-ink min-h-screen">
             <NavBar showSocialDock={showSocialDock} />
             <main className="pt-20">
               <Home onLinksInViewChange={setHomeLinksInView} />

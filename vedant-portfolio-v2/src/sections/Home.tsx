@@ -40,7 +40,7 @@ export function Home({
           roleLines={["Software Engineer", "UI/UX Design", "Virtual Reality"]}
         />
 
-        <div className="mt-8 grid grid-cols-12 items-start gap-x-8 gap-y-8">
+        <div className="mt-8 grid grid-cols-12 items-start gap-y-8 md:gap-x-8">
           {/* Blurb, availability, links */}
           <div className="col-span-12 md:col-span-7">
             <HeroBlurb />

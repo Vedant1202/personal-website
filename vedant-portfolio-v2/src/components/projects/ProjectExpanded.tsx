@@ -14,10 +14,6 @@ export function ProjectExpanded({
     <div className="p-1">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
-          {/* <p className="text-[11px] font-semibold tracking-[0.28em] text-white/50 uppercase">
-            Expanded
-          </p> */}
-
           <h4 className="font-display text-ink mt-3 text-xl font-semibold tracking-tight sm:text-2xl">
             {project.title}
           </h4>
