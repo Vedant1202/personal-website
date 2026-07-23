@@ -35,6 +35,9 @@ export function Projects() {
           <div className="max-w-3xl">
             <p className={KICKER}>Skills</p>
             <h2 className={HEADING}>Tools and Technologies I work with.</h2>
+            {inkDrawings && (
+              <BrushStroke variant={2} delay={0.1} className="mt-2 ml-1 w-52 sm:w-64" />
+            )}
           </div>
 
           <div className="mt-10">
@@ -58,7 +61,7 @@ export function Projects() {
                 Ideas turned into working software.
               </h2>
               {inkDrawings && (
-                <BrushStroke variant={2} delay={0.1} className="mt-2 ml-1 w-44 sm:w-56" />
+                <BrushStroke delay={0.1} className="mt-2 ml-1 w-56 sm:w-72" />
               )}
 
               <p className="text-ink-soft mt-6 text-base leading-relaxed sm:text-lg">

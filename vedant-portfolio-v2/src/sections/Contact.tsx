@@ -73,7 +73,7 @@ export function Contact({
           Let's talk.
         </h2>
         {inkDrawings && (
-          <BrushStroke delay={0.15} className="mt-2 mb-6 ml-1 w-40 sm:w-52" />
+          <BrushStroke delay={0.15} className="mt-2 mb-6 ml-1 w-52 sm:w-64" />
         )}
         {!inkDrawings && <div className="mb-6" />}
 

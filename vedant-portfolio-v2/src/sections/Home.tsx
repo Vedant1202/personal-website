@@ -58,7 +58,7 @@ export function Home({
             <HeroName firstName="Vedant" lastName="Nandoskar" />
 
             {inkDrawings && (
-              <BrushStroke variant={2} delay={0.6} className="mt-3 ml-1 w-52 sm:w-64" />
+              <BrushStroke variant={2} delay={0.6} className="mt-3 ml-1 w-60 sm:w-80" />
             )}
 
             <div className="mt-6">
