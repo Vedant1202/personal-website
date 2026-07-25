@@ -1,4 +1,5 @@
 // src/components/ink/Scribbles.tsx
+import { FaFutbol } from "react-icons/fa";
 import { InkDrawing, type InkStroke } from "./InkDrawing";
 
 /**
@@ -57,28 +58,42 @@ export function CircleScribble({ className }: ScribbleProps) {
   );
 }
 
-const SOCCER_ARC: InkStroke[] = [
-  // flight path
-  { d: "M6 150 C 54 48, 160 16, 262 44", width: 2.6, duration: 1.4 },
-  // ball — sized to still read as a ball when the drawing is only ~200px wide
-  {
-    d: "M292 18 A 22 22 0 1 0 292 62 A 22 22 0 1 0 292 18",
-    width: 2.6,
-    delay: 1.25,
-    duration: 0.5,
-  },
-  // pentagon facet
-  {
-    d: "M292 28 L301 35 L297 45 L287 45 L283 35 Z",
-    width: 2,
-    delay: 1.6,
-    duration: 0.45,
-  },
+/*
+ * Flight path plus two trailing motion lines.
+ *
+ * The previous single stroke was nominally a cubic but its control points sat
+ * almost exactly on the chord, so it drew as a straight line — a ball on a
+ * ruler rather than a ball in flight. These control points sit well above the
+ * chord, giving a real ballistic climb: steep off the boot, flattening as it
+ * nears the apex where the ball is. The two shorter strokes echo the same curve
+ * just behind it and come in slightly later, which is what reads as speed.
+ */
+const KICK_ARC: InkStroke[] = [
+  { d: "M6 92 C 52 62, 116 32, 196 26", width: 2.4, duration: 1.1 },
+  { d: "M128 60 C 156 48, 180 42, 197 39", width: 1.5, delay: 0.45, duration: 0.45 },
+  { d: "M148 75 C 170 66, 189 60, 202 57", width: 1.3, delay: 0.6, duration: 0.4 },
 ];
 
-/** Hero signature: a ball's flight path arcing across the whitespace. */
-export function SoccerArc({ className }: ScribbleProps) {
-  return <InkDrawing viewBox="0 0 320 170" strokes={SOCCER_ARC} className={className} />;
+/**
+ * A real soccer ball mid-flight: the recognizable ball glyph sits at the end of
+ * a hand-drawn arc, so the ink layer still owns the motion but the ball reads as
+ * a ball. The drawn version never did — a lone facet on a circle looked like a bolt.
+ *
+ * The ball is the only depictive object here on purpose. A boot or cleat at the
+ * kick end was the obvious alternative, but it puts a second subject in a 208px
+ * box and the eye then has to choose between them; the motion lines carry the
+ * same "this was struck" idea without competing for attention.
+ */
+export function SoccerBall({ className }: ScribbleProps) {
+  return (
+    <div
+      className={`pointer-events-none relative select-none ${className ?? ""}`}
+      aria-hidden
+    >
+      <InkDrawing viewBox="0 0 240 100" strokes={KICK_ARC} className="h-full w-full" />
+      <FaFutbol className="text-ink absolute top-0 right-0 h-9 w-9 -rotate-6" />
+    </div>
+  );
 }
 
 const JOURNEY_PATH: InkStroke[] = [
