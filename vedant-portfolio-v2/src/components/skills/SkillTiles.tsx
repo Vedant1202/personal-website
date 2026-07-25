@@ -10,8 +10,11 @@ function SkillChip({ s }: { s: Skill }) {
       className={[
         "ink-edge-sm ink-jitter inline-flex items-center gap-2 border border-black/22 px-3 py-1.5",
         "text-ink-soft hover:border-accent/45 hover:text-ink text-xs transition duration-200",
-        // shrink + mute the brand icons; full color on hover
-        "[&_svg]:h-[15px] [&_svg]:w-[15px] [&_svg]:opacity-80 [&_svg]:grayscale-[0.55] [&_svg]:transition [&_svg]:duration-200 hover:[&_svg]:opacity-100 hover:[&_svg]:grayscale-0",
+        // Brand logos are the one place rainbow color leaks into a strictly
+        // white/ink/one-blue system, so the icons read as ink at rest (fully
+        // desaturated) and only bloom to full color on hover — the same reward-
+        // on-interest move the project covers make with .ink-duotone.
+        "[&_svg]:h-[15px] [&_svg]:w-[15px] [&_svg]:opacity-70 [&_svg]:grayscale [&_svg]:transition [&_svg]:duration-200 hover:[&_svg]:opacity-100 hover:[&_svg]:grayscale-0",
       ].join(" ")}
     >
       <span aria-hidden className="inline-flex shrink-0 items-center">

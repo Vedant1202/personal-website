@@ -1,16 +1,16 @@
 import { LayoutGroup, MotionConfig } from "framer-motion";
 import { useEffect, useState } from "react";
 import { NavBar } from "./components/NavBar";
-import { AuditionProvider } from "./components/audition/AuditionProvider";
-import { AuditionPanel } from "./components/audition/AuditionPanel";
 import { InkFilters } from "./components/ink/InkFilters";
 import { Home } from "./sections/Home";
 import { Journey } from "./sections/Journey";
 import { Projects } from "./sections/Projects";
+import { Skills } from "./sections/Skills";
 import { Contact } from "./sections/Contact";
 import "./App.css";
 
-const SECTION_IDS = ["home", "skills", "projects", "journey", "contact"];
+/** Scroll order. Kept in the same order the sections render, so the two can be read together. */
+const SECTION_IDS = ["home", "projects", "journey", "skills", "contact"];
 
 export default function App() {
   const [homeLinksInView, setHomeLinksInView] = useState(true);
@@ -40,22 +40,26 @@ export default function App() {
   }, []);
 
   return (
-    <AuditionProvider>
-      <MotionConfig reducedMotion="user">
-        <LayoutGroup>
-          <InkFilters />
-          <div className="bg-paper text-ink min-h-screen">
-            <NavBar showSocialDock={showSocialDock} />
-            <main className="pt-20">
-              <Home onLinksInViewChange={setHomeLinksInView} />
-              <Projects />
-              <Journey />
-              <Contact onLinksInViewChange={setContactInView} />
-            </main>
-          </div>
-          <AuditionPanel />
-        </LayoutGroup>
-      </MotionConfig>
-    </AuditionProvider>
+    <MotionConfig reducedMotion="user">
+      <LayoutGroup>
+        <InkFilters />
+        <div className="bg-paper text-ink min-h-screen">
+          <NavBar showSocialDock={showSocialDock} />
+          <main className="pt-20">
+            {/*
+              Work first, then the record behind it, then the stack. Projects is
+              the strongest and most differentiating evidence, so it gets the
+              highest-attention slot after the hero; Skills is a claim the
+              projects have already demonstrated, so it reads as an appendix.
+            */}
+            <Home onLinksInViewChange={setHomeLinksInView} />
+            <Projects />
+            <Journey />
+            <Skills />
+            <Contact onLinksInViewChange={setContactInView} />
+          </main>
+        </div>
+      </LayoutGroup>
+    </MotionConfig>
   );
 }
