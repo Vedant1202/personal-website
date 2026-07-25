@@ -17,7 +17,7 @@ export function Section({ id, title, children }: SectionProps) {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="bg-paper text-ink"
     >
-      <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24">
+      <div className="page-shell section-pad">
         {title && (
           <h2 className="font-display mb-10 text-3xl font-semibold tracking-tight">
             {title}
