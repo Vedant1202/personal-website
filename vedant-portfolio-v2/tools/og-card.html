@@ -61,7 +61,11 @@
       .frame { border: 2px solid rgba(17,17,17,0.8); padding: 7px;
                border-radius: 225px 15px 235px 15px / 15px 235px 15px 225px;
                overflow: hidden; }
-      .frame img { display: block; width: 100%; height: auto; border-radius: inherit; }
+      .frame img {
+        display: block; width: 100%; height: auto; border-radius: inherit;
+        /* Matches the hero, which sits permanently black-and-white (no hover reveal). */
+        filter: grayscale(1);
+      }
       .cap { font-family: "Caveat Variable", cursive; font-size: 25px; color: #52525b;
              margin-top: 10px; line-height: 1.25; }
     </style>
@@ -70,7 +74,7 @@
     <div class="card">
       <div class="meta">
         <span>Chicago, IL</span>
-        <span>Software Engineer · UI/UX Design · Virtual Reality</span>
+        <span>Software Engineer · UI/UX Design · Agentic AI · Virtual Reality</span>
       </div>
       <div class="rule"></div>
 
