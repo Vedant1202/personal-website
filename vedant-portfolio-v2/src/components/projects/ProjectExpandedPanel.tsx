@@ -13,9 +13,11 @@ export function ProjectExpandedPanel({
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
-      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      exit={{ opacity: 0, y: 10, filter: "blur(6px)" }}
+      // No blur: this panel is a wall of text, and animating a filter repaints
+      // the whole layer each frame to make that text briefly unreadable.
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 10 }}
       transition={{ duration: 0.22, ease: "easeOut" }}
       className={[
         "relative mt-8",

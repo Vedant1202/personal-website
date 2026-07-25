@@ -88,6 +88,9 @@ export function Lightbox({ images, initialIndex = 0, onClose }: LightboxProps) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.18 }}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Project image viewer"
       className="fixed inset-0 z-9999 flex items-center justify-center bg-black/92 backdrop-blur-sm"
       onClick={onClose}
     >

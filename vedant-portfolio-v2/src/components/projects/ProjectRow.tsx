@@ -2,6 +2,14 @@
 import type { Project } from "../../data/projects";
 import { TechIcon } from "./TechIcon";
 
+/**
+ * A compact archive row: title over a one-line tagline, with the tech and a
+ * chevron trailing. Both text lines truncate to a single line, so every row is
+ * the same height no matter how long the title or tagline is — the old inline
+ * "title · tagline" layout let a long title (e.g. the grant platform) crowd the
+ * tagline into a sliver that wrapped to a dozen lines, blowing up the grid row.
+ * This is the standard title/subtitle list item (Gmail, Linear, GitHub repos).
+ */
 export function ProjectRow({
   project,
   isActive,
@@ -16,7 +24,7 @@ export function ProjectRow({
   return (
     <div
       className={[
-        "ink-edge-sm flex cursor-pointer items-center justify-between gap-4 border px-4 py-3",
+        "ink-edge-sm group flex h-full cursor-pointer items-center gap-4 border px-4 py-3",
         "transition-[border-color,background-color,opacity] duration-200 ease-out",
         isActive
           ? "border-accent bg-black/[0.02]"
@@ -31,15 +39,24 @@ export function ProjectRow({
       }}
       aria-expanded={isActive}
     >
-      <div className="flex min-w-0 items-baseline gap-3">
-        <h3 className="text-ink shrink-0 text-sm font-semibold">{project.title}</h3>
-        <p className="text-ink-soft truncate text-sm">{project.tagline}</p>
+      {/* min-w-0 + flex-1 lets both lines truncate instead of pushing the row wide */}
+      <div className="min-w-0 flex-1">
+        <h3 className="font-display text-ink truncate text-base leading-tight font-semibold">
+          {project.title}
+        </h3>
+        <p className="text-ink-soft mt-1 truncate text-sm leading-tight">
+          {project.tagline}
+        </p>
       </div>
 
-      <div className="text-ink-soft flex shrink-0 items-center gap-2">
-        {project.tech.slice(0, 3).map((t) => (
-          <TechIcon key={`${project.id}-row-${t}`} k={t} />
-        ))}
+      <div className="flex shrink-0 items-center gap-2">
+        {/* Tech icons follow the same ink discipline as the rest: muted at rest,
+            full colour when the row is hovered. */}
+        <span className="text-ink-soft flex items-center gap-2 [&_svg]:opacity-70 [&_svg]:grayscale [&_svg]:transition group-hover:[&_svg]:opacity-100 group-hover:[&_svg]:grayscale-0">
+          {project.tech.slice(0, 3).map((t) => (
+            <TechIcon key={`${project.id}-row-${t}`} k={t} />
+          ))}
+        </span>
         <svg
           width="14"
           height="14"
@@ -47,7 +64,7 @@ export function ProjectRow({
           fill="none"
           aria-hidden
           className={[
-            "transition-transform duration-200",
+            "shrink-0 transition-transform duration-200",
             isActive ? "text-accent rotate-90" : "text-ink-soft",
           ].join(" ")}
         >

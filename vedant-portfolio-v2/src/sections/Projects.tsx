@@ -1,125 +1,95 @@
 // src/sections/Projects.tsx
 import { Section } from "../components/Section";
-import { SkillTiles } from "../components/skills/SkillTiles";
 import { PROJECTS } from "../data/projects";
 import { ProjectGrid } from "../components/projects/ProjectGrid";
-import { SectionPicture } from "../components/SectionPicture";
-import { Guitar, Pencil } from "lucide-react";
+import { Polaroid } from "../components/Polaroid";
+import { Pencil } from "lucide-react";
 import { InkMark } from "../components/ink/InkMark";
 import { HobbyDoodle } from "../components/ink/HobbyDoodle";
 import { BackdropStroke } from "../components/ink/BackdropStroke";
 import { BrushStroke } from "../components/ink/BrushStroke";
-import { useAudition } from "../components/audition/auditionContext";
-import projectsPhoto from "../assets/section-photos/wide.svg";
+import { PROJECT_PHOTOS } from "../data/photos";
 import "../styles/Projects.css";
 
+const [DESK, WALL] = PROJECT_PHOTOS;
+
 const KICKER = "text-ink-soft text-xs tracking-[0.35em] uppercase";
-const HEADING =
-  "font-display text-ink mt-5 text-[2.1rem] leading-[1.05] font-semibold tracking-tight sm:text-[2.7rem]";
+const HEADING = "font-display text-ink text-h2 mt-5 font-semibold tracking-tight";
 
+/** First section after the hero — the work carries the page, so it leads. */
 export function Projects() {
-  const { active: auditing, inkDrawings } = useAudition();
-
   return (
-    <Section id="projects-and-skills">
-      <div className="relative mx-auto max-w-6xl">
-        {/* ── Skills ─────────────────────────────── */}
-        <div id="skills" className="relative isolate scroll-mt-24">
-          {/* Large sweep behind the whole skills block */}
-          {inkDrawings && (
-            <BackdropStroke
-              shape="curve"
-              tone="blue"
-              opacity={0.6}
-              className="absolute -top-10 -left-16 -z-10 hidden w-[30rem] sm:block md:w-[44rem]"
-            />
-          )}
-          {inkDrawings && (
+    <Section id="projects-section">
+      <div id="projects" className="scroll-anchor relative isolate">
+        {/* Long low sweep running behind the project grid */}
+        <BackdropStroke
+          shape="streak"
+          tone="periwinkle"
+          opacity={0.55}
+          className="absolute top-[22rem] -right-20 -z-10 hidden w-[32rem] -rotate-3 sm:block md:w-[46rem]"
+        />
+        <div className="mb-12 grid grid-cols-12 items-start gap-y-8 md:gap-x-10">
+          <div className="col-span-12 md:col-span-7">
+            <p className={KICKER}>
+              <InkMark type="circle" strokeWidth={1.6} multiline={false}>
+                Projects &amp; Work
+              </InkMark>
+            </p>
+
+            <h2 className={HEADING}>Ideas turned into working software.</h2>
+            <BrushStroke delay={0.1} className="mt-2 ml-1 w-56 sm:w-72" />
+
+            <p className="text-ink-soft mt-6 text-lg leading-relaxed">
+              <InkMark delay={0.2}>Interfaces</InkMark> that feel simple. <br />
+              <InkMark delay={0.45}>Systems</InkMark> that aren’t. <br />I care about
+              performance, clarity, and making software that actually holds up.
+            </p>
+
             <HobbyDoodle
-              icon={Guitar}
-              size={52}
-              tilt={-8}
-              className="absolute top-1 right-2 hidden lg:inline-flex"
+              icon={Pencil}
+              size={46}
+              rough={2}
+              tilt={6}
+              className="mt-8 ml-1 hidden sm:inline-flex"
             />
-          )}
-          <div className="max-w-3xl">
-            <p className={KICKER}>Skills</p>
-            <h2 className={HEADING}>Tools and Technologies I work with.</h2>
-            {inkDrawings && (
-              <BrushStroke variant={2} delay={0.1} className="mt-2 ml-1 w-52 sm:w-64" />
-            )}
           </div>
 
-          <div className="mt-10">
-            <SkillTiles />
-          </div>
-        </div>
-
-        <div className="ink-rule my-14 w-full" />
-
-        {/* ── Projects ───────────────────────────── */}
-        <div id="projects" className="relative isolate scroll-mt-24">
-          {/* Long low sweep running behind the project grid */}
-          {inkDrawings && (
+          <div className="relative col-span-12 sm:col-span-8 md:col-span-5 md:col-start-8">
             <BackdropStroke
-              shape="streak"
-              tone="periwinkle"
-              opacity={0.55}
-              className="absolute top-[22rem] -right-20 -z-10 hidden w-[32rem] -rotate-3 sm:block md:w-[46rem]"
+              shape="ribbon"
+              tone="teal"
+              opacity={0.7}
+              className="absolute -top-10 -left-16 -z-10 w-[22rem] rotate-6"
             />
-          )}
-          <div className="mb-12 grid grid-cols-12 items-start gap-y-8 md:gap-x-10">
-            <div className="col-span-12 md:col-span-7">
-              <p className={KICKER}>
-                <InkMark type="circle" padding={7} strokeWidth={1.6} multiline={false}>
-                  Projects &amp; Work
-                </InkMark>
-              </p>
-
-              <h2 className={`${HEADING} md:text-[3.1rem]`}>
-                Ideas turned into working software.
-              </h2>
-              {inkDrawings && (
-                <BrushStroke delay={0.1} className="mt-2 ml-1 w-56 sm:w-72" />
-              )}
-
-              <p className="text-ink-soft mt-6 text-base leading-relaxed sm:text-lg">
-                <InkMark delay={0.2}>Interfaces</InkMark> that feel simple. <br />
-                <InkMark delay={0.45}>Systems</InkMark> that aren’t. <br />I care about
-                performance, clarity, and making software that actually holds up.
-              </p>
-
-              {inkDrawings && (
-                <HobbyDoodle
-                  icon={Pencil}
-                  size={46}
-                  rough={2}
-                  tilt={6}
-                  className="mt-8 ml-1 hidden sm:inline-flex"
-                />
-              )}
-            </div>
-
-            <div className="relative col-span-12 sm:col-span-8 md:col-span-4 md:col-start-9">
-              {inkDrawings && (
-                <BackdropStroke
-                  shape="ribbon"
-                  tone="teal"
-                  opacity={0.7}
-                  className="absolute -top-10 -left-16 -z-10 w-[22rem] rotate-6"
-                />
-              )}
-              <SectionPicture
-                src={projectsPhoto}
-                alt="A moment from Vedant's work"
-                treatment="sketch"
-                label={auditing ? "Projects" : undefined}
+            {/* Desk and a favourite wall as a hand-placed pair: set side by side
+                and staggered, overlapping only at a corner so each keeps its own
+                caption clear. */}
+            <div className="relative mx-auto w-full max-w-[29rem]">
+              <Polaroid
+                src={DESK.src}
+                alt={DESK.alt}
+                caption={DESK.caption}
+                tilt={DESK.tilt}
+                ratio="4 / 3"
+                captionAlign="left"
+                bw
+                className="w-[62%]"
+              />
+              <Polaroid
+                src={WALL.src}
+                alt={WALL.alt}
+                caption={WALL.caption}
+                tilt={WALL.tilt}
+                ratio="4 / 3"
+                captionAlign="right"
+                bw
+                className="relative z-10 -mt-[24%] ml-auto w-[58%]"
               />
             </div>
           </div>
-
-          <ProjectGrid projects={PROJECTS} />
         </div>
+
+        <ProjectGrid projects={PROJECTS} />
       </div>
     </Section>
   );

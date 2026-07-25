@@ -42,21 +42,30 @@ export function ProjectCard({
             src={project.cover.src}
             alt={project.cover.alt}
             loading="lazy"
-            className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+            className="ink-duotone h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center">
+          <div className="ink-duotone flex h-full w-full items-center justify-center">
             <span className="font-display text-ink text-3xl font-semibold tracking-tight sm:text-4xl">
               {project.title}
               <span className="text-accent">.</span>
             </span>
           </div>
         )}
+        {/* A soft resting veil evens the covers' tonal weight in the grid — it
+            keeps a dark cover (cprof's) from out-shouting the pale ones at rest,
+            then lifts on hover so each cover blooms to full alongside its color. */}
+        <div
+          aria-hidden
+          className="bg-paper/35 pointer-events-none absolute inset-0 transition-opacity duration-300 group-hover:opacity-0"
+        />
       </div>
 
       <div className="p-5">
-        <h3 className="text-ink text-sm font-semibold">{project.title}</h3>
-        <p className="text-ink-soft mt-2 text-sm">{project.tagline}</p>
+        <h3 className="font-display text-ink text-title font-semibold tracking-tight">
+          {project.title}
+        </h3>
+        <p className="text-ink-soft mt-2 text-base">{project.tagline}</p>
 
         <div className="mt-4 flex flex-wrap items-center gap-2">
           {project.tech.map((t) => {
@@ -64,7 +73,9 @@ export function ProjectCard({
             return (
               <span
                 key={`${project.id}-${t}`}
-                className="text-ink-soft hover:border-accent/40 ink-edge-sm ink-jitter inline-flex items-center gap-2 border border-black/18 px-3 py-2 text-xs transition"
+                // Icons desaturated at rest and revealed with the cover on card
+                // hover, so the chips keep the same ink discipline as the rest.
+                className="text-ink-soft hover:border-accent/40 ink-edge-sm ink-jitter inline-flex items-center gap-2 border border-black/18 px-3 py-2 text-xs transition [&_svg]:opacity-70 [&_svg]:grayscale [&_svg]:transition group-hover:[&_svg]:opacity-100 group-hover:[&_svg]:grayscale-0"
               >
                 <TechIcon k={t} />
                 <span className={label ? "" : "capitalize"}>{label ?? t}</span>
