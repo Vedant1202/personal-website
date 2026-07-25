@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Raw image drops — the optimized .webp in src/assets/my-images/ is what ships
+public/my-images/
