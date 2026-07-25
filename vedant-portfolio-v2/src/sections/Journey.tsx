@@ -1,17 +1,20 @@
 // src/sections/Journey.tsx
 import { Section } from "../components/Section";
-import { SectionPicture } from "../components/SectionPicture";
 import { InkMark } from "../components/ink/InkMark";
 import { BookOpen } from "lucide-react";
-import { JourneyPath, StarScribble } from "../components/ink/Scribbles";
+import { StarScribble } from "../components/ink/Scribbles";
 import { HobbyDoodle } from "../components/ink/HobbyDoodle";
 import { BackdropStroke } from "../components/ink/BackdropStroke";
 import { BrushStroke } from "../components/ink/BrushStroke";
-import { useAudition } from "../components/audition/auditionContext";
-import journeyPhoto from "../assets/section-photos/panorama.svg";
+import { SectionPicture } from "../components/SectionPicture";
+import gradImg from "../assets/my-images/grad.webp";
 
+// Metrics and tech in the bullets earn emphasis, but ~20 blue underlines across
+// the section drowned the two that matter (the intro marks). Bold, near-black
+// text carries the same "scan me" weight — like a resume bolding its numbers —
+// without adding color, keeping the accent rare and meaningful.
 function U({ children }: { children: React.ReactNode }) {
-  return <span className="ink-underline text-ink font-medium">{children}</span>;
+  return <span className="text-ink font-semibold">{children}</span>;
 }
 
 function A({ href, children }: { href: string; children: React.ReactNode }) {
@@ -58,7 +61,7 @@ function Block({
 
         <p className="text-ink mt-2 text-base font-semibold">{title}</p>
 
-        <ul className="text-ink-soft mt-4 space-y-2 text-sm">
+        <ul className="text-ink-soft mt-4 space-y-2 text-base">
           {bullets.map((b, i) => (
             <li key={i} className="leading-relaxed">
               {b}
@@ -71,42 +74,37 @@ function Block({
 }
 
 export function Journey() {
-  const { active: auditing, inkDrawings } = useAudition();
-
   return (
     <Section id="journey">
-      <div className="relative isolate mx-auto max-w-6xl px-0">
-        {/* Large sweep behind the section */}
-        {inkDrawings && (
-          <BackdropStroke
-            shape="ribbon"
-            tone="blue"
-            opacity={0.5}
-            className="absolute -top-8 -left-24 -z-10 hidden w-[34rem] sm:block md:w-[48rem]"
-          />
-        )}
-        {inkDrawings && (
-          <HobbyDoodle
-            icon={BookOpen}
-            size={54}
-            tilt={-5}
-            className="absolute top-0 right-2 hidden lg:inline-flex"
-          />
-        )}
+      <div className="relative isolate">
+        {/* A soft sweep tucked behind the heading's left — kept pale and short so
+            it reads as texture under the title, not a smudge trailing across the
+            intro copy (which is where the larger, stronger version landed). */}
+        <BackdropStroke
+          shape="ribbon"
+          tone="blue"
+          opacity={0.3}
+          className="absolute -top-6 -left-28 -z-10 hidden w-[24rem] sm:block md:w-[32rem]"
+        />
+        <HobbyDoodle
+          icon={BookOpen}
+          size={54}
+          tilt={-5}
+          className="absolute top-0 right-2 hidden lg:inline-flex"
+        />
         {/* header */}
-        <div className="mb-12 max-w-3xl">
+        <div className="max-w-3xl">
           <p className="text-ink-soft text-xs tracking-[0.35em] uppercase">Journey</p>
 
-          <h2 className="font-display text-ink mt-5 text-[2.2rem] leading-[1.05] font-semibold tracking-tight sm:text-[2.8rem] md:text-[3.2rem]">
-            Education <span className="italic">&</span>
-            <br />
-            Experience.
+          <h2 className="font-display text-ink text-h2 mt-5 font-semibold tracking-tight">
+            {/* No manual <br>: text-wrap balance decides the break, so this
+                heading stays right at every width instead of only at the one
+                the break was hand-tuned for. */}
+            Education <span className="italic">&</span> Experience.
           </h2>
-          {inkDrawings && (
-            <BrushStroke variant={2} delay={0.1} className="mt-2 ml-1 w-56 sm:w-72" />
-          )}
+          <BrushStroke variant={2} delay={0.1} className="mt-2 ml-1 w-56 sm:w-72" />
 
-          <p className="text-ink-soft mt-6 text-base leading-relaxed sm:text-lg">
+          <p className="text-ink-soft mt-6 text-lg leading-relaxed">
             I built <InkMark delay={0.2}>strong conceptual foundations</InkMark> in
             graduate school, and refined them through{" "}
             <InkMark delay={0.5}>real-world engineering</InkMark> where scale and
@@ -114,82 +112,86 @@ export function Journey() {
           </p>
         </div>
 
-        {/* education — compact two-up band */}
-        <div className="mb-14">
-          <p className="text-ink-soft relative mb-6 text-sm tracking-[0.28em] uppercase">
-            Education
-            {inkDrawings && (
-              <StarScribble className="absolute -top-3 left-[6.5rem] hidden h-5 w-5 sm:block" />
-            )}
-          </p>
+        {/* education — the two colleges on the left, a graduation photo alongside */}
+        <div className="space-block">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_15rem] lg:items-start lg:gap-14">
+            <div>
+              <p className="text-ink-soft relative mb-6 text-sm tracking-[0.28em] uppercase">
+                Education
+                <StarScribble className="absolute -top-3 left-[6.5rem] hidden h-5 w-5 sm:block" />
+              </p>
 
-          <div className="grid gap-10 sm:grid-cols-2">
-            <Block
-              org="University of Illinois Chicago"
-              title="M.S. Computer Science"
-              metaLeft="Class of 2025"
-              metaRight="Chicago, IL"
-              bullets={[
-                <>
-                  Thesis on VR help systems, improving onboarding with{" "}
-                  <U>context-aware guidance</U> —{" "}
-                  <A href="https://doi.org/10.25417/uic.32991932">published thesis</A>.
-                </>,
-                <>
-                  Built data-heavy dashboards and pipelines for <U>clinical research</U>.
-                </>,
-              ]}
-            />
+              <div className="space-y-9">
+                <Block
+                  org="University of Illinois Chicago"
+                  title="M.S. Computer Science"
+                  metaLeft="Class of 2025"
+                  metaRight="Chicago, IL"
+                  bullets={[
+                    <>
+                      Thesis on VR help systems, improving onboarding with{" "}
+                      <U>context-aware guidance</U> —{" "}
+                      <A href="https://doi.org/10.25417/uic.32991932">published thesis</A>
+                      .
+                    </>,
+                    <>
+                      Built data-heavy dashboards and pipelines for{" "}
+                      <U>clinical research</U>.
+                    </>,
+                  ]}
+                />
 
-            <Block
-              org="University of Mumbai"
-              title="B.E. Information Technology"
-              metaLeft="Class of 2021"
-              metaRight="Mumbai"
-              bullets={[
-                <>
-                  Strong base in <U>systems</U>, networking, and software engineering.
-                </>,
-                <>
-                  Shipped full-stack projects with an emphasis on <U>performance</U>.
-                </>,
-              ]}
+                <Block
+                  org="University of Mumbai"
+                  title="B.E. Information Technology"
+                  metaLeft="Class of 2021"
+                  metaRight="Mumbai"
+                  bullets={[
+                    <>
+                      Strong base in <U>systems</U>, networking, and software engineering.
+                    </>,
+                    <>
+                      Shipped full-stack projects with an emphasis on <U>performance</U>.
+                    </>,
+                  ]}
+                />
+              </div>
+            </div>
+
+            {/* Graduation photo — sketch-framed, sitting beside the two colleges. */}
+            <SectionPicture
+              src={gradImg}
+              alt="Vedant at his UIC graduation"
+              treatment="sketch"
+              tone="bw"
+              tilt={2}
+              caption="Thank you UIC <3"
+              className="mx-auto mt-2 w-full max-w-[15rem] lg:mt-1"
             />
           </div>
         </div>
 
         {/* experience — full-width timeline */}
-        <div className="relative isolate">
-          <SectionPicture
-            src={journeyPhoto}
-            alt=""
-            treatment="washed"
-            placement="behind"
-          />
-          {auditing && (
-            <p className="font-hand text-accent absolute -top-1 right-0 text-lg">
-              Journey — washed duotone, behind text
-            </p>
-          )}
-
+        <div className="space-block relative isolate">
           <p className="text-ink-soft mb-6 text-sm tracking-[0.28em] uppercase">
             Experience
           </p>
 
-          <div className="relative max-w-4xl space-y-10">
-            {inkDrawings && (
-              <BackdropStroke
-                shape="curve"
-                tone="teal"
-                opacity={0.5}
-                className="absolute top-[28rem] -right-28 -z-10 hidden w-[26rem] rotate-[8deg] sm:block md:w-[36rem]"
-              />
-            )}
-            {inkDrawings && (
-              <JourneyPath className="absolute top-2 left-0 -z-10 h-[calc(100%-1rem)] w-8" />
-            )}
+          <div className="relative space-y-10">
+            {/* A soft curve behind the lower entries. Sits inside the content now
+                (feathered edges, no bleed) rather than off the right margin, which
+                the old full-width layout no longer has — so nothing gets clipped. */}
+            <BackdropStroke
+              shape="curve"
+              tone="teal"
+              opacity={0.45}
+              className="absolute top-[26rem] right-0 -z-10 hidden w-[26rem] rotate-[8deg] sm:block md:w-[32rem]"
+            />
+            {/* Straight sketched spine aligned to the dots (left-[11px]), matching
+                the Education rails — the old winding path drifted off the dots. */}
+            <div className="ink-rail absolute top-2 left-[13px] -z-10 h-[calc(100%-1rem)]" />
             <Block
-              rail={!inkDrawings}
+              rail={false}
               org="University of Illinois Chicago"
               title="Software Engineer"
               metaLeft="Jul 2024 – Present"
@@ -217,7 +219,7 @@ export function Journey() {
             />
 
             <Block
-              rail={!inkDrawings}
+              rail={false}
               org="CleverTap"
               title="Senior Software Engineer"
               metaLeft="Jan 2023 – Jul 2023"
@@ -243,7 +245,7 @@ export function Journey() {
             />
 
             <Block
-              rail={!inkDrawings}
+              rail={false}
               org="CleverTap"
               title="Software Engineer"
               metaLeft="Jun 2021 – Dec 2022"
