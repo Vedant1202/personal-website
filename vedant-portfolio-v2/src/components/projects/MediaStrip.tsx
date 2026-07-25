@@ -5,12 +5,13 @@ import { Lightbox } from "./Lightbox";
 import type { LightboxImage } from "./Lightbox";
 
 export function MediaStrip({ media }: { media?: Media[] }) {
-  if (!media?.length) return null;
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxStartIndex, setLightboxStartIndex] = useState(0);
 
   // Collect only image-type items (with their original index) for the lightbox
   const imageItems: { item: Extract<Media, { type: "image" }>; stripIndex: number }[] =
     [];
-  media.forEach((m, i) => {
+  media?.forEach((m, i) => {
     if (m.type === "image") imageItems.push({ item: m, stripIndex: i });
   });
 
@@ -19,18 +20,18 @@ export function MediaStrip({ media }: { media?: Media[] }) {
     alt: item.alt,
   }));
 
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [lightboxStartIndex, setLightboxStartIndex] = useState(0);
-
   const openLightbox = (lightboxIdx: number) => {
     setLightboxStartIndex(lightboxIdx);
     setLightboxOpen(true);
   };
 
+  // Bail out after the hooks so their call order stays stable across renders.
+  if (!media?.length) return null;
+
   return (
     <>
       <div className="mt-4">
-        <p className="text-xs font-semibold tracking-wide text-slate-500 uppercase">
+        <p className="text-ink-soft text-xs font-semibold tracking-wide uppercase">
           Media
         </p>
 
@@ -47,7 +48,7 @@ export function MediaStrip({ media }: { media?: Media[] }) {
                   type="button"
                   aria-label={`View full screen: ${m.alt ?? "image"}`}
                   onClick={() => openLightbox(lbIdx)}
-                  className="snap-start overflow-hidden rounded-xl border border-white/10 bg-white/5 transition hover:border-blue-500/40 hover:ring-1 hover:ring-blue-500/30 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none"
+                  className="hover:border-accent focus-visible:ring-accent ink-edge-sm snap-start overflow-hidden border border-black/22 transition focus-visible:ring-2 focus-visible:outline-none"
                 >
                   <img
                     src={m.src}
@@ -64,7 +65,7 @@ export function MediaStrip({ media }: { media?: Media[] }) {
               return (
                 <div
                   key={key}
-                  className="snap-start overflow-hidden rounded-xl border border-white/10 bg-white/5"
+                  className="ink-edge-sm snap-start overflow-hidden border border-black/22"
                 >
                   <video
                     className="h-40 w-64 object-cover"
@@ -82,7 +83,7 @@ export function MediaStrip({ media }: { media?: Media[] }) {
             return (
               <div
                 key={key}
-                className="snap-start overflow-hidden rounded-xl border border-white/10 bg-white/5"
+                className="ink-edge-sm snap-start overflow-hidden border border-black/22"
               >
                 <iframe
                   className="h-40 w-64"

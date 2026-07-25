@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "vedant-portfolio-v2"],
+      "port": 5173
+    },
+    {
+      "name": "mantis-demo",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "/Users/vedant/Projects/Personal/mantis-biotech-demo"],
+      "port": 3000
+    }
+  ]
+}

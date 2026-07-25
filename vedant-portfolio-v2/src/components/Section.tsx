@@ -15,10 +15,16 @@ export function Section({ id, title, children }: SectionProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.05 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24"
+      className="bg-paper text-ink"
     >
-      {title && <h2 className="mb-10 text-2xl font-semibold tracking-tight">{title}</h2>}
-      {children}
+      <div className="page-shell section-pad">
+        {title && (
+          <h2 className="font-display mb-10 text-3xl font-semibold tracking-tight">
+            {title}
+          </h2>
+        )}
+        {children}
+      </div>
     </motion.section>
   );
 }

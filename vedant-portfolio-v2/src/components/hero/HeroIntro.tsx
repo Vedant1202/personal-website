@@ -1,95 +1,106 @@
 // src/components/hero/HeroIntro.tsx
 import { motion } from "framer-motion";
 import { introV, revealV, roleV } from "./heroAnimations";
-import { HighlightWord } from "./HighlightWord";
+import { InkMark } from "../ink/InkMark";
 
-type HeroIntroProps = {
+type HeroMetaProps = {
   location?: string;
   roleLines?: string[];
+};
+
+/** Location and disciplines, spanning the full width above the name. */
+export function HeroMeta({
+  location = "Chicago, IL",
+  roleLines = ["Software Engineer", "Agentic AI", "Human-Centered Computing"],
+}: HeroMetaProps) {
+  return (
+    <>
+      <motion.div
+        variants={roleV}
+        initial="hidden"
+        animate="show"
+        className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1"
+      >
+        <p className="text-ink-soft text-xs tracking-[0.22em] uppercase">{location}</p>
+        <p className="text-ink-soft text-xs tracking-[0.22em] uppercase">
+          {roleLines.join(" · ")}
+        </p>
+      </motion.div>
+      <div aria-hidden className="ink-rule mt-3 w-full" />
+    </>
+  );
+}
+
+type HeroNameProps = {
   firstName: string;
   lastName: string;
 };
 
-export function HeroIntro({
-  location = "Chicago, IL",
-  roleLines = ["Software Engineer", "UI/UX", "Virtual Reality"],
-  firstName,
-  lastName,
-}: HeroIntroProps) {
-  return (
-    <>
-      <div className="flex w-full flex-col items-start text-left sm:items-end sm:text-right md:pl-6">
-        <p className="text-sm text-white/55">{location}</p>
-        <div className="mt-2 mb-3 h-px w-8 bg-blue-500/70 shadow-[0_0_16px_rgba(59,130,246,0.4)]" />
+/**
+ * The name — the hero is carried by type, not by the photo. Sized to fit the
+ * left column beside the portrait, so the two share a top edge.
+ */
+export function HeroName({ firstName, lastName }: HeroNameProps) {
+  const line =
+    "font-display text-ink text-display block font-semibold tracking-[-0.02em]";
 
-        {/* Role stack */}
-        <motion.p
-          variants={roleV}
+  return (
+    <h1 className="mt-0 mb-0">
+      <span className="sr-only">
+        {firstName} {lastName}
+      </span>
+      <span aria-hidden className="block">
+        <motion.span
+          variants={revealV}
           initial="hidden"
           animate="show"
-          className="text-md text-left tracking-[0.35em] text-white/70 uppercase sm:text-right"
+          transition={{ delay: 0.05 }}
+          className={line}
         >
-          {roleLines.map((line, idx) => (
-            <span key={line}>
-              {line}
-              {idx < roleLines.length - 1 ? <br /> : null}
-            </span>
-          ))}
-        </motion.p>
-      </div>
+          {firstName}
+        </motion.span>
+        <motion.span
+          variants={revealV}
+          initial="hidden"
+          animate="show"
+          transition={{ delay: 0.16 }}
+          className={line}
+        >
+          {lastName}
+        </motion.span>
+      </span>
+    </h1>
+  );
+}
 
-      {/* <div className="mt-6 h-px w-10 bg-white/20" /> */}
-
-      {/* Name reveal */}
-      <motion.h1 className="mt-8 tracking-tight">
-        <span className="relative inline-block">
-          <motion.span
-            variants={revealV}
-            initial="hidden"
-            animate="show"
-            transition={{ delay: 0.15 }}
-            className="block text-[2.55rem] leading-[0.98] font-semibold text-white sm:text-[3.35rem] lg:text-[4.8rem]"
-          >
-            {firstName}
-          </motion.span>
-
-          <span className="relative mt-2 block">
-            <motion.span
-              variants={revealV}
-              initial="hidden"
-              animate="show"
-              transition={{ delay: 0.28 }}
-              className="block bg-gradient-to-r from-white via-cyan-200 to-blue-400 bg-clip-text text-[2.55rem] leading-[0.98] font-semibold text-transparent sm:text-[3.35rem] lg:text-[4.8rem]"
-            >
-              {lastName}
-            </motion.span>
-          </span>
-
-          {/* overlap tint patch */}
-          <span
-            aria-hidden
-            className="absolute top-[1.08em] left-[6.6ch] h-[0.55em] w-[1.25em] rounded-[0.2em] bg-blue-500/12 mix-blend-screen blur-[0.5px]"
-          />
-        </span>
-      </motion.h1>
-
-      {/* Intro + delayed highlighter */}
-      <motion.p
-        variants={introV}
-        initial="hidden"
-        animate="show"
-        transition={{ delay: 0.45 }}
-        className="mt-12 max-w-lg text-xl leading-relaxed text-white/70 sm:mt-6 md:mt-12"
+/** The blurb sits beside the photo rather than under the name, keeping the hero compact. */
+export function HeroBlurb() {
+  return (
+    <motion.p
+      variants={introV}
+      initial="hidden"
+      animate="show"
+      transition={{ delay: 0.4 }}
+      className="text-ink max-w-xl text-lg leading-relaxed sm:text-xl"
+    >
+      I design <InkMark delay={0.55}>interfaces</InkMark> with people in mind, and
+      engineer <InkMark delay={0.7}>systems</InkMark> that stay efficient as they scale,
+      so the software I build{" "}
+      <InkMark
+        type="circle"
+        delay={0.85}
+        // Overrides the default circle padding on the vertical only. This one is
+        // inline inside a paragraph, so the line box above it is the constraint —
+        // the default's 13px reaches up into the previous line and strikes
+        // through it. The horizontal stays generous.
+        padding={[6, 22]}
+        strokeWidth={1.8}
+        multiline={false}
+        className="inline-block whitespace-nowrap"
       >
-        I design <HighlightWord delay={1.25}>interfaces</HighlightWord> with people in
-        mind,
-        <br />
-        and engineer <HighlightWord delay={1.45}>systems</HighlightWord> that stay
-        efficient as they scale,
-        <br />
-        so the software I build{" "}
-        <HighlightWord delay={1.65}>makes an impact</HighlightWord>.
-      </motion.p>
-    </>
+        makes an impact
+      </InkMark>
+      .
+    </motion.p>
   );
 }

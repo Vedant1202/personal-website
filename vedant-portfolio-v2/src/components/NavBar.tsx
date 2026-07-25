@@ -10,11 +10,13 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiOutlineMail, HiMenu, HiX } from "react-icons/hi";
 
+// Must stay in scroll order — the rail indicator maps position to the active
+// section, so a mismatch here would make it jump backwards as you scroll.
 const navItems = [
   { label: "Home", id: "home" },
-  { label: "Skills", id: "skills" },
   { label: "Projects", id: "projects" },
   { label: "Journey", id: "journey" },
+  { label: "Skills", id: "skills" },
   { label: "Contact", id: "contact" },
 ];
 
@@ -151,12 +153,12 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
     <>
       {/* ─── Top bar ─────────────────────────────────────────────────── */}
       <header className="fixed top-0 left-0 z-50 w-full">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6 sm:py-6">
+        <div className="page-shell flex items-center justify-between py-4 sm:py-6">
           {/* Mobile-only: always-visible brand text */}
           <button
             onClick={() => scrollTo("home")}
             aria-label="Vedant Nandoskar — scroll to top"
-            className="rounded-full border border-white/10 bg-black/40 px-3 py-1.5 text-sm font-semibold tracking-tight text-white/90 backdrop-blur md:hidden"
+            className="bg-paper text-ink font-display ink-pill -rotate-[0.6deg] border-[1.5px] border-black/45 px-3.5 py-1.5 text-sm font-semibold tracking-tight shadow-[0_3px_10px_rgba(0,0,0,0.09)] md:hidden"
           >
             Vedant Nandoskar
           </button>
@@ -167,12 +169,14 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
             aria-label="Vedant Nandoskar — scroll to top"
             className={[
               "relative hidden md:inline-flex",
-              "rounded-full",
+              "ink-pill",
               "text-sm font-semibold tracking-tight",
-              "text-white/90 hover:text-white",
-              "border border-white/10",
-              "bg-black/30 backdrop-blur",
-              "shadow-[0_10px_30px_rgba(0,0,0,0.35)]",
+              "text-ink hover:text-ink font-display",
+              "border-[1.5px] border-black/45",
+              // A paper label, not glass: opaque stock with a light drop, so it
+              // reads as something set down on the page rather than floating over it.
+              "bg-paper",
+              "shadow-[0_3px_10px_rgba(0,0,0,0.09)]",
               "overflow-hidden",
               "select-none",
               "go-home-nav-button",
@@ -182,21 +186,23 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
               y: brandY,
               filter: brandBlur,
               scale: brandScale,
+              // Set here, not as a class — Motion writes an inline transform for
+              // scale/y, which would overwrite a Tailwind rotate utility.
+              rotate: -0.6,
               paddingLeft: padX,
               paddingRight: padX,
               paddingTop: padY,
               paddingBottom: padY,
               pointerEvents: brandInteractive ? "auto" : "none",
             }}
+            // Invisible on the hero, so it must leave the tab order and the
+            // accessibility tree too — pointer-events alone only hides it from
+            // the mouse, leaving keyboard and screen-reader users a first stop
+            // they cannot see or use.
+            tabIndex={brandInteractive ? undefined : -1}
+            aria-hidden={brandInteractive ? undefined : true}
           >
-            <span
-              aria-hidden
-              className="pointer-events-none absolute inset-0"
-              style={{
-                background:
-                  "radial-gradient(120% 140% at 30% 20%, rgba(59,130,246,0.18), transparent 55%), radial-gradient(120% 140% at 80% 70%, rgba(0,0,0,0.55), transparent 60%), linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0))",
-              }}
-            />
+            {/* Scroll-driven sweep, now a highlighter pass in the accent token */}
             <motion.span
               aria-hidden
               className="pointer-events-none absolute inset-0"
@@ -205,7 +211,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
                 scaleX: wipeScaleX,
                 transformOrigin: "left",
                 background:
-                  "linear-gradient(135deg, transparent 0%, rgba(59,130,246,0.14) 35%, rgba(59,130,246,0.06) 55%, transparent 72%)",
+                  "linear-gradient(115deg, transparent 0%, color-mix(in srgb, var(--brand-accent) 15%, transparent) 42%, color-mix(in srgb, var(--brand-accent) 6%, transparent) 62%, transparent 80%)",
               }}
             />
             <span className="relative flex items-center whitespace-nowrap">
@@ -218,7 +224,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
             type="button"
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Open menu"
-            className="inline-flex items-center justify-center rounded-full border border-white/10 bg-black/40 p-2 text-white/80 backdrop-blur transition hover:text-white md:hidden"
+            className="bg-paper text-ink-soft hover:text-ink ink-edge-sm inline-flex items-center justify-center border-[1.5px] border-black/45 p-2 shadow-[0_3px_10px_rgba(0,0,0,0.09)] transition md:hidden"
           >
             <HiMenu className="h-5 w-5" />
           </button>
@@ -230,15 +236,15 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
         ref={navRef}
         className="fixed top-1/2 right-6 z-50 hidden -translate-y-1/2 flex-col items-center gap-10 md:flex"
       >
-        <div
-          aria-hidden
-          className="absolute top-0 right-[-12px] h-full w-px bg-white/10"
-        />
+        {/* Rails sit 8px out rather than 14px: the labels below gained 6px of
+            padding on each side for a legal-size hit area, so this keeps the
+            visible gap between rail and text where it was. */}
+        <div aria-hidden className="ink-rail absolute top-0 right-[-8px] h-full" />
 
         {indicator ? (
           <motion.div
             aria-hidden
-            className="absolute left-[-12px] w-px bg-blue-500/80 shadow-[0_0_16px_rgba(59,130,246,0.35)]"
+            className="ink-rail ink-rail--accent absolute left-[-8px]"
             animate={{ top: indicator.y, height: indicator.h, opacity: 1 }}
             initial={{ opacity: 0, top: indicator.y, height: indicator.h }}
             transition={{
@@ -264,9 +270,14 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
                 "relative",
                 "text-[11px] tracking-[0.25em] uppercase",
                 "[writing-mode:vertical-rl]",
+                // Vertical 11px type is only ~17px wide, under the 24px minimum
+                // target (WCAG 2.5.8). py- and not px-: Tailwind's padding
+                // utilities are logical, and under vertical-rl the block axis is
+                // the horizontal one, so py- is what widens this on screen.
+                "py-1.5",
                 "transition",
                 "hover:cursor-pointer",
-                isActive ? "font-semibold text-white" : "text-white/55 hover:text-white",
+                isActive ? "text-ink font-semibold" : "text-ink-soft hover:text-ink",
               ].join(" ")}
             >
               {item.label}
@@ -293,7 +304,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
               className="group flex items-center justify-center transition-transform duration-200 hover:scale-110"
               aria-label="GitHub"
             >
-              <FaGithub className="text-[1.35rem] text-white/60 transition-colors duration-200 group-hover:text-white" />
+              <FaGithub className="text-ink-soft group-hover:text-ink text-2xl transition-colors duration-200" />
             </motion.a>
 
             <motion.a
@@ -304,7 +315,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
               className="group flex items-center justify-center transition-transform duration-200 hover:scale-110"
               aria-label="LinkedIn"
             >
-              <FaLinkedin className="text-[1.35rem] text-white/60 transition-colors duration-200 group-hover:text-[#0A66C2]" />
+              <FaLinkedin className="text-ink-soft text-2xl transition-colors duration-200 group-hover:text-[#0A66C2]" />
             </motion.a>
 
             <motion.a
@@ -313,7 +324,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
               className="group flex items-center justify-center transition-transform duration-200 hover:scale-110"
               aria-label="Email"
             >
-              <HiOutlineMail className="text-[1.45rem] text-white/60 transition-colors duration-200 group-hover:text-blue-700" />
+              <HiOutlineMail className="text-ink-soft group-hover:text-accent text-2xl transition-colors duration-200" />
             </motion.a>
           </motion.div>
         ) : null}
@@ -331,7 +342,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
             onClick={() => setMobileMenuOpen(false)}
           >
             {/* Backdrop */}
-            <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" />
+            <div className="absolute inset-0 bg-black/35 backdrop-blur-sm" />
 
             {/* Drawer panel */}
             <motion.div
@@ -340,24 +351,24 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 340, damping: 36 }}
               onClick={(e) => e.stopPropagation()}
-              className="absolute top-0 right-0 flex h-full w-72 max-w-[80vw] flex-col border-l border-white/10 bg-[#050816] px-8 pt-6 pb-10"
+              className="bg-paper absolute top-0 right-0 flex h-full w-72 max-w-[80vw] flex-col border-l border-black/12 px-8 pt-6 pb-10"
             >
               {/* Close button */}
               <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold tracking-tight text-white/70">
+                <span className="text-ink font-display text-sm font-semibold tracking-tight">
                   Menu
                 </span>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   aria-label="Close menu"
-                  className="rounded-full border border-white/10 bg-white/5 p-2 text-white/60 transition-colors hover:text-white"
+                  className="text-ink-soft hover:text-ink ink-edge-sm border border-black/25 p-2 transition-colors"
                 >
                   <HiX className="h-4 w-4" />
                 </button>
               </div>
 
               {/* Divider */}
-              <div className="mt-5 h-px w-full bg-white/8" />
+              <div className="ink-rule mt-5 w-full" />
 
               {/* Nav links */}
               <nav className="mt-8 flex flex-col gap-1">
@@ -373,8 +384,8 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
                       className={[
                         "w-full rounded-xl px-4 py-3 text-left text-base font-medium transition-colors",
                         isActive
-                          ? "bg-blue-500/10 text-white"
-                          : "text-white/60 hover:bg-white/5 hover:text-white",
+                          ? "bg-accent/10 text-ink"
+                          : "text-ink-soft hover:text-ink hover:bg-black/5",
                       ].join(" ")}
                     >
                       {item.label}
@@ -385,14 +396,14 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
 
               {/* Social links at bottom */}
               <div className="mt-auto">
-                <div className="mb-5 h-px w-full bg-white/8" />
+                <div className="ink-rule mb-5 w-full" />
                 <div className="flex items-center gap-5">
                   <a
                     href="https://github.com/Vedant1202"
                     target="_blank"
                     rel="noreferrer"
                     aria-label="GitHub"
-                    className="text-white/50 transition-colors hover:text-white"
+                    className="text-ink-soft hover:text-ink transition-colors"
                   >
                     <FaGithub className="h-5 w-5" />
                   </a>
@@ -401,14 +412,14 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="LinkedIn"
-                    className="text-white/50 transition-colors hover:text-[#0A66C2]"
+                    className="text-ink-soft transition-colors hover:text-[#0A66C2]"
                   >
                     <FaLinkedin className="h-5 w-5" />
                   </a>
                   <a
                     href="mailto:vedant.nandoskar@gmail.com"
                     aria-label="Email"
-                    className="text-white/50 transition-colors hover:text-blue-400"
+                    className="text-ink-soft hover:text-accent transition-colors"
                   >
                     <HiOutlineMail className="h-5 w-5" />
                   </a>

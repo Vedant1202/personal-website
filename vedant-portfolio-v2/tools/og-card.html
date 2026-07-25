@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!--
+      Source for public/og-image.jpg. Composed for the 1200x630 frame rather than
+      screenshotted off the page, so it carries no nav chrome and no half-finished
+      entrance animations. Standalone on purpose — it loads fonts and the portrait
+      by relative path, so it still renders years from now with no dev server.
+
+      Regenerate:
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+          --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=2 \
+          --window-size=1200,630 --virtual-time-budget=4000 \
+          --screenshot=/tmp/og.png tools/og-card.html
+        sips -s format jpeg -s formatOptions 88 -Z 1200 /tmp/og.png --out public/og-image.jpg
+    -->
+    <style>
+      @font-face {
+        font-family: "Fraunces Variable"; font-style: normal; font-weight: 100 900;
+        font-display: block;
+        src: url("../node_modules/@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2") format("woff2-variations");
+      }
+      @font-face {
+        font-family: "Caveat Variable"; font-style: normal; font-weight: 400 700;
+        font-display: block;
+        src: url("../node_modules/@fontsource-variable/caveat/files/caveat-latin-wght-normal.woff2") format("woff2-variations");
+      }
+      :root {
+        --sketch-rule: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='5' viewBox='0 0 420 5'%3E%3Cpath d='M0 2.5 C 28 1.3, 54 3.7, 84 2.6 C 112 1.6, 138 3.9, 170 2.4 C 198 1.2, 226 3.4, 258 2.8 C 286 2.2, 312 1.1, 344 2.5 C 372 3.6, 396 1.7, 420 2.5' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+      }
+      html, body { margin: 0; padding: 0; background: #fff;
+        font-family: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", sans-serif; }
+      .card {
+        width: 1200px; height: 630px; position: relative; overflow: hidden;
+        background: #fff; box-sizing: border-box; padding: 62px 68px;
+        display: flex; flex-direction: column;
+      }
+      .meta {
+        display: flex; justify-content: space-between; align-items: baseline;
+        font-size: 15px; letter-spacing: 0.22em; text-transform: uppercase; color: #52525b;
+      }
+      .rule { height: 5px; width: 100%; margin-top: 14px;
+        background-color: rgba(17,17,17,0.32);
+        -webkit-mask-image: var(--sketch-rule); mask-image: var(--sketch-rule);
+        -webkit-mask-repeat: repeat-x; mask-repeat: repeat-x;
+        -webkit-mask-size: auto 100%; mask-size: auto 100%; }
+      .body { display: flex; gap: 52px; margin-top: 34px; align-items: center; flex: 1; }
+      .left { flex: 1; min-width: 0; }
+      h1 { font-family: "Fraunces Variable", Georgia, serif; font-weight: 600;
+           font-size: 96px; line-height: 0.86; letter-spacing: -0.02em;
+           color: #111; margin: 0; }
+      .swipe { width: 300px; margin: 14px 0 0 4px; display: block; }
+      .blurb { font-size: 25px; line-height: 1.5; color: #111; margin: 30px 0 0;
+               max-width: 30ch; }
+      .u { position: relative; white-space: nowrap; }
+      .u svg { position: absolute; left: -2px; right: -2px; bottom: -9px; width: calc(100% + 4px); }
+      .hl { background: rgba(3,105,161,0.2); padding: 2px 5px; }
+      .tag { margin-top: 26px; font-size: 18px; color: #111; }
+      .portrait { width: 300px; flex: none; }
+      .frame { border: 2px solid rgba(17,17,17,0.8); padding: 7px;
+               border-radius: 225px 15px 235px 15px / 15px 235px 15px 225px;
+               overflow: hidden; }
+      .frame img { display: block; width: 100%; height: auto; border-radius: inherit; }
+      .cap { font-family: "Caveat Variable", cursive; font-size: 25px; color: #52525b;
+             margin-top: 10px; line-height: 1.25; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="meta">
+        <span>Chicago, IL</span>
+        <span>Software Engineer · UI/UX Design · Virtual Reality</span>
+      </div>
+      <div class="rule"></div>
+
+      <div class="body">
+        <div class="left">
+          <h1>Vedant<br />Nandoskar</h1>
+
+          <svg class="swipe" viewBox="0 0 240 34" aria-hidden="true">
+            <path
+              d="M4 21 C 28 11 62 9 98 12 C 134 15 170 10 202 14 C 220 16 236 17 236 21 C 236 25.5 220 27 202 26 C 168 23.5 134 29 98 26 C 62 23 30 28 6 24 C 1 23 0 22 4 21 Z"
+              fill="#0369a1" fill-opacity="0.93" />
+          </svg>
+
+          <p class="blurb">
+            I design <span class="u">interfaces<svg viewBox="0 0 200 8" preserveAspectRatio="none" height="7"><path d="M2 5 C 40 2.5 90 6 130 3.5 C 160 1.8 180 5 198 3" fill="none" stroke="#0369a1" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+            with people in mind, and engineer
+            <span class="u">systems<svg viewBox="0 0 200 8" preserveAspectRatio="none" height="7"><path d="M2 4 C 46 6.5 92 2 132 5 C 162 7 182 3 198 4.6" fill="none" stroke="#0369a1" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+            that stay efficient as they scale.
+          </p>
+
+          <p class="tag"><span class="hl">Open to software engineering roles — let’s talk.</span></p>
+        </div>
+
+        <div class="portrait">
+          <div class="frame">
+            <img src="../src/assets/profile-picture-1.webp" alt="" />
+          </div>
+          <div class="cap">Hi! Welcome to my website,<br />it’s great to have you here! =)</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

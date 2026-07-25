@@ -71,7 +71,10 @@ export function Lightbox({ images, initialIndex = 0, onClose }: LightboxProps) {
   const onPointerUp = (e: React.PointerEvent) => {
     if (pointerStartX.current === null) return;
     const delta = e.clientX - pointerStartX.current;
-    if (Math.abs(delta) > 40) delta < 0 ? next() : prev();
+    if (Math.abs(delta) > 40) {
+      if (delta < 0) next();
+      else prev();
+    }
     pointerStartX.current = null;
   };
 
@@ -85,6 +88,9 @@ export function Lightbox({ images, initialIndex = 0, onClose }: LightboxProps) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.18 }}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Project image viewer"
       className="fixed inset-0 z-9999 flex items-center justify-center bg-black/92 backdrop-blur-sm"
       onClick={onClose}
     >
@@ -100,7 +106,7 @@ export function Lightbox({ images, initialIndex = 0, onClose }: LightboxProps) {
           type="button"
           aria-label="Close lightbox"
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/75 transition hover:bg-white/20 hover:text-white"
+          className="ink-edge-sm absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center bg-white/10 text-white/75 transition hover:bg-white/20 hover:text-white"
         >
           <svg
             viewBox="0 0 24 24"
@@ -126,7 +132,7 @@ export function Lightbox({ images, initialIndex = 0, onClose }: LightboxProps) {
             type="button"
             aria-label="Previous image"
             onClick={prev}
-            className="absolute left-2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/75 transition hover:bg-white/22 hover:text-white sm:left-4"
+            className="ink-edge-sm absolute left-2 z-10 flex h-10 w-10 items-center justify-center bg-white/10 text-white/75 transition hover:bg-white/22 hover:text-white sm:left-4"
           >
             <svg
               viewBox="0 0 24 24"
@@ -172,7 +178,7 @@ export function Lightbox({ images, initialIndex = 0, onClose }: LightboxProps) {
             type="button"
             aria-label="Next image"
             onClick={next}
-            className="absolute right-2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/75 transition hover:bg-white/22 hover:text-white sm:right-4"
+            className="ink-edge-sm absolute right-2 z-10 flex h-10 w-10 items-center justify-center bg-white/10 text-white/75 transition hover:bg-white/22 hover:text-white sm:right-4"
           >
             <svg
               viewBox="0 0 24 24"

@@ -1,86 +1,95 @@
 // src/sections/Projects.tsx
 import { Section } from "../components/Section";
-import { SkillTiles } from "../components/skills/SkillTiles";
 import { PROJECTS } from "../data/projects";
 import { ProjectGrid } from "../components/projects/ProjectGrid";
+import { Polaroid } from "../components/Polaroid";
+import { Pencil } from "lucide-react";
+import { InkMark } from "../components/ink/InkMark";
+import { HobbyDoodle } from "../components/ink/HobbyDoodle";
+import { BackdropStroke } from "../components/ink/BackdropStroke";
+import { BrushStroke } from "../components/ink/BrushStroke";
+import { PROJECT_PHOTOS } from "../data/photos";
 import "../styles/Projects.css";
 
+const [DESK, WALL] = PROJECT_PHOTOS;
+
+const KICKER = "text-ink-soft text-xs tracking-[0.35em] uppercase";
+const HEADING = "font-display text-ink text-h2 mt-5 font-semibold tracking-tight";
+
+/** First section after the hero — the work carries the page, so it leads. */
 export function Projects() {
   return (
-    <Section id="projects-and-skills">
-      <div className="relative mx-auto max-w-6xl">
-        {/* ── Skills ─────────────────────────────── */}
-        <div id="skills" className="scroll-mt-24">
-          <div className="max-w-3xl">
-            <p className="text-xs tracking-[0.35em] text-white/50 uppercase">Skills</p>
-            <h2 className="mt-6 text-[2.1rem] leading-[1.05] font-semibold tracking-tight text-white sm:text-[2.7rem]">
-              Tools and Technologies I work with
-              <span className="accent-punct">.</span>{" "}
-            </h2>
-            <div className="mt-8 h-px w-16 bg-blue-500/70 shadow-[0_0_16px_rgba(59,130,246,0.4)]" />
+    <Section id="projects-section">
+      <div id="projects" className="scroll-anchor relative isolate">
+        {/* Long low sweep running behind the project grid */}
+        <BackdropStroke
+          shape="streak"
+          tone="periwinkle"
+          opacity={0.55}
+          className="absolute top-[22rem] -right-20 -z-10 hidden w-[32rem] -rotate-3 sm:block md:w-[46rem]"
+        />
+        <div className="mb-12 grid grid-cols-12 items-start gap-y-8 md:gap-x-10">
+          <div className="col-span-12 md:col-span-7">
+            <p className={KICKER}>
+              <InkMark type="circle" strokeWidth={1.6} multiline={false}>
+                Projects &amp; Work
+              </InkMark>
+            </p>
+
+            <h2 className={HEADING}>Ideas turned into working software.</h2>
+            <BrushStroke delay={0.1} className="mt-2 ml-1 w-56 sm:w-72" />
+
+            <p className="text-ink-soft mt-6 text-lg leading-relaxed">
+              <InkMark delay={0.2}>Interfaces</InkMark> that feel simple. <br />
+              <InkMark delay={0.45}>Systems</InkMark> that aren’t. <br />I care about
+              performance, clarity, and making software that actually holds up.
+            </p>
+
+            <HobbyDoodle
+              icon={Pencil}
+              size={46}
+              rough={2}
+              tilt={6}
+              className="mt-8 ml-1 hidden sm:inline-flex"
+            />
           </div>
 
-          <div className="mt-10">
-            <SkillTiles />
+          <div className="relative col-span-12 sm:col-span-8 md:col-span-5 md:col-start-8">
+            <BackdropStroke
+              shape="ribbon"
+              tone="teal"
+              opacity={0.7}
+              className="absolute -top-10 -left-16 -z-10 w-[22rem] rotate-6"
+            />
+            {/* Desk and a favourite wall as a hand-placed pair: set side by side
+                and staggered, overlapping only at a corner so each keeps its own
+                caption clear. */}
+            <div className="relative mx-auto w-full max-w-[29rem]">
+              <Polaroid
+                src={DESK.src}
+                alt={DESK.alt}
+                caption={DESK.caption}
+                tilt={DESK.tilt}
+                ratio="4 / 3"
+                captionAlign="left"
+                bw
+                className="w-[62%]"
+              />
+              <Polaroid
+                src={WALL.src}
+                alt={WALL.alt}
+                caption={WALL.caption}
+                tilt={WALL.tilt}
+                ratio="4 / 3"
+                captionAlign="right"
+                bw
+                className="relative z-10 -mt-[24%] ml-auto w-[58%]"
+              />
+            </div>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="my-10 h-px w-full bg-white/10" />
-
-        {/* ── Projects ───────────────────────────── */}
-        <div id="projects" className="scroll-mt-24">
-          <div className="mb-14 max-w-3xl">
-            <p className="text-xs tracking-[0.35em] text-white/50 uppercase">
-              Projects & Work
-            </p>
-
-            <h2 className="mt-6 text-[2.1rem] leading-[1.05] font-semibold tracking-tight text-white sm:text-[2.7rem] md:text-[3.1rem]">
-              Ideas turned into working software<span className="accent-punct">.</span>
-            </h2>
-
-            <p className="mt-6 text-base leading-relaxed text-white/65 sm:text-lg">
-              <span className="relative inline-block">
-                <span className="relative z-10">Interfaces</span>
-                <span
-                  aria-hidden
-                  className="absolute bottom-[0.08em] left-0 z-0 h-[40%] w-full rounded-[0.25em] bg-blue-500/28 shadow-[0_0_16px_rgba(59,130,246,0.22)]"
-                />
-              </span>{" "}
-              that feel simple. <br />
-              <span className="relative inline-block">
-                <span className="relative z-10">Systems</span>
-                <span
-                  aria-hidden
-                  className="absolute bottom-[0.08em] left-0 z-0 h-[20%] w-full rounded-[0.25em] bg-blue-500/28 shadow-[0_0_16px_rgba(59,130,246,0.22)]"
-                />
-              </span>{" "}
-              that aren’t. <br />I care about{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10">performance</span>
-                <span
-                  aria-hidden
-                  className="absolute bottom-[0.08em] left-0 z-0 h-[20%] w-full rounded-[0.25em] bg-blue-500/28 shadow-[0_0_16px_rgba(59,130,246,0.22)]"
-                />
-              </span>
-              , clarity, and making software that{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10">actually holds up</span>
-                <span
-                  aria-hidden
-                  className="absolute bottom-[0.08em] left-0 z-0 h-[20%] w-full rounded-[0.25em] bg-blue-500/28 shadow-[0_0_16px_rgba(59,130,246,0.22)]"
-                />
-              </span>
-              .
-            </p>
-
-            <div className="mt-8 h-px w-16 bg-blue-500/70 shadow-[0_0_16px_rgba(59,130,246,0.4)]" />
-          </div>
-
-          {/* Pinterest-ish projects grid */}
-          <ProjectGrid projects={PROJECTS} />
-          <div className="mt-10 mb-0 h-px w-full bg-white/10" />
-        </div>
+        <ProjectGrid projects={PROJECTS} />
       </div>
     </Section>
   );

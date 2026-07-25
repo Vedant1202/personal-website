@@ -89,13 +89,13 @@ export const SKILLS: Skill[] = [
     key: "lb",
     label: "Load Balancing",
     tagline: "stable under real traffic.",
-    icon: <GenericIcon icon={<Network size={40} className="text-white/80" />} />,
+    icon: <GenericIcon icon={<Network size={40} className="text-ink-soft" />} />,
   },
   {
     key: "micro",
     label: "Microservices",
     tagline: "scale parts, not everything.",
-    icon: <GenericIcon icon={<Boxes size={40} className="text-white/80" />} />,
+    icon: <GenericIcon icon={<Boxes size={40} className="text-ink-soft" />} />,
   },
 
   {
@@ -158,7 +158,7 @@ export const SKILLS: Skill[] = [
     key: "flask",
     label: "Flask",
     tagline: "small Python APIs, flexible.",
-    icon: <BrandIcon Icon={SiFlask} color="#FFFFFF" />,
+    icon: <BrandIcon Icon={SiFlask} color="#111111" />,
   },
   {
     key: "django",
@@ -171,7 +171,7 @@ export const SKILLS: Skill[] = [
     key: "rest",
     label: "REST",
     tagline: "simple contracts, predictable APIs.",
-    icon: <GenericIcon icon={<Waypoints size={40} className="text-white/80" />} />,
+    icon: <GenericIcon icon={<Waypoints size={40} className="text-ink-soft" />} />,
   },
   {
     key: "graphql",
@@ -183,7 +183,7 @@ export const SKILLS: Skill[] = [
     key: "pytest",
     label: "PyTest",
     tagline: "tests that keep you honest.",
-    icon: <GenericIcon icon={<TestTube2 size={40} className="text-white/80" />} />,
+    icon: <GenericIcon icon={<TestTube2 size={40} className="text-ink-soft" />} />,
   },
   {
     key: "jest",
@@ -201,20 +201,20 @@ export const SKILLS: Skill[] = [
     key: "tdd",
     label: "TDD",
     tagline: "write the test, then ship.",
-    icon: <GenericIcon icon={<TestTube2 size={40} className="text-white/80" />} />,
+    icon: <GenericIcon icon={<TestTube2 size={40} className="text-ink-soft" />} />,
   },
 
   {
     key: "llm",
     label: "LLMs",
     tagline: "chat, tools, and automation.",
-    icon: <GenericIcon icon={<Bot size={40} className="text-white/80" />} />,
+    icon: <GenericIcon icon={<Bot size={40} className="text-ink-soft" />} />,
   },
   {
     key: "rag",
     label: "RAG",
     tagline: "answers grounded in real data.",
-    icon: <GenericIcon icon={<DatabaseZap size={40} className="text-white/80" />} />,
+    icon: <GenericIcon icon={<DatabaseZap size={40} className="text-ink-soft" />} />,
   },
   {
     key: "tf",

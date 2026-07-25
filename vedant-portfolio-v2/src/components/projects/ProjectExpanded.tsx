@@ -14,25 +14,20 @@ export function ProjectExpanded({
     <div className="p-1">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
-          {/* <p className="text-[11px] font-semibold tracking-[0.28em] text-white/50 uppercase">
-            Expanded
-          </p> */}
-
-          <h4 className="mt-3 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+          <h4 className="font-display text-ink mt-3 text-xl font-semibold tracking-tight sm:text-2xl">
             {project.title}
           </h4>
 
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/70 sm:text-[15px]">
+          <p className="text-ink-soft mt-3 max-w-3xl text-sm leading-relaxed sm:text-[15px]">
             {project.longer}
           </p>
         </div>
 
         <button
           className={[
-            "shrink-0 rounded-xl border border-white/12 bg-white/[0.03]",
-            "px-3 py-2 text-xs font-semibold text-white/80",
-            "transition hover:bg-white/[0.06] hover:text-white",
-            "hover:shadow-[0_0_18px_rgba(59,130,246,0.16)]",
+            "ink-edge-sm shrink-0 border border-black/25",
+            "text-ink-soft px-3 py-2 text-xs font-semibold",
+            "hover:border-accent hover:text-ink transition",
           ].join(" ")}
           onClick={onClose}
           type="button"
@@ -41,13 +36,13 @@ export function ProjectExpanded({
         </button>
       </div>
 
-      <div className="mt-5 h-px w-full bg-white/10" />
+      <div className="ink-rule mt-5 w-full" />
 
       {!!project.bullets?.length && (
-        <ul className="mt-5 space-y-2 text-sm text-white/75">
+        <ul className="text-ink-soft mt-5 space-y-2 text-sm">
           {project.bullets.map((b, i) => (
             <li key={`${project.id}-b-${i}`} className="flex gap-3">
-              <span className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400/35 shadow-[0_0_10px_rgba(59,130,246,0.18)]" />
+              <span className="bg-accent/60 mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full" />
               <span className="leading-relaxed">{b}</span>
             </li>
           ))}

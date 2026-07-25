@@ -19,13 +19,13 @@ export function LinkPill({
       target="_blank"
       rel="noreferrer"
       className={[
-        "inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-xs font-semibold transition",
+        "ink-edge-sm inline-flex items-center gap-2 border px-3 py-2 text-xs font-semibold transition",
         isLight
-          ? "border-slate-200 bg-white text-slate-900 hover:border-slate-300 hover:bg-slate-50"
-          : "border-white/12 bg-white/[0.04] text-white/80 hover:border-blue-500/30 hover:bg-white/[0.06]",
+          ? "bg-paper text-ink hover:border-accent border-black/25"
+          : "text-ink-soft hover:border-accent hover:text-ink border-black/25",
       ].join(" ")}
     >
-      <span className={isLight ? "text-slate-700" : "text-white/70"}>{icon}</span>
+      <span className="text-ink-soft">{icon}</span>
       {label}
     </a>
   );
