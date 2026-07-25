@@ -48,6 +48,11 @@ type SectionPictureProps = {
   tilt?: number;
   /** Colour treatment for the photo; `bw`/`accent` reveal colour on hover. */
   tone?: PictureTone;
+  /**
+   * Whether a toned photo blooms to full colour on hover. Off keeps it permanently
+   * in its toned state — the hero portrait stays black-and-white.
+   */
+  revealOnHover?: boolean;
   /** Hero photo is above the fold; everything else lazy-loads. */
   eager?: boolean;
 };
@@ -72,14 +77,16 @@ export function SectionPicture({
   className,
   tilt,
   tone = "color",
+  revealOnHover = true,
   eager = false,
 }: SectionPictureProps) {
   const behind = placement === "behind";
 
-  // Rest-state filter for the photo. Both `.ink-bw` and `.ink-duotone` carry their
-  // own group-hover → full-colour rule, so the image only needs the class and a
-  // `group` ancestor (both frame wrappers below are groups).
-  const toneClass = tone === "bw" ? "ink-bw" : tone === "accent" ? "ink-duotone" : "";
+  // Rest-state filter for the photo. `.ink-bw`/`.ink-duotone` carry their own
+  // group-hover → full-colour rule; when the reveal is turned off, fall back to a
+  // static `grayscale` so the photo stays permanently toned (the hero portrait).
+  const bwClass = revealOnHover ? "ink-bw" : "grayscale";
+  const toneClass = tone === "bw" ? bwClass : tone === "accent" ? "ink-duotone" : "";
 
   // The sketch frame's drawn corners come from .ink-edge, shared with the rest
   // of the chrome so every boundary on the page is cut from the same pen.

@@ -130,6 +130,8 @@ export function Home({
               alt="Vedant Nandoskar"
               treatment="circle"
               tone="bw"
+              // The hero portrait stays black-and-white — no colour-on-hover reveal.
+              revealOnHover={false}
               eager
               captionAlign="center"
               caption={
