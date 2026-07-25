@@ -25,64 +25,40 @@ Tailwind utilities follow runtime overrides.
 | `--brand-hand` | `font-hand` | Caveat |
 
 Display serif for headings, system sans for body, handwriting only inside drawings
-and audition labels. Fonts are self-hosted via Fontsource — no external requests.
+and photo captions. Fonts are self-hosted via Fontsource — no external requests.
 
 ### The ink layer
 
 Two tones, and the split is the rule that keeps it from looking like clip art:
 **black ink for drawings, accent blue for marks on text.**
 
-- `InkDrawing` — inline SVG that draws itself once on scroll into view. Reduced
-  motion is handled explicitly, because `MotionConfig reducedMotion="user"` only
-  damps transforms and would still tween a path.
+- `BrushStroke` / `BackdropStroke` — inline SVGs that draw themselves once on scroll
+  into view. Reduced motion is handled explicitly, because
+  `MotionConfig reducedMotion="user"` only damps transforms and would still tween a
+  path.
 - `InkMark` — wraps `rough-notation` for underlines, circles and highlights over
-  real text. Waits on `document.fonts.ready` so it measures final text metrics.
-- `Scribbles` — the hand-authored paths: arrow, underline, star, scratch circle,
-  plus the two depictive drawings (hero soccer arc, journey timeline path).
+  real text. Waits for stable layout and `document.fonts.ready` so it measures final
+  text metrics.
+- `Scribbles` / `HobbyDoodle` — the hand-authored glyphs (arrow, star, the hero
+  soccer arc, the smiley) and the filtered Lucide hobby doodles.
 
 Budget: at most two ambient marks per section. Past that it reads as decoration.
 
 ### Section photos
 
-`SectionPicture` holds one personal photo per section and is aspect-ratio agnostic
-by design — drop in any painting or snapshot without retuning the layout. In flow
-the photo is the subject and is never cropped; behind text it is texture and fills
-its box. For `placement="behind"`, give the parent `relative isolate` and pass no
-position class of your own.
+Real photos live in `src/assets/my-images/` as optimized `.webp`, wired through
+`src/data/photos.ts`. Two components render them:
 
-Placeholders currently live in `src/assets/section-photos/`. Replace them with real
-images and update the `alt` text; no layout changes needed.
+- `SectionPicture` — an ink-framed in-flow photo: a hand-drawn circle (hero) or a
+  sketch frame (graduation). Aspect-ratio agnostic by design, so any snapshot drops
+  in without retuning the layout.
+- `Polaroid` — a white photo-card for scrapbook clusters: the Projects desk/wall
+  pair and the Contact prints.
 
-## Auditioning the design
-
-Aesthetic choices are still open, and each ships as a labelled variant you pick in
-the browser rather than a decision baked into the code. Add `?audition=1` for the
-switcher panel:
-
-```
-http://localhost:5173/personal-website/?audition=1
-```
-
-| Param | Values | Effect |
-|---|---|---|
-| `audition` | `1` | Shows the variant panel and the photo-treatment labels |
-| `serif` | `instrument` | Swaps Fraunces for Instrument Serif |
-| `blue` | `deep`, `teal` | `#075985` or `#0E7490` instead of `#0369A1` |
-| `ink` | `off` | Drops the hero arc and the journey path |
-
-Photo treatments are not switches — one is applied per section so they can be
-judged in place:
-
-| Section | Treatment |
-|---|---|
-| Hero | snapshot — print border, tape, slight rotation |
-| Projects | sketch — hand-drawn frame |
-| Journey | washed duotone, behind the text |
-| Contact | natural — soft shadow only |
-
-Once the picks are made, the lock-in pass applies them everywhere, deletes the
-audition machinery, and drops the losing font from the bundle. All four blues and
-both serifs pass AA as text, so the choice is aesthetic, not a11y-constrained.
+Every photo sits black-and-white at rest and blooms to full colour on hover
+(`.ink-bw`). The reveal is gated behind `@media (hover: hover) and (pointer: fine)`,
+so touch devices stay monochrome by design rather than snagging on a sticky-tap
+state.
 
 ## Bar to hold
 
