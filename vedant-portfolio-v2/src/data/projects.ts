@@ -227,7 +227,6 @@ export const PROJECTS: Project[] = [
     tagline:
       "Open, reproducible benchmark for AI-agent security — scoring how well signals catch real attacks on tool-using agents, built on AgentDojo.",
     tech: ["ts", "node"],
-    featured: true,
     cover: {
       src: "./project-images/ashborn/social-card.png",
       alt: "Ashborn — see what your AI agents access, call, and send",
