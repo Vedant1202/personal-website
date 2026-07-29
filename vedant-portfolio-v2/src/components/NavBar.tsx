@@ -57,10 +57,13 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
     setBrandInteractive(v > 0.2);
   });
 
-  // Close mobile menu on resize to desktop
+  // Close the mobile menu once the layout crosses into the rail's range. The
+  // rail lives in the viewport's side margin, which only exists past the
+  // content cap (72rem) — so it turns on at xl (1280px), not md, and the
+  // hamburger carries the whole tablet band beneath it.
   useEffect(() => {
     const onResize = () => {
-      if (window.innerWidth >= 768) setMobileMenuOpen(false);
+      if (window.innerWidth >= 1280) setMobileMenuOpen(false);
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -158,7 +161,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
           <button
             onClick={() => scrollTo("home")}
             aria-label="Vedant Nandoskar — scroll to top"
-            className="bg-paper text-ink font-display ink-pill -rotate-[0.6deg] border-[1.5px] border-black/45 px-3.5 py-1.5 text-sm font-semibold tracking-tight shadow-[0_3px_10px_rgba(0,0,0,0.09)] md:hidden"
+            className="bg-paper text-ink font-display ink-pill -rotate-[0.6deg] border-[1.5px] border-black/45 px-3.5 py-1.5 text-sm font-semibold tracking-tight shadow-[0_3px_10px_rgba(0,0,0,0.09)] xl:hidden"
           >
             Vedant Nandoskar
           </button>
@@ -168,7 +171,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
             onClick={() => scrollTo("home")}
             aria-label="Vedant Nandoskar — scroll to top"
             className={[
-              "relative hidden md:inline-flex",
+              "relative hidden xl:inline-flex",
               "ink-pill",
               "text-sm font-semibold tracking-tight",
               "text-ink hover:text-ink font-display",
@@ -224,7 +227,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
             type="button"
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Open menu"
-            className="bg-paper text-ink-soft hover:text-ink ink-edge-sm inline-flex items-center justify-center border-[1.5px] border-black/45 p-2 shadow-[0_3px_10px_rgba(0,0,0,0.09)] transition md:hidden"
+            className="bg-paper text-ink-soft hover:text-ink ink-edge-sm inline-flex items-center justify-center border-[1.5px] border-black/45 p-2 shadow-[0_3px_10px_rgba(0,0,0,0.09)] transition xl:hidden"
           >
             <HiMenu className="h-5 w-5" />
           </button>
@@ -234,7 +237,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
       {/* ─── Desktop vertical nav rail ───────────────────────────────── */}
       <nav
         ref={navRef}
-        className="fixed top-1/2 right-6 z-50 hidden -translate-y-1/2 flex-col items-center gap-10 md:flex"
+        className="fixed top-1/2 right-6 z-50 hidden -translate-y-1/2 flex-col items-center gap-10 xl:flex"
       >
         {/* Rails sit 8px out rather than 14px: the labels below gained 6px of
             padding on each side for a legal-size hit area, so this keeps the
@@ -294,7 +297,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.98 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed right-6 bottom-8 z-50 hidden flex-col items-end gap-4 md:flex"
+            className="fixed right-6 bottom-8 z-50 hidden flex-col items-end gap-4 xl:flex"
           >
             <motion.a
               layoutId="social-github"
@@ -338,7 +341,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.18 }}
-            className="fixed inset-0 z-[60] md:hidden"
+            className="fixed inset-0 z-[60] xl:hidden"
             onClick={() => setMobileMenuOpen(false)}
           >
             {/* Backdrop */}
