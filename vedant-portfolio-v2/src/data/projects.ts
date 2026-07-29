@@ -280,7 +280,7 @@ export const PROJECTS: Project[] = [
     media: [
       {
         type: "embed",
-        src: "https://www.youtube.com/watch?v=uZfRaBMX8JU",
+        src: "https://www.youtube.com/embed/uZfRaBMX8JU",
         title:
           "Agentic AI Architectures — A Multi-Agent Systems Benchmarking & Visualization Platform",
       },
