@@ -263,6 +263,31 @@ export function Journey() {
                 </>,
               ]}
             />
+
+            <Block
+              rail={false}
+              org="Hyfunn"
+              title="Co-Founder"
+              metaLeft="2017 – 2019"
+              metaRight="Mumbai, India"
+              bullets={[
+                <>
+                  Co-founded and led engineering for a college networking platform,
+                  scaling it to <U>5 university campuses</U> by building the product
+                  end-to-end across <U>React</U>, <U>React Native</U>, and <U>Node</U>.
+                </>,
+                <>
+                  Raised <U>$1M</U> in seed funding on the strength of the MVP and early
+                  campus traction, taking the product from concept to a live, multi-campus
+                  network on <U>AWS</U>.
+                </>,
+                <>
+                  Owned backend and platform architecture as the company grew over{" "}
+                  <U>2 years</U>, leading engineering through rapid iteration and scaling
+                  infrastructure to support a growing student user base.
+                </>,
+              ]}
+            />
           </div>
         </div>
       </div>
