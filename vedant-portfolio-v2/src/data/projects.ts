@@ -106,7 +106,7 @@ export const PROJECTS: Project[] = [
       "One-click Jump — raises and focuses the existing host window (the exact terminal tab, or the desktop app) instead of ever spawning a duplicate.",
       "Calm, opt-in notifications by kind (needs-input, error, completion), Focus/Do-Not-Disturb aware, plus a global hotkey (⌘⌥`) and optional launch-at-login.",
       "Private by design — reads only ~/.claude, never writes to it, needs no Accessibility or Input-Monitoring permission, and sends nothing over the network.",
-      "Built in Swift (AppKit + SwiftUI) on a pure, Foundation-only detection core (CPerchCore, 143 passing tests) that merges process-scan, session-registry, and transcript signals.",
+      "Built in Swift (AppKit + SwiftUI) on a pure, Foundation-only detection core (CPerchCore, 141 passing tests) that merges process-scan, session-registry, and transcript signals.",
     ],
     media: [
       {

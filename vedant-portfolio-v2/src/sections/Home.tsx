@@ -88,7 +88,7 @@ export function Home({
 
                 <a
                   className={LINK_CLASS}
-                  href="https://linkedin.com/in/vedant-nandoskar-692824169/"
+                  href="https://linkedin.com/in/vedant-nandoskar"
                   target="_blank"
                   rel="noreferrer"
                 >

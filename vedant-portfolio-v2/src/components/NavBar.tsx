@@ -312,7 +312,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
 
             <motion.a
               layoutId="social-linkedin"
-              href="https://linkedin.com/in/vedant-nandoskar-692824169/"
+              href="https://linkedin.com/in/vedant-nandoskar"
               target="_blank"
               rel="noreferrer"
               className="group flex items-center justify-center transition-transform duration-200 hover:scale-110"
@@ -411,7 +411,7 @@ export function NavBar({ showSocialDock }: { showSocialDock: boolean }) {
                     <FaGithub className="h-5 w-5" />
                   </a>
                   <a
-                    href="https://linkedin.com/in/vedant-nandoskar-692824169/"
+                    href="https://linkedin.com/in/vedant-nandoskar"
                     target="_blank"
                     rel="noreferrer"
                     aria-label="LinkedIn"

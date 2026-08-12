@@ -108,7 +108,7 @@ export function Contact({
               </a>
 
               <a
-                href="https://linkedin.com/in/vedant-nandoskar-692824169/"
+                href="https://linkedin.com/in/vedant-nandoskar"
                 target="_blank"
                 rel="noreferrer"
                 className="group inline-flex w-fit items-center gap-3"

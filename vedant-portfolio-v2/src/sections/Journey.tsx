@@ -200,20 +200,21 @@ export function Journey() {
                 <>
                   Cut manual reporting <U>70%</U> across <U>$10M+</U> in grant funding by
                   building a financial operations platform that automated budgeting,
-                  expense reporting, and <U>EDI X12 837/834</U> (claims and enrollment)
-                  compliance.
+                  expense reporting, and <U>EDI X12</U> transactions for claims (
+                  <U>837</U>), enrollment (<U>834</U>), and eligibility (<U>270/271</U>).
                 </>,
                 <>
-                  Increased reporting throughput <U>40%</U> by rebuilding analytics
-                  dashboards for research teams at Stanford, UWash, and UIC, adding faster
-                  filtering, drill-down views, and data-heavy table workflows across{" "}
-                  <U>500K+</U> records.
+                  Built analytics dashboards from scratch for research teams at Stanford,
+                  WashU St. Louis, and UIC, turning manual report assembly into one-click
+                  reports over live study data integrated from <U>Epic EHR</U> (
+                  <U>HL7/FHIR</U>) and <U>REDCap</U>, with <U>500K+</U> records behind
+                  role-based access.
                 </>,
                 <>
-                  Built an AI-assisted healthcare screening workflow with <U>Twilio</U>,{" "}
-                  <U>OpenAI</U>, <U>LangChain</U>, and <U>REDCap</U>, converting
-                  recruitment and eligibility calls into structured records with branching
-                  logic, transcripts, and human-review paths.
+                  Built a <U>HIPAA-compliant</U> AI-assisted healthcare screening workflow
+                  with <U>Twilio</U>, <U>OpenAI</U>, <U>LangChain</U>, and <U>REDCap</U>,
+                  converting recruitment and eligibility calls into structured records
+                  with branching logic, transcripts, and human-review paths.
                 </>,
               ]}
             />
@@ -231,7 +232,7 @@ export function Journey() {
                   <U>React</U> dashboard revamp of customer-facing campaign workflows.
                 </>,
                 <>
-                  Reduced backend latency <U>80%</U> across services processing millions
+                  Reduced backend latency <U>80%</U> across services processing billions
                   of daily events by re-architecting toward modular dependencies,
                   clustering, and load balancing on a high-availability distributed
                   system.
