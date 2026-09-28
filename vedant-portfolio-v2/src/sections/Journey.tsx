@@ -193,28 +193,35 @@ export function Journey() {
             <Block
               rail={false}
               org="University of Illinois Chicago"
-              title="Software Engineer"
+              title="Software Engineer, Clinical AI and Research"
               metaLeft="Jul 2024 – Present"
               metaRight="Chicago, IL"
               bullets={[
                 <>
                   Cut manual reporting <U>70%</U> across <U>$10M+</U> in grant funding by
                   building a financial operations platform that automated budgeting,
-                  expense reporting, and <U>EDI X12</U> transactions for claims (
-                  <U>837</U>), enrollment (<U>834</U>), and eligibility (<U>270/271</U>).
+                  payroll allocation, and <U>EDI X12</U> transactions for prior
+                  authorizations (<U>278</U>), claims (<U>837</U>), enrollment (<U>834</U>
+                  ), and eligibility (<U>270/271</U>).
                 </>,
                 <>
-                  Built analytics dashboards from scratch for research teams at Stanford,
-                  WashU St. Louis, and UIC, turning manual report assembly into one-click
-                  reports over live study data integrated from <U>Epic EHR</U> (
-                  <U>HL7/FHIR</U>) and <U>REDCap</U>, with <U>500K+</U> records behind
-                  role-based access.
+                  Built analytics dashboards for research teams at Stanford, WashU St.
+                  Louis, and UIC, turning manual report assembly into one-click reports
+                  over live study data from <U>Epic EHR</U> (<U>HL7/FHIR</U>) and{" "}
+                  <U>REDCap</U>, with <U>500K+</U> records behind RBAC.
                 </>,
                 <>
-                  Built a <U>HIPAA-compliant</U> AI-assisted healthcare screening workflow
-                  with <U>Twilio</U>, <U>OpenAI</U>, <U>LangChain</U>, and <U>REDCap</U>,
-                  converting recruitment and eligibility calls into structured records
-                  with branching logic, transcripts, and human-review paths.
+                  Built a <U>HIPAA-compliant</U> voice agent with <U>Twilio</U>,{" "}
+                  <U>ElevenLabs</U>, <U>OpenAI</U>, and <U>LangChain</U> that conducts{" "}
+                  <U>~200</U> recruitment calls weekly: it screens callers, determines
+                  eligibility, books screening visits, writes structured records, and
+                  routes low-confidence calls to an available coordinator.
+                </>,
+                <>
+                  Architected an event-driven <U>RAG</U> layer that ingests finance
+                  policies and study protocols into a <U>Pinecone</U> semantic index and
+                  returns cited source passages with every answer, serving the grant
+                  platform and grounding the voice agent&apos;s live replies.
                 </>,
               ]}
             />
@@ -238,9 +245,9 @@ export function Journey() {
                   system.
                 </>,
                 <>
-                  Led triage of high-severity production defects during an enterprise beta
-                  rollout, partnering cross-functionally with product and QA to protect
-                  reliability under tight release timelines.
+                  Led incident response and root cause analysis through an enterprise beta
+                  rollout, prioritizing high-severity fixes with product and QA to protect
+                  release reliability.
                 </>,
               ]}
             />
@@ -268,24 +275,16 @@ export function Journey() {
             <Block
               rail={false}
               org="Hyfunn"
-              title="Co-Founder"
-              metaLeft="2017 – 2019"
+              title="Co-Founder, Founding Engineer"
+              metaLeft="Sep 2017 – May 2019"
               metaRight="Mumbai, India"
               bullets={[
                 <>
-                  Co-founded and led engineering for a college networking platform,
-                  scaling it to <U>5 university campuses</U> by building the product
-                  end-to-end across <U>React</U>, <U>React Native</U>, and <U>Node</U>.
-                </>,
-                <>
-                  Raised <U>$1M</U> in seed funding on the strength of the MVP and early
-                  campus traction, taking the product from concept to a live, multi-campus
-                  network on <U>AWS</U>.
-                </>,
-                <>
-                  Owned backend and platform architecture as the company grew over{" "}
-                  <U>2 years</U>, leading engineering through rapid iteration and scaling
-                  infrastructure to support a growing student user base.
+                  Co-founded a college networking platform and built it end to end in{" "}
+                  <U>React</U>, <U>React Native</U>, and <U>Node.js</U> on <U>AWS</U>,
+                  owning backend and platform architecture as it scaled to{" "}
+                  <U>5 university campuses</U> and raised <U>$1M</U> in seed funding on
+                  the MVP&apos;s early traction.
                 </>,
               ]}
             />

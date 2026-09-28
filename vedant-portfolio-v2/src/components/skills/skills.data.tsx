@@ -42,6 +42,9 @@ import {
   SiAnthropic,
   SiGooglegemini,
   SiClaude,
+  SiDatadog,
+  SiGrafana,
+  SiSnowflake,
 } from "react-icons/si";
 
 import {
@@ -53,13 +56,13 @@ import {
   DatabaseZap,
   Database,
   Layers,
-  Activity,
   Blocks,
   ScanSearch,
   Gauge,
   Workflow,
   Plug,
-  MousePointerClick,
+  AudioLines,
+  Archive,
 } from "lucide-react";
 import { BrandIcon, GenericIcon, type Skill } from "./icons";
 
@@ -362,10 +365,16 @@ export const SKILLS: Skill[] = [
     icon: <BrandIcon Icon={SiTerraform} color="#7B42BC" />,
   },
   {
-    key: "observability",
-    label: "Observability",
+    key: "datadog",
+    label: "Datadog",
     tagline: "know it broke before users do.",
-    icon: <GenericIcon icon={<Activity size={40} className="text-ink-soft" />} />,
+    icon: <BrandIcon Icon={SiDatadog} color="#632CA6" />,
+  },
+  {
+    key: "grafana",
+    label: "Grafana",
+    tagline: "dashboards over the metrics that matter.",
+    icon: <BrandIcon Icon={SiGrafana} color="#F46800" />,
   },
   {
     key: "supabase",
@@ -378,6 +387,18 @@ export const SKILLS: Skill[] = [
     label: "Pinecone",
     tagline: "vector storage at query speed.",
     icon: <GenericIcon icon={<Blocks size={40} className="text-ink-soft" />} />,
+  },
+  {
+    key: "snowflake",
+    label: "Snowflake",
+    tagline: "warehouse queries over big study data.",
+    icon: <BrandIcon Icon={SiSnowflake} color="#29B5E8" />,
+  },
+  {
+    key: "glacier",
+    label: "AWS Glacier",
+    tagline: "cold storage for records that must persist.",
+    icon: <GenericIcon icon={<Archive size={40} className="text-ink-soft" />} />,
   },
 
   {
@@ -411,6 +432,18 @@ export const SKILLS: Skill[] = [
     icon: <BrandIcon Icon={SiLangchain} color="#1C3C3C" />,
   },
   {
+    key: "langgraph",
+    label: "LangGraph",
+    tagline: "agent loops as explicit graphs.",
+    icon: <BrandIcon Icon={SiLangchain} color="#1C3C3C" />,
+  },
+  {
+    key: "voice",
+    label: "Voice Agents",
+    tagline: "live calls the model conducts itself.",
+    icon: <GenericIcon icon={<AudioLines size={40} className="text-ink-soft" />} />,
+  },
+  {
     key: "openai",
     label: "OpenAI",
     tagline: "GPT models through the API.",
@@ -433,14 +466,6 @@ export const SKILLS: Skill[] = [
     label: "Claude Code",
     tagline: "agentic coding in the terminal.",
     icon: <BrandIcon Icon={SiClaude} color="#D97757" />,
-  },
-  {
-    key: "cursor",
-    label: "Cursor",
-    tagline: "the editor with a model in it.",
-    icon: (
-      <GenericIcon icon={<MousePointerClick size={40} className="text-ink-soft" />} />
-    ),
   },
 ];
 
@@ -484,13 +509,16 @@ export const SKILL_GROUPS: { label: string; keys: string[] }[] = [
       "aws",
       "gcp",
       "vercel",
-      "observability",
+      "datadog",
+      "grafana",
       "postgres",
       "supabase",
       "mysql",
       "mongo",
       "redis",
       "pinecone",
+      "snowflake",
+      "glacier",
       "lb",
       "micro",
       "distributed",
@@ -507,11 +535,12 @@ export const SKILL_GROUPS: { label: string; keys: string[] }[] = [
       "agentic",
       "mcp",
       "langchain",
+      "langgraph",
+      "voice",
       "openai",
       "anthropic",
       "gemini",
       "claudecode",
-      "cursor",
       "tf",
       "pandas",
     ],
