@@ -19,6 +19,20 @@ cd vedant-portfolio-v2
 - `src/index.css` — design tokens (`:root` + `@theme inline`) and every `ink-*` utility.
 - `src/data/` — content (`projects.ts`, `photos.ts`). Change copy and imagery here, not in the components.
 - `src/assets/my-images/` — optimized `.webp` photos the app imports.
+- `blogs/` — the blog, built as extra Vite pages (one `index.html` per URL) so each
+  loads with a 200 on GitHub Pages. Components in `src/blog/`, post metadata in
+  `src/data/posts.ts`, post bodies as Markdown in `src/content/blog/`.
+
+### Adding a blog post
+
+1. Write the body (no title) to `src/content/blog/{slug}.md`. Reference images as
+   `![alt](key)` and map each key to an imported `.webp` in `src/content/blog/{slug}.ts`.
+2. Add the post's metadata to `POSTS` in `src/data/posts.ts`.
+3. Copy `blogs/claude-code-terminal-setup/index.html` and
+   `src/blog/entries/claudeCodeTerminalSetup.tsx` for the new slug, and update the
+   page's title, description, canonical and JSON-LD.
+4. Add the HTML page to `build.rollupOptions.input` in `vite.config.ts` and its URL
+   to `public/sitemap.xml`.
 
 ## Commands
 
