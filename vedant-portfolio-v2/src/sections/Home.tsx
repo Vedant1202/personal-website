@@ -3,7 +3,7 @@ import { useInView } from "framer-motion";
 import vedantImg from "../assets/profile-picture-1.webp";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
-import { FiFileText } from "react-icons/fi";
+import { FiBookOpen, FiFileText } from "react-icons/fi";
 import { useEffect, useRef } from "react";
 import { HeroBlurb, HeroMeta, HeroName } from "../components/hero/HeroIntro";
 import { SectionPicture } from "../components/SectionPicture";
@@ -12,6 +12,7 @@ import { Saturn, SoccerBall, Smiley } from "../components/ink/Scribbles";
 import { BrushStroke } from "../components/ink/BrushStroke";
 import { BackdropStroke } from "../components/ink/BackdropStroke";
 import { CurrentlyNow } from "../components/currently/CurrentlyNow";
+import { BLOGS_PATH } from "../data/posts";
 
 /** Opens in a new tab — Google Drive shared resume. */
 const RESUME_URL =
@@ -99,6 +100,11 @@ export function Home({
                 <a className={LINK_CLASS} href="mailto:vedant.nandoskar@gmail.com">
                   <HiOutlineMail className="text-lg transition-transform duration-200 group-hover:scale-110" />
                   <span>Email</span>
+                </a>
+
+                <a className={LINK_CLASS} href={BLOGS_PATH}>
+                  <FiBookOpen className="text-lg transition-transform duration-200 group-hover:scale-110" />
+                  <span>Blog</span>
                 </a>
 
                 <a

@@ -1,0 +1,111 @@
+/*
+ * Long-form type for rendered Markdown. Scoped to .blog-prose so it never leaks
+ * into the portfolio sections, and it styles plain elements because the
+ * Markdown renderer emits them without classes.
+ */
+.blog-prose {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--brand-ink);
+}
+
+.blog-prose > * + * {
+  margin-top: 1.25em;
+}
+
+.blog-prose h2 {
+  margin-top: 2.6em;
+  font-family: var(--brand-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.blog-prose h3 {
+  margin-top: 2em;
+  font-family: var(--brand-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.blog-prose a {
+  color: var(--brand-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.blog-prose a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.blog-prose ul {
+  padding-left: 1.25em;
+  list-style: disc;
+}
+
+.blog-prose ol {
+  padding-left: 1.25em;
+  list-style: decimal;
+}
+
+.blog-prose li + li {
+  margin-top: 0.5em;
+}
+
+.blog-prose li::marker {
+  color: var(--brand-ink-soft);
+}
+
+.blog-prose blockquote {
+  border-left: 3px solid var(--brand-accent);
+  background-color: color-mix(in srgb, var(--brand-accent) 6%, transparent);
+  padding: 0.85em 1.1em;
+  border-radius: 0 8px 8px 0;
+}
+
+.blog-prose code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.875em;
+  background-color: color-mix(in srgb, var(--brand-ink) 6%, transparent);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  /* Long paths would otherwise push the page wider than a 375px screen */
+  overflow-wrap: anywhere;
+}
+
+.blog-prose pre {
+  overflow-x: auto;
+  padding: 1em 1.1em;
+  border: 1px solid color-mix(in srgb, var(--brand-ink) 12%, transparent);
+  border-radius: 8px;
+  background-color: color-mix(in srgb, var(--brand-ink) 3%, white);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.blog-prose pre code {
+  padding: 0;
+  background: none;
+  font-size: inherit;
+  overflow-wrap: normal;
+}
+
+.blog-prose img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid color-mix(in srgb, var(--brand-ink) 10%, transparent);
+  border-radius: 8px;
+}
+
+/* An italic line right under an image reads as its caption */
+.blog-prose img + em {
+  display: block;
+  margin-top: 0.6em;
+  color: var(--brand-ink-soft);
+  font-size: 0.9rem;
+  text-align: center;
+}
