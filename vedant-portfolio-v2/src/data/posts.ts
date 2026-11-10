@@ -21,7 +21,8 @@ export const POSTS: Post[] = [
     summary:
       "The tools I use to make Claude Code in the terminal look and feel better: prismantis, Ghostty, ccstatusline, anotifier and caveman.",
     readingMinutes: 5,
-    devtoUrl: null,
+    devtoUrl:
+      "https://dev.to/vedant1202/claude-in-the-terminal-a-non-opinionated-setup-lk9",
   },
 ];
 
